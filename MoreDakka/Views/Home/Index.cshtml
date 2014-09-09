@@ -1,4 +1,275 @@
-<div class="jumbotron">
-    <h1>Welcome to More Dakka</h1>
+<style>
 
-</div>
+  .parallax {
+    height: 500px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-perspective: 300px;
+    perspective: 300px;
+  }
+
+  .parallax__group {
+    position: relative;
+    height: 500px;
+    height: 100vh;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+
+  .parallax__layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .parallax__layer--fore {
+    -webkit-transform: translateZ(90px) scale(.7);
+    transform: translateZ(90px) scale(.7);
+    z-index: 1;
+  }
+
+  .parallax__layer--base {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 4;
+  }
+
+  .parallax__layer--back {
+    -webkit-transform: translateZ(-300px) scale(2);
+    transform: translateZ(-300px) scale(2);
+    z-index: 3;
+  }
+
+  .parallax__layer--deep {
+    -webkit-transform: translateZ(-600px) scale(3);
+    transform: translateZ(-600px) scale(3);
+    z-index: 2;
+  }
+
+
+  body, html {
+    overflow: hidden;
+  }
+
+  body {
+    font: 100% / 1.5 Arial;
+  }
+
+  * {
+    margin:0;
+    padding:0;
+  }
+
+  .parallax {
+    font-size: 200%;
+  }
+
+  .title {
+    position: absolute;
+	width: 100%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #group1 {
+    z-index: 5; /* slide over group 2 */
+  }
+  #group1 .parallax__layer--base {
+    background-image: url('/Content/home-00.jpg');
+    background-size: 100%;
+	background-repeat: no-repeat;
+  }
+
+  #group2 {
+    z-index: 3; /* slide under groups 1 and 3 */
+  }
+  #group2 .parallax__layer--back {
+	background-image: url('/Content/home-01.jpg');
+    background-size: 100%;
+	background-repeat: no-repeat;
+  }
+
+  #group3 {
+    z-index: 4; /* slide over group 2 and 4 */
+  }
+  #group3 .parallax__layer--base {
+    background-image: url('/Content/home-03.jpg');
+    background-size: 100%;
+	background-repeat: no-repeat;
+  }
+
+  #group4 {
+    z-index: 2; /* slide under group 3 and 5 */
+  }
+  #group4 .parallax__layer--deep {
+    background-image: url('/Content/home-01.jpg');
+    background-size: 100%;
+	background-repeat: no-repeat;
+  }
+
+  #group5 {
+    z-index: 3; /* slide over group 4 and 6 */
+  }
+  #group5 .parallax__layer--base {
+    background-image: url('/Content/home-02.jpg');
+    background-size: 100%;
+	background-repeat: no-repeat;
+  }
+
+  #group6 {
+    z-index: 2; /* slide under group 5 and 7 */
+  }
+  #group6 .parallax__layer--back {
+    background-image: url('/Content/home-01.jpg');
+    background-size: 100%;
+	background-repeat: no-repeat;
+  }
+
+  #group7 {
+    z-index: 3; /* slide over group 7 */
+  }
+  #group7 .parallax__layer--base {
+    background-image: url('/Content/home-03.jpg');
+    background-size: 100%;
+	background-repeat: no-repeat;
+  }
+</style>
+
+
+@section scripts {
+	<script>
+		$(function() {
+		  $('a[href*=#]:not([href=#])').click(function() {
+			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+			  var target = $(this.hash);
+			  target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+			  if (target.length) {
+				$('html,body').animate({
+				  scrollTop: target.offset().top
+				}, 1000);
+				return false;
+			  }
+			}
+		  });
+		});
+	</script>
+}
+<div class="parallax">
+    <div id="group1" class="parallax__group">
+		<a id="page-1" />
+      <div class="parallax__layer parallax__layer--base">
+        <div class="title" style="color: white; padding-left: 50px;">
+			<h1>More Dakka</h1>
+			<span>Some cool text...</span>
+		</div>
+		
+      </div>
+    </div>
+    <div id="group2" class="parallax__group">
+		<a id="page-2" />
+      <div class="parallax__layer parallax__layer--base">
+		  <div class="title">
+			<div class="jumbotron">
+				Go!
+				<div>This</div>
+				<div>Is</div>
+				<div>Really</div>
+				<div>Cool?</div>
+				
+			</div>
+		</div>
+      </div>
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group3" class="parallax__group">
+      <div class="parallax__layer parallax__layer--fore">
+		<div class="title">
+			<div class="panel">
+				<div class="panel-body panel-default">
+					<div class="alert alert-success">You did something right!</div>
+					Foreground!	<br />		
+					Foreground!	<br />
+					Foreground!	<br />
+					Foreground!	<br />
+					Foreground!	<br />
+					Foreground!	<br />
+				</div>
+			</div>
+		</div>
+      </div>
+      <div class="parallax__layer parallax__layer--base">
+		<a id="page-3" />
+      </div>
+    </div>
+    <div id="group4" class="parallax__group">
+		<a id="page-4" />
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+      <div class="parallax__layer parallax__layer--back">
+		<div class="title">
+			<div class="panel">
+				<div class="panel-body panel-default">
+					Something really important...
+				</div>
+			</div>
+		</div>
+      </div>
+      <div class="parallax__layer parallax__layer--deep">
+         
+      </div>
+    </div>
+    <div id="group5" class="parallax__group">
+      <div class="parallax__layer parallax__layer--fore">
+	  
+		<div class="title">
+			<div class="panel">
+				<div class="panel-body panel-default">
+					<div class="alert alert-danger">You did something wrong :(</div>
+					Foreground!	<br />		
+					Foreground!	<br />
+					Foreground!	<br />
+					Foreground!	<br />
+					Foreground!	<br />
+					Foreground!	<br />
+				</div>
+			</div>
+		</div>
+      </div>
+      <div class="parallax__layer parallax__layer--base">
+	  <a id="page-5" />
+      </div>
+    </div>
+    <div id="group6" class="parallax__group">
+	
+      <div class="parallax__layer parallax__layer--back">
+	  <a id="page-6" />
+      </div>
+      <div class="parallax__layer parallax__layer--base">
+        <div class="title">
+			<div class="panel">
+				<div class="panel-body panel-default">
+					Hmmm...
+				</div>
+			</div>
+		</div>
+      </div>
+    </div>
+    <div id="group7" class="parallax__group">
+	<a id="page-7" />
+      <div class="parallax__layer parallax__layer--base">
+        <div class="title">
+			<div class="panel">
+				<div class="panel-body panel-default">
+					Last and possibly least..
+				</div>
+			</div>
+		</div>
+      </div>
+    </div>
+  </div>

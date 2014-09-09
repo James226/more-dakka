@@ -21,17 +21,20 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+					<li><a href="#page-1">Page 1</a></li>
+					<li><a href="#page-2">Page 2</a></li>
+					<li><a href="#page-3">Page 3</a></li>
+					<li><a href="#page-4">Page 4</a></li>
+					<li><a href="#page-5">Page 5</a></li>
+					<li><a href="#page-6">Page 6</a></li>
+					<li><a href="#page-7">Page 7</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
+        
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - More Dakka</p>
-        </footer>
-    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

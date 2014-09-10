@@ -1,5 +1,4 @@
 <style>
-
   .parallax {
     height: 500px;
     height: 100vh;
@@ -7,6 +6,7 @@
     overflow-y: auto;
     -webkit-perspective: 300px;
     perspective: 300px;
+    padding-bottom: 100px;
   }
 
   .parallax__group {
@@ -54,19 +54,6 @@
     overflow: hidden;
   }
 
-  body {
-    font: 100% / 1.5 Arial;
-  }
-
-  * {
-    margin:0;
-    padding:0;
-  }
-
-  .parallax {
-    font-size: 200%;
-  }
-
   .title {
     position: absolute;
 	width: 100%;
@@ -80,8 +67,8 @@
     z-index: 5; /* slide over group 2 */
   }
   #group1 .parallax__layer--base {
-    background-image: url('/Content/home-00.jpg');
-    background-size: 100%;
+    background-image: url('/Content/home-title.png');
+    background-size: 100% 100%;
 	background-repeat: no-repeat;
   }
 
@@ -149,8 +136,10 @@
 			  var target = $(this.hash);
 			  target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
 			  if (target.length) {
-				$('html,body').animate({
-				  scrollTop: target.offset().top
+			      console.log(target.offset().top);
+			      console.log($('.parallax').scrollTop());
+				$('.parallax').animate({
+				    scrollTop: $('.parallax').scrollTop() + target.offset().top
 				}, 1000);
 				return false;
 			  }
@@ -160,18 +149,13 @@
 	</script>
 }
 <div class="parallax">
+    <a name="page-1" />
     <div id="group1" class="parallax__group">
-		<a id="page-1" />
-      <div class="parallax__layer parallax__layer--base">
-        <div class="title" style="color: white; padding-left: 50px;">
-			<h1>More Dakka</h1>
-			<span>Some cool text...</span>
-		</div>
-		
+      <div class="parallax__layer parallax__layer--base">		
       </div>
     </div>
+    <a name="page-2" />
     <div id="group2" class="parallax__group">
-		<a id="page-2" />
       <div class="parallax__layer parallax__layer--base">
 		  <div class="title">
 			<div class="jumbotron">
@@ -187,6 +171,7 @@
       <div class="parallax__layer parallax__layer--back">
       </div>
     </div>
+    <a name="page-3" />
     <div id="group3" class="parallax__group">
       <div class="parallax__layer parallax__layer--fore">
 		<div class="title">
@@ -204,11 +189,10 @@
 		</div>
       </div>
       <div class="parallax__layer parallax__layer--base">
-		<a id="page-3" />
       </div>
     </div>
+    <a name="page-4" />
     <div id="group4" class="parallax__group">
-		<a id="page-4" />
       <div class="parallax__layer parallax__layer--base">
       </div>
       <div class="parallax__layer parallax__layer--back">
@@ -224,6 +208,7 @@
          
       </div>
     </div>
+    <a name="page-5" />
     <div id="group5" class="parallax__group">
       <div class="parallax__layer parallax__layer--fore">
 	  
@@ -242,13 +227,12 @@
 		</div>
       </div>
       <div class="parallax__layer parallax__layer--base">
-	  <a id="page-5" />
       </div>
     </div>
+    <a name="page-6" />
     <div id="group6" class="parallax__group">
 	
       <div class="parallax__layer parallax__layer--back">
-	  <a id="page-6" />
       </div>
       <div class="parallax__layer parallax__layer--base">
         <div class="title">
@@ -260,8 +244,8 @@
 		</div>
       </div>
     </div>
+    <a name="page-7" />
     <div id="group7" class="parallax__group">
-	<a id="page-7" />
       <div class="parallax__layer parallax__layer--base">
         <div class="title">
 			<div class="panel">

@@ -111,9 +111,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\home-00.jpg" />
-	<Content Include="Content\home-01.jpg" />
-	<Content Include="Content\home-02.jpg" />
-	<Content Include="Content\home-03.jpg" />
+    <Content Include="Content\home-01.jpg" />
+    <Content Include="Content\home-02.jpg" />
+    <Content Include="Content\home-03.jpg" />
+    <Content Include="Content\home-title.png" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.js" />

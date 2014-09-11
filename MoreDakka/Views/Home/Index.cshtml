@@ -130,21 +130,41 @@
 
 @section scripts {
 	<script>
+        function scrollToPage(page) {
+            var target = $('[name=' + page  + ']');
+
+            if (target.length) {
+                console.log(target.offset().top);
+                console.log($('.parallax').scrollTop());
+                $('.parallax').animate({
+                    scrollTop: $('.parallax').scrollTop() + target.offset().top
+                }, 1000);
+                
+            }
+            return false;
+        }
+
 		$(function() {
 		  $('a[href*=#]:not([href=#])').click(function() {
 			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-			  var target = $(this.hash);
-			  target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-			  if (target.length) {
-			      console.log(target.offset().top);
-			      console.log($('.parallax').scrollTop());
-				$('.parallax').animate({
-				    scrollTop: $('.parallax').scrollTop() + target.offset().top
-				}, 1000);
-				return false;
-			  }
+			  scrollToPage(this.hash.slice(1));
 			}
 		  });
+		});
+
+		var currentPos = 1;
+		$(document).ready(function () {
+		    $('.parallax').bind('mousewheel', function (e) {
+		        if (e.originalEvent.wheelDelta / 120 > 0) {
+		            scrollToPage('page-' + --currentPos);
+		        }
+		        else {
+		            console.log(currentPos);
+		            scrollToPage('page-' + ++currentPos);
+		        }
+		        console.log(currentPos);
+		        return false;
+		    });
 		});
 	</script>
 }

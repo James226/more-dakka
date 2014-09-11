@@ -12,3 +12,5 @@ type HomeController() =
     member x.Index () = 
         x.View()
 
+    member x.Home() =
+        x.View()

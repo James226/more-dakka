@@ -5,7 +5,7 @@ open System.Linq
 open System.Net.Http
 open System.Web.Http
 
-[<RoutePrefix("api2/values")>]
+[<RoutePrefix("api/values")>]
 type ValuesController() =
     inherit ApiController()
     let values = [|"value1";"value2"|]

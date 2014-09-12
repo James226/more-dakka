@@ -143,9 +143,10 @@
 
 <script>
     function scrollToPage(page) {
-        var target = $('[name=' + page  + ']');
-
+        var target = $('#group' + page);
+        console.log(target);
         if (target.length) {
+            $('.parallax').stop();
             $('.parallax').animate({
                 scrollTop: $('.parallax').scrollTop() + target.offset().top
             }, 1000);
@@ -168,8 +169,10 @@
 		    else
 		        ++currentPos;
 
-		    currentPos = Math.min(7, Math.max(1, currentPos));
-		    scrollToPage('page-' + currentPos);
+		    currentPos = Math.min(7 * 2, Math.max(1, currentPos));
+		    var page = Math.floor(currentPos / 2);
+            if (currentPos / 2 == page)
+		        scrollToPage(page);
 		    return false;
 		});
 	});

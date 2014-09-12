@@ -127,15 +127,25 @@
     <Content Include="Content\home-02.jpg" />
     <Content Include="Content\home-03.jpg" />
     <Content Include="Content\home-title.png" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <None Include="Scripts\jquery-2.0.3.min.map" />
-    <Content Include="Scripts\jquery-2.0.3.min.js" />
-    <Content Include="Scripts\jquery-2.0.3.js" />
-    <Content Include="Scripts\jquery-2.0.3.intellisense.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\Libraries\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Libraries\bootstrap.min.js" />
+    <Content Include="Scripts\Libraries\bootstrap.js" />
+    <Content Include="Scripts\Libraries\jquery-2.0.3.min.map" />
+    <Content Include="Scripts\Libraries\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\Libraries\jquery-2.0.3.js" />
+    <Content Include="Scripts\Libraries\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\Libraries\respond.min.js" />
+    <Content Include="Scripts\Libraries\respond.js" />
+    <Content Include="Scripts\Libraries\angular-mocks.js" />
+    <Content Include="Scripts\Libraries\angular.min.js.map" />
+    <Content Include="Scripts\Libraries\angular.min.js" />
+    <Content Include="Scripts\Libraries\angular.js" />
+    <Content Include="Scripts\Libraries\angular-route.min.js.map" />
+    <Content Include="Scripts\Libraries\angular-route.min.js" />
+    <Content Include="Scripts\Libraries\angular-route.js" />
+    <Content Include="Scripts\Libraries\angular-animate.min.js.map" />
+    <Content Include="Scripts\Libraries\angular-animate.min.js" />
+    <Content Include="Scripts\Libraries\angular-animate.js" />
     <Content Include="Scripts\typings\jquery\jquery.d.ts" />
     <Content Include="Scripts\typings\angularjs\angular-scenario.d.ts" />
     <Content Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
@@ -145,25 +155,13 @@
     <Content Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
     <Content Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <Content Include="Scripts\typings\angularjs\angular.d.ts" />
-    <Content Include="Scripts\angular-mocks.js" />
-    <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\angular.js" />
     <TypeScriptCompile Include="Scripts\MoreDakka\MoreDakka.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Config.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\controllers\HomeController.ts" />
-    <None Include="Scripts\angular-route.min.js.map" />
-    <Content Include="Scripts\angular-route.min.js" />
-    <Content Include="Scripts\angular-route.js" />
-    <None Include="Scripts\angular-animate.min.js.map" />
-    <Content Include="Scripts\angular-animate.min.js" />
-    <Content Include="Scripts\angular-animate.js" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.svg" />
     <None Include="fonts\glyphicons-halflings-regular.eot" />
-    <Compile Include="Controllers\HomeController.fs" />
-    <Compile Include="Controllers\ValuesController.fs" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
@@ -176,7 +174,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <None Include="packages.config" />
-    <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
@@ -248,6 +245,13 @@
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoreDakka.Controllers\MoreDakka.Controllers.fsproj">
+      <Name>MoreDakka.Controllers</Name>
+      <Project>{e25c7c82-604a-44d8-b6f1-e990163770f9}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <Target Name="BeforeBuild">
     <MSBuild.ExtensionPack.FileSystem.File TaskAction="Replace" RegexPattern="&lt;dependentAssembly&gt;([\s]+.)&lt;assemblyIdentity name=&quot;FSharp\.Core&quot; publicKeyToken=&quot;b03f5f7f11d50a3a&quot; culture=&quot;neutral&quot; \/&gt;([\s\S]+?)&lt;\/dependentAssembly&gt;" RegexOptionList="IgnoreCase|Singleline" Replacement="&lt;dependentAssembly&gt;&#xD;&#xA;        &lt;assemblyIdentity name=&quot;FSharp.Core&quot; publicKeyToken=&quot;b03f5f7f11d50a3a&quot; culture=&quot;neutral&quot; /&gt;&#xD;&#xA;        &lt;bindingRedirect oldVersion=&quot;0.0.0.0-$(TargetFSharpCoreVersion)&quot; newVersion=&quot;$(TargetFSharpCoreVersion)&quot;/&gt;&#xD;&#xA;      &lt;/dependentAssembly&gt;" Files="web.config" />

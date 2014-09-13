@@ -16,30 +16,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr data-ng-repeat="board in boards">
                         <td></td>
-                        <td>{{ message }}</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>None</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Forum 2</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>None</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Forum 3</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>None</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Forum 4</td>
+                        <td>{{ board.name }}</td>
                         <td>0</td>
                         <td>0</td>
                         <td>None</td>

@@ -9,7 +9,7 @@ module MoreDakka {
             })
             .when('/forums', {
                 templateUrl: 'Forums/Index',
-                controller: 'forumsController'
+                controller: 'forumController'
             })
     });
 }

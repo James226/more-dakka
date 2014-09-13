@@ -7,7 +7,7 @@ var MoreDakka;
             controller: 'homeController'
         }).when('/forums', {
             templateUrl: 'Forums/Index',
-            controller: 'forumsController'
+            controller: 'forumController'
         });
     });
 })(MoreDakka || (MoreDakka = {}));

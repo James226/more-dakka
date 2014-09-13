@@ -125,6 +125,7 @@
     <Content Include="Content\home-01.jpg" />
     <Content Include="Content\home-02.jpg" />
     <Content Include="Content\home-03.jpg" />
+    <Content Include="Content\jasmine.css" />
     <Content Include="Scripts\Libraries\modernizr-2.6.2.js" />
     <Content Include="Scripts\Libraries\bootstrap.min.js" />
     <Content Include="Scripts\Libraries\bootstrap.js" />
@@ -144,6 +145,8 @@
     <Content Include="Scripts\Libraries\angular-animate.min.js.map" />
     <Content Include="Scripts\Libraries\angular-animate.min.js" />
     <Content Include="Scripts\Libraries\angular-animate.js" />
+    <Content Include="Scripts\Libraries\jasmine-html.js" />
+    <Content Include="Scripts\Libraries\jasmine.js" />
     <Content Include="Scripts\typings\jquery\jquery.d.ts" />
     <Content Include="Scripts\typings\angularjs\angular-scenario.d.ts" />
     <Content Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
@@ -153,10 +156,12 @@
     <Content Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
     <Content Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <Content Include="Scripts\typings\angularjs\angular.d.ts" />
+    <Content Include="Scripts\typings\jasmine\jasmine.d.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\MoreDakka.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Config.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\controllers\HomeController.ts" />
-    <TypeScriptCompile Include="Scripts\MoreDakka\controllers\ForumsController.ts" />
+    <TypeScriptCompile Include="Scripts\MoreDakka\controllers\ForumController.ts" />
+    <TypeScriptCompile Include="Scripts\MoreDakka\specs\Test.ts" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.svg" />
@@ -165,6 +170,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Forums\Index.cshtml" />
+    <Content Include="Views\Tests\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -174,10 +180,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <TypeScriptCompile Include="Scripts\MoreDakka\Services\ForumService.ts" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">

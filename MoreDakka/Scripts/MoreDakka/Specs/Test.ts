@@ -6,15 +6,24 @@
 describe("Forum Controller", function () {
     var scope: any;
     var httpBackend: any;
-    var forumService: jasmine.Spy;
+    var forumService: any;
     
     beforeEach(module('moreDakka'));
 
     beforeEach(inject(function ($rootScope, $controller, $httpBackend, $http) {
         scope = $rootScope.$new();
         httpBackend = $httpBackend;
+        
+        forumService = {
+            test: 'Mcked!',
+            getBoards: function () {
+                return {
+                    then: function () { }
+                }
+            }
+        };
+        spyOn(forumService, "getBoards").andCallThrough();
 
-        forumService = jasmine.createSpyObj('ForumService', ['getMessages']);
         $controller("forumController", {
             $scope: scope,
             forumService: forumService
@@ -30,11 +39,6 @@ describe("Forum Controller", function () {
     });
 
     it("should be called", function () {
-        scope.test();
-        httpBackend.expectGET('/api/movies').respond([{}, {}, {}]);
-        httpBackend.flush();
-    });
-
-    it("should call http", function () {
+        expect(forumService.getBoards).toHaveBeenCalled();
     });
 });

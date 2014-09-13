@@ -8,7 +8,6 @@ var MoreDakka;
             function ForumController($scope, forumService) {
                 this.$scope = $scope;
                 this.forumService = forumService;
-                $scope.message = "Forum 1";
                 $scope.boards = [];
 
                 forumService.getBoards().then(function (boards) {

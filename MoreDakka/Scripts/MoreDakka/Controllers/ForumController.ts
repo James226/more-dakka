@@ -5,7 +5,6 @@
 module MoreDakka.Controllers {
     export class ForumController {
         constructor(private $scope, private forumService: ForumService) {
-            $scope.message = "Forum 1";
             $scope.boards = [];
 
             forumService.getBoards().then(boards => {

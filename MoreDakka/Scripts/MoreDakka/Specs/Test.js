@@ -13,7 +13,17 @@ describe("Forum Controller", function () {
         scope = $rootScope.$new();
         httpBackend = $httpBackend;
 
-        forumService = jasmine.createSpyObj('ForumService', ['getMessages']);
+        forumService = {
+            test: 'Mcked!',
+            getBoards: function () {
+                return {
+                    then: function () {
+                    }
+                };
+            }
+        };
+        spyOn(forumService, "getBoards").andCallThrough();
+
         $controller("forumController", {
             $scope: scope,
             forumService: forumService
@@ -29,11 +39,6 @@ describe("Forum Controller", function () {
     });
 
     it("should be called", function () {
-        scope.test();
-        httpBackend.expectGET('/api/movies').respond([{}, {}, {}]);
-        httpBackend.flush();
-    });
-
-    it("should call http", function () {
+        expect(forumService.getBoards).toHaveBeenCalled();
     });
 });

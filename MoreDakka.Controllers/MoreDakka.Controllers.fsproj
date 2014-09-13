@@ -51,6 +51,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Compile Include="HomeController.fs" />
+    <Compile Include="ForumsController.fs" />
     <Compile Include="ValuesController.fs" />
   </ItemGroup>
   <ItemGroup>

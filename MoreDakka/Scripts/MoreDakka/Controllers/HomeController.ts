@@ -9,12 +9,4 @@ module MoreDakka {
     }
 
     moreDakka.controller('homeController', HomeController);
-
-    class TestController {
-        constructor(private $scope) {
-            $scope.message = "Test123";
-        }
-    }
-
-    moreDakka.controller('testController', TestController);
 }

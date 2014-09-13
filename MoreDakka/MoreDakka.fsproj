@@ -157,6 +157,7 @@
     <TypeScriptCompile Include="Scripts\MoreDakka\MoreDakka.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Config.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\controllers\HomeController.ts" />
+    <TypeScriptCompile Include="Scripts\MoreDakka\controllers\ForumsController.ts" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.svg" />
@@ -164,6 +165,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Forums\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />

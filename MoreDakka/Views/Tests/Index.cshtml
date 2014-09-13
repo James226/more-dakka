@@ -12,8 +12,9 @@
     @Styles.Render("~/Content/jasmine.css")
 
 
-    @Scripts.Render("~/Scripts/Libraries/jasmine.js")
-    @Scripts.Render("~/Scripts/Libraries/jasmine-html.js")
+    @Scripts.Render("~/Scripts/Libraries/jasmine/jasmine.js")
+    @Scripts.Render("~/Scripts/Libraries/jasmine/jasmine-html.js")
+    @Scripts.Render("~/Scripts/Libraries/jasmine/boot.js")
     @Scripts.Render("~/Scripts/Libraries/angular.js")
     @Scripts.Render("~/Scripts/Libraries/angular-route.js")
     @Scripts.Render("~/Scripts/Libraries/angular-animate.js")
@@ -26,35 +27,6 @@
     @Scripts.Render("~/Scripts/MoreDakka/Services/ForumServices.js")
 
     @Scripts.Render("~/Scripts/MoreDakka/specs/Test.js")
-
-    <script type="text/javascript">
-        (function () {
-            var jasmineEnv = jasmine.getEnv();
-            jasmineEnv.updateInterval = 1000;
-
-            var trivialReporter = new jasmine.TrivialReporter();
-
-            jasmineEnv.addReporter(trivialReporter);
-
-            jasmineEnv.specFilter = function (spec) {
-                return trivialReporter.specFilter(spec);
-            };
-
-            var currentWindowOnload = window.onload;
-
-            window.onload = function () {
-                if (currentWindowOnload) {
-                    currentWindowOnload();
-                }
-                execJasmine();
-            };
-
-            function execJasmine() {
-                jasmineEnv.execute();
-            }
-
-        })();
-    </script>
 </head>
 
 <body>

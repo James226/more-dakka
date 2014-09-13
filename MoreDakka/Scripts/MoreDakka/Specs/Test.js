@@ -22,7 +22,7 @@ describe("Forum Controller", function () {
                 };
             }
         };
-        spyOn(forumService, "getBoards").andCallThrough();
+        spyOn(forumService, "getBoards").and.callThrough();
 
         $controller("forumController", {
             $scope: scope,

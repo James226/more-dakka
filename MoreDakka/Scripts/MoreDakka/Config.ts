@@ -7,9 +7,9 @@ module MoreDakka {
                 templateUrl: 'Home/Home',
                 controller: 'homeController'
             })
-            .when('/test', {
-                templateUrl: 'api/values',
-                controller: 'testController'
+            .when('/forums', {
+                templateUrl: 'Forums/Index',
+                controller: 'forumsController'
             })
     });
 }

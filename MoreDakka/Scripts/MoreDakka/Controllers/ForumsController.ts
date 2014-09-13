@@ -4,8 +4,9 @@
 module MoreDakka {
     class ForumController {
         constructor(private $scope) {
+            $scope.message = "Forum 1";
         }
     }
 
-    moreDakka.controller('forumController', ForumController);
+    moreDakka.controller('forumsController', ForumController);
 }

@@ -5,10 +5,9 @@ var MoreDakka;
         $routeProvider.when('/', {
             templateUrl: 'Home/Home',
             controller: 'homeController'
-        }).when('/test', {
-            templateUrl: 'api/values',
-            controller: 'testController'
+        }).when('/forums', {
+            templateUrl: 'Forums/Index',
+            controller: 'forumsController'
         });
     });
 })(MoreDakka || (MoreDakka = {}));
-//# sourceMappingURL=Config.js.map

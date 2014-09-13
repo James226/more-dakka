@@ -18,7 +18,7 @@ type Board() =
 
 
 type BoardContext() =
-    inherit DbContext("BoardContext")
+    inherit DbContext("MoreDakkaEntities")
 
     do Database.SetInitializer(new CreateDatabaseIfNotExists<BoardContext>())
  

@@ -19,6 +19,10 @@ var MoreDakka;
                     $scope.openTopic = function (id) {
                         $location.path('/forums/' + boardId + '/' + id);
                     };
+
+                    $scope.goToForum = function () {
+                        return $location.path('/forums');
+                    };
                 }
                 return TopicController;
             })();

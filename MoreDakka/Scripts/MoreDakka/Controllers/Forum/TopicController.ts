@@ -15,6 +15,9 @@ module MoreDakka.Controllers.Forum {
             $scope.openTopic = id => {
                 $location.path('/forums/' + boardId + '/' + id);
             };
+
+            $scope.goToForum = () =>
+                $location.path('/forums');
         }
     }
 

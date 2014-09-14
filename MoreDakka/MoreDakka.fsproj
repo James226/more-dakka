@@ -166,10 +166,10 @@
     <TypeScriptCompile Include="Scripts\MoreDakka\controllers\Forum\PostController.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Services\ForumService.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\specs\Test.ts" />
-    <None Include="fonts\glyphicons-halflings-regular.woff" />
-    <None Include="fonts\glyphicons-halflings-regular.ttf" />
-    <None Include="fonts\glyphicons-halflings-regular.svg" />
-    <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />

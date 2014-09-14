@@ -61,9 +61,9 @@ type AccountController() =
     [<ValidateAntiForgeryToken>]
     member this.Login(model:LoginViewModel, returnUrl) : ActionResult =
         if this.ModelState.IsValid then
-            match this.UserManager.Find(model.UserName, model.Password) with
+            match this.UserManager.Find(model.Username, model.Password) with
             | null ->
-                this.ModelState.AddModelError("", "Invalid UserName or Password.")
+                this.ModelState.AddModelError("", "Invalid Username or Password.")
                 upcast this.View(model)
             | user ->
                 this.SignIn(user, model.RememberMe)

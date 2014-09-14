@@ -10,3 +10,7 @@ type ForumsController() =
     [<Authorize>]
     member x.Index() =
         x.View()
+
+    [<Authorize>]
+    member x.Board() =
+        x.View()

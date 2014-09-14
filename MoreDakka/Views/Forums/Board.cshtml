@@ -9,17 +9,15 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Forum Name</th>
-                        <th>Topics</th>
+                        <th>Topic Name</th>
                         <th>Posts</th>
                         <th>Last Post</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="board in boards">
+                    <tr data-ng-repeat="topic in topics">
                         <td></td>
-                        <td data-ng-click="openBoard(board.id)">{{ board.name }}</td>
-                        <td>0</td>
+                        <td data-ng-click="openTopic(topic.id)">{{ topic.name }}</td>
                         <td>0</td>
                         <td>None</td>
                     </tr>

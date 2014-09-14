@@ -3,8 +3,14 @@
 
 module MoreDakka {
     export class Board {
+        Id: string;
         Name: string;
-}
+    }
+
+    export class Topic {
+        Id: string;
+        Name: string;
+    }
 
     export class ForumService {
         boards: Board[];
@@ -22,6 +28,12 @@ module MoreDakka {
                     .then(() => this.boards);
             }
             return this.boardPromise;
+        }
+
+        getTopics(boardId: string) {
+            return this.$http
+                .get<Topic[]>('api/forum/topic/' + boardId)
+                .then(data => data.data);
         }
     }
     moreDakka.service('forumService', ['$http', ForumService]);

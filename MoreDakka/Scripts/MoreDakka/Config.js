@@ -8,6 +8,9 @@ var MoreDakka;
         }).when('/forums', {
             templateUrl: 'Forums/Index',
             controller: 'forumController'
+        }).when('/forums/:board_id', {
+            templateUrl: 'Forums/Board',
+            controller: 'topicController'
         });
     });
 })(MoreDakka || (MoreDakka = {}));

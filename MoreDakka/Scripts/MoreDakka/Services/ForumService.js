@@ -1,4 +1,4 @@
-/// <reference path="../../typings/angularjs/angular.d.ts" />
+﻿/// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../MoreDakka.ts" />
 var MoreDakka;
 (function (MoreDakka) {
@@ -8,6 +8,13 @@ var MoreDakka;
         return Board;
     })();
     MoreDakka.Board = Board;
+
+    var Topic = (function () {
+        function Topic() {
+        }
+        return Topic;
+    })();
+    MoreDakka.Topic = Topic;
 
     var ForumService = (function () {
         function ForumService($http) {
@@ -23,6 +30,12 @@ var MoreDakka;
                 });
             }
             return this.boardPromise;
+        };
+
+        ForumService.prototype.getTopics = function (boardId) {
+            return this.$http.get('api/forum/topic/' + boardId).then(function (data) {
+                return data.data;
+            });
         };
         return ForumService;
     })();

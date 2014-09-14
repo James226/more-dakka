@@ -11,5 +11,9 @@ module MoreDakka {
                 templateUrl: 'Forums/Index',
                 controller: 'forumController'
             })
+            .when('/forums/:board_id', {
+                templateUrl: 'Forums/Board',
+                controller: 'topicController'
+            })
     });
 }

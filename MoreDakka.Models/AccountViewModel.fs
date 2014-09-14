@@ -7,7 +7,7 @@ open System.ComponentModel
 [<CLIMutable>]
 type LoginViewModel = {
     [<Required; Display(Name = "Username")>]
-    UserName : string
+    Username : string
 
     [<Required; DataType(DataType.Password)>]
     Password : string

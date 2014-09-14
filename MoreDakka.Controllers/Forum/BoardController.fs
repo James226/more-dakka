@@ -16,7 +16,6 @@ type Board() =
     [<Key>] member val Id = Guid.NewGuid() with get, set
     [<Required>] member x.Name with get() = name and set v = name <- v
 
-
 type BoardContext() =
     inherit DbContext("MoreDakkaEntities")
 

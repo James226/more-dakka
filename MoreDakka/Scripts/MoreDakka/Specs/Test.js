@@ -14,10 +14,10 @@ describe("Forum Controller", function () {
         httpBackend = $httpBackend;
 
         forumService = {
-            test: 'Mcked!',
+            getBoardsCallback: null,
             getBoards: function () {
                 return {
-                    then: function () {
+                    then: function (fn) {
                     }
                 };
             }
@@ -38,7 +38,7 @@ describe("Forum Controller", function () {
         httpBackend.verifyNoOutstandingRequest();
     });
 
-    it("should be called", function () {
+    it("should get the current boards", function () {
         expect(forumService.getBoards).toHaveBeenCalled();
     });
 });

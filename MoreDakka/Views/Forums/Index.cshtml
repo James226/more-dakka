@@ -2,29 +2,25 @@
     Layout = null;
     
 }
-<div class="container">
-    <div class="panel panel-default" id="forum-panel">
-        <div class="panel-body">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Forum Name</th>
-                        <th>Topics</th>
-                        <th>Posts</th>
-                        <th>Last Post</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="board in boards">
-                        <td></td>
-                        <td data-ng-click="openBoard(board.id)">{{ board.name }}</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>None</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div class="container" style="padding-top: 50px;">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Forum Name</th>
+                <th>Topics</th>
+                <th>Posts</th>
+                <th>Last Post</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="board in boards">
+                <td></td>
+                <td data-ng-click="openBoard(board.id)">{{ board.name }}</td>
+                <td>0</td>
+                <td>0</td>
+                <td>None</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

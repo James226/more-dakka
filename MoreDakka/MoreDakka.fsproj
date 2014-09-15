@@ -178,6 +178,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Forums\Index.cshtml" />
     <Content Include="Views\Forums\Board.cshtml" />
+    <None Include="Views\Forums\Topic.cshtml" />
     <Content Include="Views\Tests\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />

@@ -11,6 +11,9 @@ var MoreDakka;
         }).when('/forums/:board_id', {
             templateUrl: 'Forums/Board',
             controller: 'topicController'
+        }).when('/forums/:board_id/:topic_id', {
+            templateUrl: 'Forums/Topic',
+            controller: 'postController'
         });
     });
 })(MoreDakka || (MoreDakka = {}));

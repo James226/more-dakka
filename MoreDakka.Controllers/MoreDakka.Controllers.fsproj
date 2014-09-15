@@ -54,6 +54,7 @@
     <Compile Include="HomeController.fs" />
     <Compile Include="ForumsController.fs" />
     <Compile Include="TestsController.fs" />
+    <Compile Include="Forum\PostController.fs" />
     <Compile Include="Forum\TopicController.fs" />
     <Compile Include="Forum\BoardController.fs" />
     <None Include="App.config" />

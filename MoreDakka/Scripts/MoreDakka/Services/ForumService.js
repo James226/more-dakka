@@ -37,6 +37,12 @@ var MoreDakka;
                 return data.data;
             });
         };
+
+        ForumService.prototype.getPosts = function (topicId) {
+            return this.$http.get('api/forum/post/' + topicId).then(function (data) {
+                return data.data;
+            });
+        };
         return ForumService;
     })();
     MoreDakka.ForumService = ForumService;

@@ -14,3 +14,7 @@ type ForumsController() =
     [<Authorize>]
     member x.Board() =
         x.View()
+
+    [<Authorize>]
+    member x.Topic() =
+        x.View()

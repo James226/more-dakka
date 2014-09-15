@@ -35,6 +35,12 @@ module MoreDakka {
                 .get<Topic[]>('api/forum/topic/' + boardId)
                 .then(data => data.data);
         }
+
+        getPosts(topicId: string) {
+            return this.$http
+                .get<Topic[]>('api/forum/post/' + topicId)
+                .then(data => data.data);
+        }
     }
     moreDakka.service('forumService', ['$http', ForumService]);
 }

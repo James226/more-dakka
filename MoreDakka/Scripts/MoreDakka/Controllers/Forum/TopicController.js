@@ -23,6 +23,12 @@ var MoreDakka;
                     $scope.goToForum = function () {
                         return $location.path('/forums');
                     };
+
+                    $scope.createTopic = function () {
+                        return forumService.createTopic(boardId, $scope.title, $scope.body).then(function (topic) {
+                            return $scope.topics.push(topic);
+                        });
+                    };
                 }
                 return TopicController;
             })();

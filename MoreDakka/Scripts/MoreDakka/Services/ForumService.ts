@@ -47,6 +47,12 @@ module MoreDakka {
                 .then(data => data.data);
         }
 
+        createTopic(boardId: string, title: string, body: string) {
+            return this.$http
+                .post<Post>('api/forum/topic', { BoardId: boardId, Title: title, Body: body })
+                .then(data => data.data);
+        }
+
         createPost(topicId: string, body: string) {
             return this.$http
                 .post<Post>('api/forum/post', { TopicId: topicId, Body: body })

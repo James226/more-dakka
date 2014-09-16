@@ -51,6 +51,12 @@ var MoreDakka;
             });
         };
 
+        ForumService.prototype.createTopic = function (boardId, title, body) {
+            return this.$http.post('api/forum/topic', { BoardId: boardId, Title: title, Body: body }).then(function (data) {
+                return data.data;
+            });
+        };
+
         ForumService.prototype.createPost = function (topicId, body) {
             return this.$http.post('api/forum/post', { TopicId: topicId, Body: body }).then(function (data) {
                 return data.data;

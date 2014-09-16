@@ -18,6 +18,16 @@ type Topic() =
     [<Required>] member x.Name with get() = name and set v = name <- v
     [<Required>] member x.BoardId with get() = boardId and set v = boardId <- v
 
+type NewTopic() =
+    let mutable title : string = ""
+    let mutable body : string = ""
+    let mutable boardId : Guid = Guid.NewGuid()
+
+    [<Key>] member val Id = Guid.NewGuid() with get, set
+    [<Required>] member x.Title with get() = title and set v = title <- v
+    [<Required>] member x.Body with get() = body and set v = body <- v
+    [<Required>] member x.BoardId with get() = boardId and set v = boardId <- v
+
 
 type TopicContext() =
     inherit DbContext("MoreDakkaEntities")
@@ -34,6 +44,7 @@ type TopicContext() =
 type TopicController() =
     inherit ApiController()
     let topicContext = new TopicContext()
+    let postContext = new PostContext()
 
     [<Route("")>]
     member x.Get() =
@@ -45,9 +56,19 @@ type TopicController() =
         x.Ok(topicContext.Topics.Where(fun t -> t.BoardId = id)) :> _
 
     [<Route("")>]
-    member x.Post(topic: Topic) : IHttpActionResult =
+    member x.Post(newTopic: NewTopic) : IHttpActionResult =
+        let topic = Topic()
+        topic.BoardId <- newTopic.BoardId
+        topic.Name <- newTopic.Title
         topicContext.Topics.Add(topic) |> ignore
         topicContext.SaveChanges() |> ignore
+
+        let post = Post()
+        post.TopicId <- topic.Id
+        post.Body <- newTopic.Body
+        postContext.Posts.Add(post) |> ignore
+        postContext.SaveChanges() |> ignore
+
         x.Ok(topic) :> _
 
     [<Route("{id:guid}")>]

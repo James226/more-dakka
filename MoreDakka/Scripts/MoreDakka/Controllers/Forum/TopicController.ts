@@ -18,6 +18,11 @@ module MoreDakka.Controllers.Forum {
 
             $scope.goToForum = () =>
                 $location.path('/forums');
+
+            $scope.createTopic = () =>
+                forumService
+                    .createTopic(boardId, $scope.title, $scope.body)
+                    .then(topic => $scope.topics.push(topic));
         }
     }
 

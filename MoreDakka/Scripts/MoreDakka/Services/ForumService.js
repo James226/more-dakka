@@ -16,6 +16,13 @@ var MoreDakka;
     })();
     MoreDakka.Topic = Topic;
 
+    var Post = (function () {
+        function Post() {
+        }
+        return Post;
+    })();
+    MoreDakka.Post = Post;
+
     var ForumService = (function () {
         function ForumService($http) {
             this.$http = $http;
@@ -40,6 +47,12 @@ var MoreDakka;
 
         ForumService.prototype.getPosts = function (topicId) {
             return this.$http.get('api/forum/post/' + topicId).then(function (data) {
+                return data.data;
+            });
+        };
+
+        ForumService.prototype.createPost = function (topicId, body) {
+            return this.$http.post('api/forum/post', { TopicId: topicId, Body: body }).then(function (data) {
                 return data.data;
             });
         };

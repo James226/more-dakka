@@ -12,6 +12,11 @@ module MoreDakka {
         Name: string;
     }
 
+    export class Post {
+        TopicId: string;
+        Body: string;
+    }
+
     export class ForumService {
         boards: Board[];
         boardPromise: ng.IPromise<Board[]>;
@@ -39,6 +44,12 @@ module MoreDakka {
         getPosts(topicId: string) {
             return this.$http
                 .get<Topic[]>('api/forum/post/' + topicId)
+                .then(data => data.data);
+        }
+
+        createPost(topicId: string, body: string) {
+            return this.$http
+                .post<Post>('api/forum/post', { TopicId: topicId, Body: body })
                 .then(data => data.data);
         }
     }

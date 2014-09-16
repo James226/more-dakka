@@ -21,6 +21,12 @@ var MoreDakka;
                     $scope.goToBoard = function (boardId) {
                         return $location.path('/forums/' + boardId);
                     };
+
+                    $scope.createPost = function () {
+                        return forumService.createPost(topicId, $scope.postBody).then(function (post) {
+                            return $scope.posts.push(post);
+                        });
+                    };
                 }
                 return PostController;
             })();

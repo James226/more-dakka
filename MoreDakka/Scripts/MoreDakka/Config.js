@@ -14,6 +14,12 @@ var MoreDakka;
         }).when('/forums/:board_id/:topic_id', {
             templateUrl: 'Forums/Topic',
             controller: 'postController'
+        }).when('/account/login', {
+            templateUrl: 'Account/Login',
+            controller: 'loginController'
+        }).when('/account/register', {
+            templateUrl: 'Account/Register',
+            controller: 'registerController'
         });
     });
 })(MoreDakka || (MoreDakka = {}));

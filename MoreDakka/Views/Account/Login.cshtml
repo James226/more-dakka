@@ -13,21 +13,20 @@
             <hr />
 
             <section id="loginForm">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
+                <form id="loginForm" data-ng-submit="login()">
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
                     <div class="form-group">
                         @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", data_ng_model = "username" })
                             @Html.ValidationMessageFor(m => m.Username)
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", data_ng_model = "password" })
                             @Html.ValidationMessageFor(m => m.Password)
                         </div>
                     </div>
@@ -47,7 +46,7 @@
                     <p>
                         <a href="#/account/register">Register</a> if you don't have an account.
                     </p>
-                }
+                </form>
             </section>
         </div>
     </div>

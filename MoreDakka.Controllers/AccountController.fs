@@ -10,9 +10,16 @@ open Microsoft.AspNet.Identity.EntityFramework
 open Microsoft.AspNet.Identity.Owin
 open Microsoft.Owin.Security
 open MoreDakka.Models
+open Newtonsoft.Json
 
 type private AppUserManager = UserManager<ApplicationUser>
 type private AppUserStore   = UserStore<ApplicationUser>
+
+[<CLIMutable>]
+type LoginResult = {
+    Result: bool
+    ErrorMessage: string option
+}
 
 [<Authorize>]
 type AccountController() =
@@ -51,25 +58,24 @@ type AccountController() =
 
     // GET : /Account/Login
     [<AllowAnonymous>]
-    member this.Login(returnUrl:string) =
-        this.ViewData.["ReturnUrl"] <- returnUrl
+    member this.Login() =
         this.View()
 
     // POST : /Account/Login
     [<HttpPost>]
     [<AllowAnonymous>]
     [<ValidateAntiForgeryToken>]
-    member this.Login(model:LoginViewModel, returnUrl) : ActionResult =
+    member this.Login(model:LoginViewModel) : ActionResult =
         if this.ModelState.IsValid then
             match this.UserManager.Find(model.Username, model.Password) with
             | null ->
                 this.ModelState.AddModelError("", "Invalid Username or Password.")
-                upcast this.View(model)
+                upcast this.Json({ Result = false; ErrorMessage = Some("Invalid Username or Password.")})
             | user ->
                 this.SignIn(user, model.RememberMe)
-                this.RedirectToLocal(returnUrl)
+                upcast this.Json({ Result = true; ErrorMessage = None })
         else
-            upcast this.View(model)
+            upcast this.Json({ Result = false; ErrorMessage = Some("Error processing request.")})
 
     // GET : /Account/Manage
     member this.Manage() =
@@ -109,12 +115,6 @@ type AccountController() =
                             DefaultAuthenticationTypes.ApplicationCookie)
         let props = AuthenticationProperties(IsPersistent = isPersistent)
         this.AuthenticationManager.SignIn(props, identity)
-
-    member private this.RedirectToLocal(url) : ActionResult =
-        if this.Url.IsLocalUrl(url) then
-            upcast this.Redirect(url)
-        else
-            upcast this.RedirectToAction("Index", "Home")
 
     member private this.AddErrors(result:IdentityResult) =
         result.Errors |> Seq.iter (fun e -> this.ModelState.AddModelError("", e))

@@ -30,8 +30,8 @@
                 else
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                        <li><a href="/#/account/register">Register</a></li>
+                        <li><a href="/#/account/login">Login</a></li>
                     </ul>
                 }
             </div>
@@ -62,8 +62,11 @@
     @Scripts.Render("~/Scripts/Libraries/angular-animate.js")
     @Scripts.Render("~/Scripts/MoreDakka/MoreDakka.js")
     @Scripts.Render("~/Scripts/MoreDakka/Config.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Services/AccountService.js")
     @Scripts.Render("~/Scripts/MoreDakka/Services/ForumService.js")
     @Scripts.Render("~/Scripts/MoreDakka/Controllers/HomeController.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Account/LoginController.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Account/RegisterController.js")
     @Scripts.Render("~/Scripts/MoreDakka/Controllers/Forum/ForumController.js")
     @Scripts.Render("~/Scripts/MoreDakka/Controllers/Forum/TopicController.js")
     @Scripts.Render("~/Scripts/MoreDakka/Controllers/Forum/PostController.js")

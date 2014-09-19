@@ -19,5 +19,13 @@ module MoreDakka {
                 templateUrl: 'Forums/Topic',
                 controller: 'postController'
             })
+            .when('/account/login', {
+                templateUrl: 'Account/Login',
+                controller: 'loginController'
+            })
+            .when('/account/register', {
+                templateUrl: 'Account/Register',
+                controller: 'registerController'
+            })
     });
 }

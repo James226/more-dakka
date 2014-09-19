@@ -7,6 +7,7 @@ open System.Web.Http
 open System.Web.Mvc
 open System.Web.Routing
 open System.Web.Optimization
+open System.Web.Security
 
 type BundleConfig() =
     static member RegisterBundles (bundles:BundleCollection) =
@@ -80,3 +81,11 @@ type Global() =
         Global.RegisterFilters(GlobalFilters.Filters)
         Global.RegisterRoutes(RouteTable.Routes)
         BundleConfig.RegisterBundles BundleTable.Bundles
+
+    member x.Application_EndRequest() =
+        let context = HttpContextWrapper(x.Context)
+ 
+        if (FormsAuthentication.IsEnabled && context.Response.StatusCode = 302 && context.Request.IsAjaxRequest()) then
+            context.Response.Clear()
+            context.Response.StatusCode <- 401
+

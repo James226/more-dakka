@@ -3,30 +3,36 @@
     
 }
 <div class="container">
-    <div style="padding: 20px 0 20px;">
-        <span style="font-size: 3.0em;" data-ng-click="goToBoard(boardId)" class="glyphicon glyphicon-circle-arrow-left"></span>
-    </div>
-       
-    <div class="panel panel-default" data-ng-repeat="post in posts">
-        <div class="panel-heading"></div>
+    <div style="height: 20px;">&nbsp;</div>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div style="padding-bottom: 20px;">
+                    <span style="font-size: 3.0em;" data-ng-click="goToBoard(boardId)" class="glyphicon glyphicon-circle-arrow-left"></span>
+                </div>
 
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-4">Author</div>
-                <div class="col-md-8">
-                    {{ post.body }}
+                <div class="panel panel-default" data-ng-repeat="post in posts">
+                    <div class="panel-heading"></div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">Author</div>
+                            <div class="col-md-8">
+                                {{ post.body }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="form-group">
-                <textarea class="form-control" rows="3" style="max-width: 100%" data-ng-model="postBody"></textarea>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-success" data-ng-click="createPost()">Post</button>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" style="max-width: 100%" data-ng-model="postBody"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" data-ng-click="createPost()">Post</button>
+                </div>
             </div>
         </div>
     </div>

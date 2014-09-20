@@ -12,6 +12,10 @@
             <h2>@ViewBag.Title.</h2>
             <hr />
 
+            <div class="alert alert-danger" data-ng-show="errorMessage.length > 0">
+                {{ errorMessage }}
+            </div>
+
             <section id="loginForm">
                 <form id="loginForm" data-ng-submit="login()">
                     @Html.AntiForgeryToken()

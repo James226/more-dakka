@@ -11,16 +11,17 @@ var MoreDakka;
                     this.$rootScope = $rootScope;
                     this.$location = $location;
                     this.accountService = accountService;
+                    $scope.errorMessage = '';
+
                     $scope.login = function () {
                         accountService.login($scope.username, $scope.password, $('input[name=__RequestVerificationToken]').val()).then(function (result) {
-                            $scope.errorMessage = result.ErrorMessage;
-                            if (!$rootScope.$$phase)
-                                $rootScope.$apply();
-
-                            if (!result.Result)
-                                return;
-
-                            window.location.href = '/';
+                            if (result.data.Result) {
+                                window.location.href = '/';
+                            } else {
+                                $scope.errorMessage = result.data.ErrorMessage.Value;
+                                if (!$rootScope.$$phase)
+                                    $rootScope.$apply();
+                            }
                         });
                     };
                 }

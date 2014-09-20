@@ -9,23 +9,9 @@ open System.Data.Entity;
 open System.Collections.Generic; 
 open System.ComponentModel.DataAnnotations; 
 open System.Data.Entity.Infrastructure; 
-
-type Board() =
-    let mutable name : string = ""
-
-    [<Key>] member val Id = Guid.NewGuid() with get, set
-    [<Required>] member x.Name with get() = name and set v = name <- v
-
-type BoardContext() =
-    inherit DbContext("MoreDakkaEntities")
-
-    do Database.SetInitializer(new CreateDatabaseIfNotExists<BoardContext>())
- 
-    [<DefaultValue()>]
-    val mutable boards : IDbSet<Board>
- 
-    member x.Boards with get() = x.boards and set v = x.boards <- v
-
+open System.Collections.ObjectModel
+open System.ComponentModel.DataAnnotations.Schema
+open MoreDakka.Data
 
 [<RoutePrefix("api/forum/board")>]
 type BoardController() =

@@ -16,7 +16,7 @@ module MoreDakka {
         }
 
         login(username: string, password: string, antiForgeryToken: string) {
-            return this.$http({
+            return this.$http<LoginResult>({
                 url: '/Account/Login',
                 data: $.param({
                     "username": username,

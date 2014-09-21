@@ -316,6 +316,11 @@
       <Project>{e25c7c82-604a-44d8-b6f1-e990163770f9}</Project>
       <Private>True</Private>
     </ProjectReference>
+    <ProjectReference Include="..\MoreDakka.Data\MoreDakka.Data.csproj">
+      <Name>MoreDakka.Data</Name>
+      <Project>{901cbc21-0321-4cd1-87cf-a3332363ab5c}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\MoreDakka.Models\MoreDakka.Models.fsproj">
       <Name>MoreDakka.Models</Name>
       <Project>{4d36a78b-4142-4d8b-a6db-99a9e1a8568b}</Project>

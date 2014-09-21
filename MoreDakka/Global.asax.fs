@@ -83,8 +83,7 @@ type Global() =
         Global.RegisterRoutes(RouteTable.Routes)
         BundleConfig.RegisterBundles BundleTable.Bundles
 
-        let configuration = DbMigrationsConfiguration()
-        configuration.AutomaticMigrationsEnabled <- true
+        let configuration = MoreDakka.Data.Migrations.Configuration()
         let migrator = new DbMigrator(configuration)
         migrator.Update()
 

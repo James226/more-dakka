@@ -5,7 +5,7 @@ namespace MoreDakka.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MoreDakka.Data.BoardContext>
+    public sealed class Configuration : DbMigrationsConfiguration<MoreDakka.Data.BoardContext>
     {
         public Configuration()
         {

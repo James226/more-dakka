@@ -12,7 +12,7 @@ type ApplicationUser() =
 
 
 type IdentityContext() =
-    inherit IdentityDbContext<ApplicationUser>("MoreDakkaEntities")
+    inherit IdentityDbContext<ApplicationUser>("MoreDakka")
 
     override this.OnModelCreating(builder:DbModelBuilder) =
         base.OnModelCreating(builder)

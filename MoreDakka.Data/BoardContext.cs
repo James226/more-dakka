@@ -41,6 +41,5 @@ namespace MoreDakka.Data
         public IDbSet<Board> Boards { get; set; }
         public IDbSet<Topic> Topics { get; set; }
         public IDbSet<Post> Posts { get; set; }
-        public IDbSet<User> Users { get; set; }
     }
 }

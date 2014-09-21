@@ -27,17 +27,13 @@ namespace MoreDakka.Data
         public string Name { get; set; }
 
         [ForeignKey("BoardId")]
-        public ICollection<Topic> Topics
-        {
-            get;
-            set;
-        }
+        public ICollection<Topic> Topics { get; set; }
     }
 
     public class BoardContext : DbContext
     {
         public BoardContext()
-            : base("MoreDakkaEntities")
+            : base("MoreDakka")
         {
             Database.SetInitializer<BoardContext>(new CreateDatabaseIfNotExists<BoardContext>());
         }
@@ -45,5 +41,6 @@ namespace MoreDakka.Data
         public IDbSet<Board> Boards { get; set; }
         public IDbSet<Topic> Topics { get; set; }
         public IDbSet<Post> Posts { get; set; }
+        public IDbSet<User> Users { get; set; }
     }
 }

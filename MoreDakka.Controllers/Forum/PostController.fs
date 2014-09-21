@@ -1,14 +1,10 @@
 namespace MoreDakka.Controllers
-open System
-open System.Collections.Generic
-open System.Linq
-open System.Net.Http
-open System.Web.Http
 
-open System.Data.Entity; 
-open System.Collections.Generic; 
-open System.ComponentModel.DataAnnotations; 
-open System.Data.Entity.Infrastructure; 
+open System
+open System.Linq
+open System.Web.Http
+open System.Data.Entity
+
 open MoreDakka.Data
 
 [<RoutePrefix("api/forum/post")>]

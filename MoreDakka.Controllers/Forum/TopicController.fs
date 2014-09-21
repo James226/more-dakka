@@ -1,16 +1,12 @@
 namespace MoreDakka.Controllers
+
 open System
 open System.Collections.Generic
 open System.Linq
-open System.Net.Http
 open System.Web.Http
+open System.Data.Entity
+open System.ComponentModel.DataAnnotations
 
-open System.Data.Entity; 
-open System.Collections.Generic; 
-open System.ComponentModel.DataAnnotations; 
-open System.Data.Entity.Infrastructure; 
-open System.ComponentModel.DataAnnotations.Schema
-open System.Collections.ObjectModel
 open MoreDakka.Data
 
 type NewTopic() =
@@ -38,12 +34,14 @@ type TopicController() =
         //topic.BoardId <- newTopic.BoardId
         topic.Name <- newTopic.Title
         let board = context.Boards.First(fun b -> b.Id = newTopic.BoardId)
+        board.Topics <- List<Topic>()
         board.Topics.Add(topic)
         context.SaveChanges() |> ignore
 
         let post = Post()
         post.TopicId <- topic.Id
         post.Body <- newTopic.Body
+        topic.Posts <- List<Post>()
         topic.Posts.Add(post) |> ignore
         context.SaveChanges() |> ignore
 

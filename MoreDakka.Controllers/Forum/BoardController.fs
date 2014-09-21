@@ -1,33 +1,18 @@
 namespace MoreDakka.Controllers
+
 open System
-open System.Collections.Generic
-open System.Linq
-open System.Net.Http
 open System.Web.Http
 
-open System.Data.Entity; 
-open System.Collections.Generic; 
-open System.ComponentModel.DataAnnotations; 
-open System.Data.Entity.Infrastructure; 
-open System.Collections.ObjectModel
-open System.ComponentModel.DataAnnotations.Schema
 open MoreDakka.Data
 
 [<RoutePrefix("api/forum/board")>]
 type BoardController() =
     inherit ApiController()
-    let values = [|"value1";"value2"|]
     let boardContext = new BoardContext()
 
     [<Route("")>]
     member x.Get() =
         boardContext.Boards
-
-    [<Route("{id:int}")>]
-    member x.Get(id) : IHttpActionResult =
-        if id > values.Length - 1 then
-            x.BadRequest() :> _
-        else x.Ok(values.[id]) :> _
 
     [<Route("")>]
     member x.Post(board: Board) : IHttpActionResult =
@@ -36,7 +21,7 @@ type BoardController() =
         x.Ok(board) :> _
 
     [<Route("{id:guid}")>]
-    member x.Delete(id: System.Guid) :IHttpActionResult =
+    member x.Delete(id: System.Guid) : IHttpActionResult =
         try
             let board = boardContext.Boards.Find id
             boardContext.Boards.Remove(board) |> ignore

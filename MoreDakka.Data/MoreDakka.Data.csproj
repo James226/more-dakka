@@ -52,11 +52,16 @@
     <Compile Include="Migrations\201409201610561_IntialMigration.Designer.cs">
       <DependentUpon>201409201610561_IntialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409212225194_AddUsersTable.cs" />
+    <Compile Include="Migrations\201409212225194_AddUsersTable.Designer.cs">
+      <DependentUpon>201409212225194_AddUsersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Topic.cs" />
     <Compile Include="BoardContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -67,6 +72,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201409201610561_IntialMigration.resx">
       <DependentUpon>201409201610561_IntialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409212225194_AddUsersTable.resx">
+      <DependentUpon>201409212225194_AddUsersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,6 +8,7 @@ open System.Web.Mvc
 open System.Web.Routing
 open System.Web.Optimization
 open System.Web.Security
+open System.Data.Entity.Migrations
 
 type BundleConfig() =
     static member RegisterBundles (bundles:BundleCollection) =
@@ -81,6 +82,11 @@ type Global() =
         Global.RegisterFilters(GlobalFilters.Filters)
         Global.RegisterRoutes(RouteTable.Routes)
         BundleConfig.RegisterBundles BundleTable.Bundles
+
+        let configuration = DbMigrationsConfiguration()
+        configuration.AutomaticMigrationsEnabled <- true
+        let migrator = new DbMigrator(configuration)
+        migrator.Update()
 
     member x.Application_EndRequest() =
         let context = HttpContextWrapper(x.Context)

@@ -2,17 +2,26 @@ namespace MoreDakka.Controllers
 
 open System
 open System.Web.Http
+open System.Linq
+open System.Data.Entity
 
 open MoreDakka.Data
+open MoreDakka.Models.Forum
 
 [<RoutePrefix("api/forum/board")>]
 type BoardController() =
     inherit ApiController()
     let boardContext = new BoardContext()
 
+    let CoerceBoardViewModel (id: Guid, name: string, totalTopics: int, totalPosts: int) : BoardViewModel =
+        { Id = id; Name = name; TotalTopics = totalTopics; TotalPosts = totalPosts }
+
     [<Route("")>]
-    member x.Get() =
-        boardContext.Boards
+    member x.Get() : IHttpActionResult =
+        let boards = query {
+                for board in boardContext.Boards.Include(fun b -> b.Topics).Include("Topics.Posts") do
+                select (board.Id, board.Name, board.Topics.Count, board.Topics.Sum(fun t -> t.Posts.Count )) }
+        x.Ok(Enumerable.Select(boards, CoerceBoardViewModel)) :> _
 
     [<Route("")>]
     member x.Post(board: Board) : IHttpActionResult =

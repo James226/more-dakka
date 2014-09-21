@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AccountViewModel.fs" />
     <Compile Include="Forum\ForumViewModel.fs" />
+    <Compile Include="Forum\BoardViewModel.fs" />
     <Compile Include="RoleViewModel.fs" />
     <Compile Include="AppModel.fs" />
     <None Include="packages.config" />

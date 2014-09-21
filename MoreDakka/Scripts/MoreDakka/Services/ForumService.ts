@@ -12,6 +12,12 @@ module MoreDakka {
         Name: string;
     }
 
+    export class BoardViewModel {
+        id: string;
+        name: string;
+        totalTopics: number;
+    }
+
     export class ForumViewModel {
         id: string;
         title: string;
@@ -24,8 +30,8 @@ module MoreDakka {
     }
 
     export class ForumService {
-        boards: Board[];
-        boardPromise: ng.IPromise<Board[]>;
+        boards: BoardViewModel[];
+        boardPromise: ng.IPromise<BoardViewModel[]>;
 
         constructor(private $http: ng.IHttpService) {
 
@@ -34,7 +40,7 @@ module MoreDakka {
         getBoards() {
             if (this.boardPromise == null) {
                 this.boardPromise = this.$http
-                    .get<Board[]>('api/forum/board')
+                    .get<BoardViewModel[]>('api/forum/board')
                     .then(data => this.boards = data.data)
                     .then(() => this.boards);
             }

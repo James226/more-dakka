@@ -8,6 +8,7 @@ open System.Data.Entity
 open System.ComponentModel.DataAnnotations
 
 open MoreDakka.Data
+open MoreDakka.Models.Forum
 
 type NewTopic() =
     let mutable title : string = ""
@@ -26,7 +27,10 @@ type TopicController() =
     [<Route("{id:guid}")>]
     [<HttpGet>]
     member x.Get(id) : IHttpActionResult =
-        x.Ok(context.Boards.Include(fun b -> b.Topics).First(fun b -> b.Id = id).Topics) :> _
+        x.Ok(context.Boards
+            .Include(fun b -> b.Topics)
+            .Include("Topics.Posts")
+            .First(fun b -> b.Id = id).Topics.Select(fun t -> { Id = t.Id; Title = t.Name; TotalPosts = t.Posts.Count })) :> _
 
     [<Route("")>]
     member x.Post(newTopic: NewTopic) : IHttpActionResult =

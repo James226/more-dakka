@@ -21,8 +21,8 @@
                 <tbody>
                     <tr data-ng-repeat="topic in topics">
                         <td></td>
-                        <td data-ng-click="openTopic(topic.id)">{{ topic.name }}</td>
-                        <td>0</td>
+                        <td data-ng-click="openTopic(topic.id)">{{ topic.title }}</td>
+                        <td>{{ topic.totalPosts }}</td>
                         <td>None</td>
                     </tr>
                 </tbody>

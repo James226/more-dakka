@@ -16,6 +16,13 @@ var MoreDakka;
     })();
     MoreDakka.Topic = Topic;
 
+    var ForumViewModel = (function () {
+        function ForumViewModel() {
+        }
+        return ForumViewModel;
+    })();
+    MoreDakka.ForumViewModel = ForumViewModel;
+
     var Post = (function () {
         function Post() {
         }

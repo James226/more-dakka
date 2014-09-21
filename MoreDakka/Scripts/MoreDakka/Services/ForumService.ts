@@ -12,6 +12,12 @@ module MoreDakka {
         Name: string;
     }
 
+    export class ForumViewModel {
+        id: string;
+        title: string;
+        totalPosts: number;
+    }
+
     export class Post {
         TopicId: string;
         Body: string;
@@ -37,13 +43,13 @@ module MoreDakka {
 
         getTopics(boardId: string) {
             return this.$http
-                .get<Topic[]>('api/forum/topic/' + boardId)
+                .get<ForumViewModel[]>('api/forum/topic/' + boardId)
                 .then(data => data.data);
         }
 
         getPosts(topicId: string) {
             return this.$http
-                .get<Topic[]>('api/forum/post/' + topicId)
+                .get<Post[]>('api/forum/post/' + topicId)
                 .then(data => data.data);
         }
 

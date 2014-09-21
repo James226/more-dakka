@@ -50,6 +50,7 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AccountViewModel.fs" />
+    <Compile Include="Forum\ForumViewModel.fs" />
     <Compile Include="RoleViewModel.fs" />
     <Compile Include="AppModel.fs" />
     <None Include="packages.config" />

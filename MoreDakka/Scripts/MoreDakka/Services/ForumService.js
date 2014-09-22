@@ -1,4 +1,4 @@
-﻿/// <reference path="../../typings/angularjs/angular.d.ts" />
+/// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../MoreDakka.ts" />
 var MoreDakka;
 (function (MoreDakka) {
@@ -36,6 +36,13 @@ var MoreDakka;
         return Post;
     })();
     MoreDakka.Post = Post;
+
+    var TopicViewModel = (function () {
+        function TopicViewModel() {
+        }
+        return TopicViewModel;
+    })();
+    MoreDakka.TopicViewModel = TopicViewModel;
 
     var ForumService = (function () {
         function ForumService($http) {

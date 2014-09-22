@@ -20,7 +20,7 @@ type BoardController() =
     member x.Get() : IHttpActionResult =
         let boards = query {
                 for board in boardContext.Boards.Include(fun b -> b.Topics).Include("Topics.Posts") do
-                select (board.Id, board.Name, board.Topics.Count, board.Topics.Sum(fun t -> t.Posts.Count )) }
+                select (board.Id, board.Name, board.Topics.Count, board.Topics.DefaultIfEmpty().Sum(fun t -> t.Posts.Count ) ) }
         x.Ok(Enumerable.Select(boards, CoerceBoardViewModel)) :> _
 
     [<Route("")>]

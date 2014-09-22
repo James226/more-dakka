@@ -29,6 +29,12 @@ module MoreDakka {
         Body: string;
     }
 
+    export class TopicViewModel {
+        id: string;
+        userName: string;
+        body: string;
+    }
+
     export class ForumService {
         boards: BoardViewModel[];
         boardPromise: ng.IPromise<BoardViewModel[]>;
@@ -55,7 +61,7 @@ module MoreDakka {
 
         getPosts(topicId: string) {
             return this.$http
-                .get<Post[]>('api/forum/post/' + topicId)
+                .get<TopicViewModel[]>('api/forum/post/' + topicId)
                 .then(data => data.data);
         }
 

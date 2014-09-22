@@ -28,5 +28,7 @@ namespace MoreDakka.Data
 
         [Required]
         public string Body { get; set; }
+
+        public User User { get; set; }
     }
 }

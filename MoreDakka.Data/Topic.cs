@@ -29,6 +29,8 @@ namespace MoreDakka.Data
         [Required]
         public string Name { get; set; }
 
+        public User User { get; set; }
+
         [ForeignKey("TopicId")]
         public ICollection<Post> Posts { get; set; }
     }

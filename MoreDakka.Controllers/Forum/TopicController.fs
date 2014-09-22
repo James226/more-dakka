@@ -9,6 +9,7 @@ open System.ComponentModel.DataAnnotations
 
 open MoreDakka.Data
 open MoreDakka.Models.Forum
+open System.Web
 
 type NewTopic() =
     let mutable title : string = ""
@@ -34,9 +35,10 @@ type TopicController() =
 
     [<Route("")>]
     member x.Post(newTopic: NewTopic) : IHttpActionResult =
+        let user = context.Users.First(fun u -> u.UserName = HttpContext.Current.User.Identity.Name)
         let topic = Topic()
-        //topic.BoardId <- newTopic.BoardId
         topic.Name <- newTopic.Title
+        topic.User <- user
         let board = context.Boards.First(fun b -> b.Id = newTopic.BoardId)
         board.Topics <- List<Topic>()
         board.Topics.Add(topic)
@@ -45,15 +47,17 @@ type TopicController() =
         let post = Post()
         post.TopicId <- topic.Id
         post.Body <- newTopic.Body
+        post.User <- user
+
         topic.Posts <- List<Post>()
-        topic.Posts.Add(post) |> ignore
+        topic.Posts.Add(post)
         context.SaveChanges() |> ignore
 
         x.Ok(topic) :> _
 
     [<Route("{id:guid}")>]
     [<HttpDelete>]
-    member x.Delete(id: System.Guid) :IHttpActionResult =
+    member x.Delete(id: System.Guid) : IHttpActionResult =
         try
             let board = context.Topics.Find id
             context.Topics.Remove(board) |> ignore

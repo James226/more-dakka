@@ -56,6 +56,10 @@
     <Compile Include="Migrations\201409212225194_AddUsersTable.Designer.cs">
       <DependentUpon>201409212225194_AddUsersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409221906043_AddUserReferenceToPosts.cs" />
+    <Compile Include="Migrations\201409221906043_AddUserReferenceToPosts.Designer.cs">
+      <DependentUpon>201409221906043_AddUserReferenceToPosts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Topic.cs" />
@@ -75,6 +79,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409212225194_AddUsersTable.resx">
       <DependentUpon>201409212225194_AddUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409221906043_AddUserReferenceToPosts.resx">
+      <DependentUpon>201409221906043_AddUserReferenceToPosts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

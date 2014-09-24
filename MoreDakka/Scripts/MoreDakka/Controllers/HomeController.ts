@@ -3,8 +3,12 @@
 
 module MoreDakka {
     class HomeController {
-        constructor(private $scope) {
-            $scope.message = "Test";
+        constructor(private $scope, $http : ng.IHttpService) {
+            $http
+                .get('/api/guildprogress')
+                .success(data => {
+                    $scope.raidProgress = data;
+                });
         }
     }
 

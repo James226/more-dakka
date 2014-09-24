@@ -182,7 +182,15 @@
             <div class="title forum-wrapper">
                 <div class="panel">
                     <div class="panel-body panel-default">
-                        [[ Space Pending ]]
+                        <ul id="raidProgress">
+                            <li data-ng-repeat="bossProgress in raidProgress">
+                                <div class="bossProgress">
+                                    <div style="height: 140px; text-align: center;" class="icon">{{ bossProgress.Name }}</div>
+                                    <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.NormalKills > 7}">Normal</div>
+                                    <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.HeroicKills > 7}">Heroic</div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -45,3 +45,34 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+#raidProgress li {
+    display: inline;
+    list-style-type: none;
+}
+
+#raidProgress li > div {    
+    margin: 20px;
+    border: 1px solid gray;
+    float:left;
+    width: 180px;
+    height: 180px;
+    border-radius: 5px;
+}
+
+#raidProgress li > div > .icon {
+    background-color: transparent;
+}
+
+#raidProgress li > div > div {
+    background-color: #b94a48;
+    border-bottom: 1px solid black;
+}
+
+#raidProgress li > div > div:last-child {
+    border-radius: 0 0 5px 5px;
+}
+
+#raidProgress li > div > div.green {    
+    background-color: green;
+}

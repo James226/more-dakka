@@ -51,6 +51,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Compile Include="AccountController.fs" />
+    <Compile Include="GuildProgress.fs" />
     <Compile Include="HomeController.fs" />
     <Compile Include="ForumsController.fs" />
     <Compile Include="TestsController.fs" />

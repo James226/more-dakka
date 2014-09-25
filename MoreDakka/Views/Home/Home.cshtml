@@ -136,7 +136,6 @@
 <script>
     function scrollToPage(page) {
         var target = $('#group' + page);
-        console.log(target);
         if (target.length) {
             $('.parallax').stop();
             $('.parallax').animate({
@@ -180,12 +179,14 @@
     <div id="group2" class="parallax__group">
         <div class="parallax__layer parallax__layer--base">
             <div class="title forum-wrapper">
-                <div class="panel">
-                    <div class="panel-body panel-default">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h1>Raid Progression</h1>
+                        <hr />
                         <ul id="raidProgress">
                             <li data-ng-repeat="bossProgress in raidProgress">
                                 <div class="bossProgress">
-                                    <div style="height: 140px; text-align: center;" class="icon">{{ bossProgress.Name }}</div>
+                                    <div style="height: 140px; text-align: center; background-image: url('content/bossimages/{{stripSpaces(bossProgress.Name)}}.jpg'); background-size: 100%" class="icon"></div>
                                     <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.NormalKills > 7}">Normal</div>
                                     <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.HeroicKills > 7}">Heroic</div>
                                 </div>
@@ -198,7 +199,7 @@
         <div class="parallax__layer parallax__layer--back">
         </div>
     </div>
-    <a name="page-3" />
+<!--    <a name="page-3" />
     <div id="group3" class="parallax__group">
         <div class="parallax__layer parallax__layer--fore">
             <div class="title">
@@ -283,4 +284,5 @@
             </div>
         </div>
     </div>
+    -->
 </div>

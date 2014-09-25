@@ -3,15 +3,18 @@
 var MoreDakka;
 (function (MoreDakka) {
     var HomeController = (function () {
-        function HomeController($scope, $http) {
+        function HomeController($scope, guildProgressService) {
             this.$scope = $scope;
-            $http.get('/api/guildprogress').success(function (data) {
-                $scope.raidProgress = data;
+            guildProgressService.getProgress().then(function (data) {
+                $scope.raidProgress = data.data;
             });
+
+            $scope.stripSpaces = function (str) {
+                return str.replace(/[\s|\']/g, '');
+            };
         }
         return HomeController;
     })();
 
     MoreDakka.moreDakka.controller('homeController', HomeController);
 })(MoreDakka || (MoreDakka = {}));
-//# sourceMappingURL=HomeController.js.map

@@ -3,12 +3,13 @@
 
 module MoreDakka {
     class HomeController {
-        constructor(private $scope, $http : ng.IHttpService) {
-            $http
-                .get('/api/guildprogress')
-                .success(data => {
-                    $scope.raidProgress = data;
+        constructor(private $scope, guildProgressService : GuildProgressService) {
+            guildProgressService.getProgress()
+                .then(data => {
+                    $scope.raidProgress = data.data;
                 });
+
+            $scope.stripSpaces = str => str.replace(/[\s|\']/g, '');
         }
     }
 

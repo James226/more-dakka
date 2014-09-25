@@ -168,6 +168,7 @@
     <TypeScriptCompile Include="Scripts\MoreDakka\controllers\Forum\PostController.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Services\ForumService.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Services\AccountService.ts" />
+    <TypeScriptCompile Include="Scripts\MoreDakka\Services\GuildProgressService.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\specs\Test.ts" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

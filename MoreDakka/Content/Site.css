@@ -49,6 +49,7 @@ input[type="checkbox"].input-validation-error {
 #raidProgress li {
     display: inline;
     list-style-type: none;
+
 }
 
 #raidProgress li > div {    
@@ -58,15 +59,20 @@ input[type="checkbox"].input-validation-error {
     width: 180px;
     height: 180px;
     border-radius: 5px;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
 }
 
 #raidProgress li > div > .icon {
     background-color: transparent;
+    color: darkgray;
 }
 
 #raidProgress li > div > div {
     background-color: #b94a48;
     border-bottom: 1px solid black;
+    color: white;
 }
 
 #raidProgress li > div > div:last-child {

@@ -117,6 +117,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Startup.Db.fs" />
+    <Content Include="Content\BossImages\Immerseus.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -192,6 +193,19 @@
     <Compile Include="Global.asax.fs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Content Include="Content\BossImages\Galakras.jpg" />
+    <Content Include="Content\BossImages\GarroshHellscream.jpg" />
+    <Content Include="Content\BossImages\GeneralNazgrim.jpg" />
+    <Content Include="Content\BossImages\IronJuggernaut.jpg" />
+    <Content Include="Content\BossImages\KorkronDarkShaman.jpg" />
+    <Content Include="Content\BossImages\Malkorok.jpg" />
+    <Content Include="Content\BossImages\Norushen.jpg" />
+    <Content Include="Content\BossImages\ParagonsOfTheKlaxxi.jpg" />
+    <Content Include="Content\BossImages\ShaOfPride.jpg" />
+    <Content Include="Content\BossImages\SiegecrafterBlackfuse.jpg" />
+    <Content Include="Content\BossImages\SpoilsOfPandaria.jpg" />
+    <Content Include="Content\BossImages\TheFallenProtectors.jpg" />
+    <Content Include="Content\BossImages\ThokTheBloodthirsty.jpg" />
     <None Include="packages.config" />
     <Compile Include="Startup.Auth.fs" />
   </ItemGroup>

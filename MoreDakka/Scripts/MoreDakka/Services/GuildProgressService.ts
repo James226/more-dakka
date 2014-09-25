@@ -9,7 +9,7 @@ module MoreDakka {
     }
 
     export class GuildProgressService {
-        private guildProgressPromise: ng.IPromise<BossProgress[]>;
+        private guildProgressPromise: ng.IHttpPromise<BossProgress[]>;
 
         constructor(private $http: ng.IHttpService) {
 
@@ -18,7 +18,7 @@ module MoreDakka {
         getProgress() {
             if (this.guildProgressPromise == null) {
                 this.guildProgressPromise = this.$http
-                    .get<BoardViewModel[]>('api/GuildProgress')
+                    .get<BossProgress[]>('api/GuildProgress')
             }
             return this.guildProgressPromise;
         }

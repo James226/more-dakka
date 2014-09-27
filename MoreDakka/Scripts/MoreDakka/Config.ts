@@ -1,7 +1,9 @@
 ﻿/// <reference path="MoreDakka.ts"/>
 
 module MoreDakka {
-    moreDakka.config($routeProvider => {
+    moreDakka.config(($routeProvider, $httpProvider) => {
+        $httpProvider.responseInterceptors.push('responseObserver');
+
         $routeProvider
             .when('/', {
                 templateUrl: 'Home/Home',
@@ -28,4 +30,21 @@ module MoreDakka {
                 controller: 'registerController'
             })
     });
+
+    moreDakka.factory('responseObserver',
+        function responseObserver($q, $window, $location) {
+            return function (promise) {
+                return promise.then(function (successResponse) {
+                    return successResponse;
+                }, function (errorResponse) {
+
+                        switch (errorResponse.status) {
+                            case 401:
+                                $location.path("/account/login");
+                        }
+
+                        return $q.reject(errorResponse);
+                    });
+            };
+        });
 }

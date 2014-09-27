@@ -90,7 +90,6 @@ type Global() =
     member x.Application_EndRequest() =
         let context = HttpContextWrapper(x.Context)
  
-        if (FormsAuthentication.IsEnabled && context.Response.StatusCode = 302 && context.Request.IsAjaxRequest()) then
+        if (FormsAuthentication.IsEnabled && context.Response.StatusCode = 302) then
             context.Response.Clear()
             context.Response.StatusCode <- 401
-

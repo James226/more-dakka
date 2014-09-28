@@ -11,9 +11,21 @@ open Microsoft.AspNet.Identity.Owin
 open Microsoft.Owin.Security
 open MoreDakka.Models
 open Newtonsoft.Json
+open System.Net
 
 type private AppUserManager = UserManager<ApplicationUser>
 type private AppUserStore   = UserStore<ApplicationUser>
+
+[<AttributeUsage(AttributeTargets.All, Inherited = true, AllowMultiple = true)>]
+type AppAuthorizeAttribute() =
+    inherit System.Web.Mvc.AuthorizeAttribute()
+    override x.HandleUnauthorizedRequest(filterContext: System.Web.Mvc.AuthorizationContext) =
+        let response = filterContext.HttpContext.Response
+
+        if (filterContext.HttpContext.Request.IsAuthenticated) 
+            then response.StatusCode <- int HttpStatusCode.Forbidden
+            else response.StatusCode <- int HttpStatusCode.Unauthorized
+        response.End()
 
 [<CLIMutable>]
 type LoginResult = {
@@ -21,7 +33,7 @@ type LoginResult = {
     ErrorMessage: string option
 }
 
-[<Authorize>]
+[<AppAuthorize>]
 type AccountController() =
     inherit Controller()
     let userManager = new AppUserManager(new AppUserStore(new IdentityContext()))

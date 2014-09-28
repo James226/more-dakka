@@ -10,6 +10,7 @@ open MoreDakka.Models.Forum
 open System.Web
 
 [<RoutePrefix("api/forum/post")>]
+[<AppAuthorize>]
 type PostController() =
     inherit ApiController()
     let context = new BoardContext()

@@ -6,4 +6,5 @@ type TopicViewModel = {
     Id: Guid
     Username: String
     Body: String
+    PostedAt: DateTime
 }

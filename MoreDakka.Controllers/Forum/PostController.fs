@@ -17,7 +17,7 @@ type PostController() =
     [<Route("{id:guid}")>]
     [<HttpGet>]
     member x.Get(id) : IHttpActionResult =
-        x.Ok(context.Topics.Include("Posts").Include("Posts.User").First(fun t -> t.Id = id).Posts.Select(fun p -> { Id = p.Id; Username = p.User.UserName; Body = p.Body })) :> _
+        x.Ok(context.Topics.Include("Posts").Include("Posts.User").First(fun t -> t.Id = id).Posts.Select(fun p -> { Id = p.Id; Username = p.User.UserName; Body = p.Body; PostedAt = p.PostedAt })) :> _
 
     [<Route("")>]
     member x.Post(post: Post) : IHttpActionResult =

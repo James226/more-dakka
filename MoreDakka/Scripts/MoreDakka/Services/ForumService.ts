@@ -31,8 +31,16 @@ module MoreDakka {
 
     export class TopicViewModel {
         id: string;
-        userName: string;
+        username: string;
         body: string;
+        postedAt: Date;
+
+        constructor(id: string, username: string, body: string, postedAt: string) {
+            this.id = id;
+            this.username = username;
+            this.body = body;
+            this.postedAt = new Date(Date.parse(postedAt));
+        }
     }
 
     export class ForumService {
@@ -61,8 +69,15 @@ module MoreDakka {
 
         getPosts(topicId: string) {
             return this.$http
-                .get<TopicViewModel[]>('api/forum/post/' + topicId)
-                .then(data => data.data);
+                .get<any[]>('api/forum/post/' + topicId)
+                .then(data => {
+                    var posts: TopicViewModel[] = [];
+                    for (var i in data.data) {
+                        var record = data.data[i]
+                        posts.push(new TopicViewModel(record.id, record.username, record.body, record.postedAt));
+                    }
+                    return posts;
+                });
         }
 
         createTopic(boardId: string, title: string, body: string) {

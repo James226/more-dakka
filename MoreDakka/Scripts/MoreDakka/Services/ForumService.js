@@ -1,4 +1,4 @@
-/// <reference path="../../typings/angularjs/angular.d.ts" />
+﻿/// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../MoreDakka.ts" />
 var MoreDakka;
 (function (MoreDakka) {
@@ -38,7 +38,11 @@ var MoreDakka;
     MoreDakka.Post = Post;
 
     var TopicViewModel = (function () {
-        function TopicViewModel() {
+        function TopicViewModel(id, username, body, postedAt) {
+            this.id = id;
+            this.username = username;
+            this.body = body;
+            this.postedAt = new Date(Date.parse(postedAt));
         }
         return TopicViewModel;
     })();
@@ -68,7 +72,12 @@ var MoreDakka;
 
         ForumService.prototype.getPosts = function (topicId) {
             return this.$http.get('api/forum/post/' + topicId).then(function (data) {
-                return data.data;
+                var posts = [];
+                for (var i in data.data) {
+                    var record = data.data[i];
+                    posts.push(new TopicViewModel(record.id, record.username, record.body, record.postedAt));
+                }
+                return posts;
             });
         };
 

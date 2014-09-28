@@ -15,6 +15,7 @@ namespace MoreDakka.Data
     public class Post
     {
         private Guid id = Guid.NewGuid();
+        private DateTime postedAt = DateTime.UtcNow;
 
         [Key]
         public Guid Id
@@ -28,6 +29,12 @@ namespace MoreDakka.Data
 
         [Required]
         public string Body { get; set; }
+
+        [Required]
+        public DateTime PostedAt {
+            get { return postedAt; }
+            set { postedAt = value; }
+        }
 
         public User User { get; set; }
     }

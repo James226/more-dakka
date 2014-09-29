@@ -18,15 +18,18 @@
     @Scripts.Render("~/Scripts/Libraries/angular.js")
     @Scripts.Render("~/Scripts/Libraries/angular-route.js")
     @Scripts.Render("~/Scripts/Libraries/angular-animate.js")
+    @Scripts.Render("~/Scripts/Libraries/angular-sanitize.js")
     @Scripts.Render("~/Scripts/Libraries/angular-mocks.js")
 
     @Scripts.Render("~/Scripts/MoreDakka/MoreDakka.js")
     @Scripts.Render("~/Scripts/MoreDakka/Config.js")
     @Scripts.Render("~/Scripts/MoreDakka/Controllers/HomeController.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Controllers/ForumController.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Services/ForumServices.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Forum/ForumController.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Services/ForumService.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Services/TextMarkupService.js")
 
     @Scripts.Render("~/Scripts/MoreDakka/specs/Test.js")
+    @Scripts.Render("~/Scripts/MoreDakka/specs/TextMarkupTests.js")
 </head>
 
 <body>

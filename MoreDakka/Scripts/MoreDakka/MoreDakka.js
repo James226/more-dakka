@@ -3,7 +3,7 @@ var MoreDakka;
 (function (MoreDakka) {
     MoreDakka.moreDakka;
 
-    MoreDakka.moreDakka = angular.module('moreDakka', ['ngRoute', 'ngAnimate']).run(function ($rootScope, $route, $templateCache, $http) {
+    MoreDakka.moreDakka = angular.module('moreDakka', ['ngRoute', 'ngAnimate', 'ngSanitize']).run(function ($rootScope, $route, $templateCache, $http) {
         //var url;
         //for (var i in $route.routes) {
         //    if (url = $route.routes[i].templateUrl) {

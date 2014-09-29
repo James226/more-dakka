@@ -1,12 +1,13 @@
-/// <reference path="../../../typings/angularjs/angular.d.ts"/>
+﻿/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 /// <reference path="../../MoreDakka.ts" />
 /// <reference path="../../Services/ForumService.ts" />
+/// <reference path="../../Services/TextMarkupService.ts" />
 var MoreDakka;
 (function (MoreDakka) {
     (function (Controllers) {
         (function (Forum) {
             var PostController = (function () {
-                function PostController($scope, $location, $routeParams, forumService) {
+                function PostController($scope, $location, $routeParams, $sce, forumService, textMarkupService) {
                     this.$scope = $scope;
                     this.$location = $location;
                     $scope.boards = [];
@@ -27,12 +28,16 @@ var MoreDakka;
                             return $scope.posts.push(post);
                         });
                     };
+
+                    $scope.markUp = function (text) {
+                        return $sce.trustAsHtml(textMarkupService.markUp(text));
+                    };
                 }
                 return PostController;
             })();
             Forum.PostController = PostController;
 
-            MoreDakka.moreDakka.controller('postController', ['$scope', '$location', '$routeParams', 'forumService', PostController]);
+            MoreDakka.moreDakka.controller('postController', ['$scope', '$location', '$routeParams', '$sce', 'forumService', 'textMarkupService', PostController]);
         })(Controllers.Forum || (Controllers.Forum = {}));
         var Forum = Controllers.Forum;
     })(MoreDakka.Controllers || (MoreDakka.Controllers = {}));

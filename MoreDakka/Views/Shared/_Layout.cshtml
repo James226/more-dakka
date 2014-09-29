@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="@Url.Content("Content/Favicon.png")" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <meta name="description" content="More Dakka Guild Website" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -61,11 +62,13 @@
     @Scripts.Render("~/Scripts/Libraries/angular.min.js")
     @Scripts.Render("~/Scripts/Libraries/angular-route.js")
     @Scripts.Render("~/Scripts/Libraries/angular-animate.js")
+    @Scripts.Render("~/Scripts/Libraries/angular-sanitize.js")
     @Scripts.Render("~/Scripts/MoreDakka/MoreDakka.js")
     @Scripts.Render("~/Scripts/MoreDakka/Config.js")
     @Scripts.Render("~/Scripts/MoreDakka/Services/AccountService.js")
     @Scripts.Render("~/Scripts/MoreDakka/Services/ForumService.js")
     @Scripts.Render("~/Scripts/MoreDakka/Services/GuildProgressService.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Services/TextMarkupService.js")
     @Scripts.Render("~/Scripts/MoreDakka/Controllers/HomeController.js")
     @Scripts.Render("~/Scripts/MoreDakka/Controllers/Account/LoginController.js")
     @Scripts.Render("~/Scripts/MoreDakka/Controllers/Account/RegisterController.js")

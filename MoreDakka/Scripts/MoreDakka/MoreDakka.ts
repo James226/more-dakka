@@ -3,7 +3,7 @@
 module MoreDakka {
     export var moreDakka: ng.IModule;
 
-    moreDakka = angular.module('moreDakka', ['ngRoute', 'ngAnimate'])
+    moreDakka = angular.module('moreDakka', ['ngRoute', 'ngAnimate', 'ngSanitize'])
         .run(($rootScope, $route, $templateCache, $http) => {
             //var url;
             //for (var i in $route.routes) {

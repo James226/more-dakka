@@ -16,9 +16,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3">{{ post.username }}</div>
-                            <div class="col-md-9">
-                                {{ post.body }}
-                            </div>
+                            <div class="col-md-9 post-data" data-ng-bind-html="markUp(post.body)"></div>
                         </div>
                     </div>
                 </div>

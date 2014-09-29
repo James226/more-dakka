@@ -82,3 +82,7 @@ input[type="checkbox"].input-validation-error {
 #raidProgress li > div > div.green {    
     background-color: green;
 }
+
+.post-data img {
+    max-width: 100%;
+}

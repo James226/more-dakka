@@ -24,7 +24,11 @@ var MoreDakka;
     MoreDakka.BoardViewModel = BoardViewModel;
 
     var ForumViewModel = (function () {
-        function ForumViewModel() {
+        function ForumViewModel(id, title, totalPosts, lastPost) {
+            this.id = id;
+            this.title = title;
+            this.totalPosts = totalPosts;
+            this.lastPost = new Date(Date.parse(lastPost));
         }
         return ForumViewModel;
     })();
@@ -66,7 +70,12 @@ var MoreDakka;
 
         ForumService.prototype.getTopics = function (boardId) {
             return this.$http.get('api/forum/topic/' + boardId).then(function (data) {
-                return data.data;
+                var posts = [];
+                for (var i in data.data) {
+                    var record = data.data[i];
+                    posts.push(new ForumViewModel(record.id, record.title, record.totalPosts, record.lastPost));
+                }
+                return posts;
             });
         };
 

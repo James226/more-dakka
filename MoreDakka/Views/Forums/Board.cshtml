@@ -19,11 +19,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="topic in topics">
+                    <tr data-ng-repeat="topic in topics | orderBy:'lastPost':true">
                         <td></td>
                         <td data-ng-click="openTopic(topic.id)">{{ topic.title }}</td>
                         <td>{{ topic.totalPosts }}</td>
-                        <td>None</td>
+                        <td>{{ topic.lastPost.toLocaleString("en-GB") }}</td>
                     </tr>
                 </tbody>
             </table>

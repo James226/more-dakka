@@ -4,6 +4,7 @@ open System
 
 type ForumViewModel = {
     Id: Guid
-    Title: String
+    Title: string
     TotalPosts: int
+    LastPost: DateTime
 }

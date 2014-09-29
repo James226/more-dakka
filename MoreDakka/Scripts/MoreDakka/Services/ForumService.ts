@@ -22,6 +22,14 @@ module MoreDakka {
         id: string;
         title: string;
         totalPosts: number;
+        lastPost: Date;
+
+        constructor(id: string, title: string, totalPosts: number, lastPost: string) {
+            this.id = id;
+            this.title = title;
+            this.totalPosts = totalPosts;
+            this.lastPost = new Date(Date.parse(lastPost));
+        }
     }
 
     export class Post {
@@ -63,8 +71,15 @@ module MoreDakka {
 
         getTopics(boardId: string) {
             return this.$http
-                .get<ForumViewModel[]>('api/forum/topic/' + boardId)
-                .then(data => data.data);
+                .get<any[]>('api/forum/topic/' + boardId)
+                .then(data => {
+                    var posts: ForumViewModel[] = [];
+                    for (var i in data.data) {
+                        var record = data.data[i]
+                        posts.push(new ForumViewModel(record.id, record.title, record.totalPosts, record.lastPost));
+                    }
+                    return posts;
+                });
         }
 
         getPosts(topicId: string) {

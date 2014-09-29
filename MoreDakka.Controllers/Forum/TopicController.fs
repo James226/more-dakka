@@ -25,13 +25,19 @@ type TopicController() =
     inherit ApiController()
     let context = new BoardContext()
 
+    let CoerceTopics(id, name, totalPosts, lastPost: Post) =
+        { Id = id; Title = name; TotalPosts = totalPosts; LastPost = lastPost.PostedAt }
+
     [<Route("{id:guid}")>]
     [<HttpGet>]
     member x.Get(id) : IHttpActionResult =
-        x.Ok(context.Boards
-            .Include(fun b -> b.Topics)
-            .Include("Topics.Posts")
-            .First(fun b -> b.Id = id).Topics.Select(fun t -> { Id = t.Id; Title = t.Name; TotalPosts = t.Posts.Count })) :> _
+        let topics = query {
+                for topic in context.Topics.Include("Posts").Include("Posts.User") do
+                where (topic.BoardId = id)
+                select (topic.Id, topic.Name, topic.Posts.Count, topic.Posts.OrderByDescending(fun p -> p.PostedAt).FirstOrDefault())
+            }
+            
+        x.Ok(Enumerable.Select(topics, CoerceTopics)) :> _
 
     [<Route("")>]
     member x.Post(newTopic: NewTopic) : IHttpActionResult =

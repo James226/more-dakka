@@ -8,4 +8,7 @@ type BoardViewModel = {
     Name: String
     TotalTopics: int
     TotalPosts: int
+    LastTopicId: Guid
+    LastTopicTitle: String
+    LastPostAuthor: String
 }

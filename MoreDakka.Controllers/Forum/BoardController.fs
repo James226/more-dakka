@@ -13,14 +13,16 @@ type BoardController() =
     inherit ApiController()
     let boardContext = new BoardContext()
 
-    let CoerceBoardViewModel (id: Guid, name: string, totalTopics: int, totalPosts: int) : BoardViewModel =
-        { Id = id; Name = name; TotalTopics = totalTopics; TotalPosts = totalPosts }
+
+    let CoerceBoardViewModel (id: Guid, name: string, totalTopics: int, totalPosts: int, lastTopic: Topic, lastAuthor: String) : BoardViewModel =
+        { Id = id; Name = name; TotalTopics = totalTopics; TotalPosts = totalPosts; LastTopicId = lastTopic.Id; LastTopicTitle = lastTopic.Name; LastPostAuthor = lastAuthor }
 
     [<Route("")>]
     member x.Get() : IHttpActionResult =
         let boards = query {
-                for board in boardContext.Boards.Include(fun b -> b.Topics).Include("Topics.Posts") do
-                select (board.Id, board.Name, board.Topics.Count, board.Topics.DefaultIfEmpty().Sum(fun t -> t.Posts.Count ) ) }
+                for board in boardContext.Boards.Include(fun b -> b.Topics).Include("Topics.Posts").Include("Topics.LastPost.User") do
+                let lastTopic = board.Topics.OrderByDescending(fun t -> t.LastUpdate).FirstOrDefault()
+                select (board.Id, board.Name, board.Topics.Count, board.Topics.DefaultIfEmpty().Sum(fun t -> t.Posts.Count ), lastTopic, lastTopic.LastPost.User.UserName ) }
         x.Ok(Enumerable.Select(boards, CoerceBoardViewModel)) :> _
 
     [<Route("")>]

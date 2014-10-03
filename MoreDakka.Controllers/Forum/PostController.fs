@@ -23,7 +23,10 @@ type PostController() =
     [<Route("")>]
     member x.Post(post: Post) : IHttpActionResult =
         post.User <- context.Users.FirstOrDefault(fun u -> u.UserName = HttpContext.Current.User.Identity.Name)
-        context.Topics.Include(fun t -> t.Posts).First(fun t -> t.Id = post.TopicId).Posts.Add(post) |> ignore
+        let topic = context.Topics.Include(fun t -> t.Posts).First(fun t -> t.Id = post.TopicId)
+        topic.Posts.Add(post)
+        topic.LastPost <- post
+        topic.LastUpdate <- DateTime.UtcNow
         context.SaveChanges() |> ignore
         x.Ok(post) :> _
 

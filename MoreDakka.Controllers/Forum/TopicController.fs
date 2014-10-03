@@ -57,6 +57,7 @@ type TopicController() =
 
         topic.Posts <- List<Post>()
         topic.Posts.Add(post)
+        topic.LastPost <- post
         context.SaveChanges() |> ignore
 
         x.Ok(topic) :> _

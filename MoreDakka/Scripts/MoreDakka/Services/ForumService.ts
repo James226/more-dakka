@@ -16,6 +16,9 @@ module MoreDakka {
         id: string;
         name: string;
         totalTopics: number;
+        lastTopicId: string;
+        lastTopicTitle: string;
+        lastPostAuthor: string;
     }
 
     export class ForumViewModel {

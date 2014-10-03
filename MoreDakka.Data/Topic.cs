@@ -14,13 +14,14 @@ namespace MoreDakka.Data
     [Serializable]
     public class Topic
     {
-        private Guid id = Guid.NewGuid();
+        private Guid _id = Guid.NewGuid();
+        private DateTime _lastUpdate = DateTime.UtcNow;
 
         [Key]
         public Guid Id
         {
-            get { return id; }
-            set { id = value; }
+            get { return _id; }
+            set { _id = value; }
         }
 
         [Required]
@@ -28,6 +29,14 @@ namespace MoreDakka.Data
 
         [Required]
         public string Name { get; set; }
+
+        public DateTime LastUpdate
+        {
+            get { return _lastUpdate; }
+            set { _lastUpdate = value; }
+        }
+
+        public Post LastPost { get; set; }
 
         public User User { get; set; }
 

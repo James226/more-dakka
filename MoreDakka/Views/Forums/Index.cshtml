@@ -17,12 +17,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-ng-repeat="board in boards">
+                        <tr class="board-row" data-ng-repeat="board in boards">
                             <td></td>
-                            <td data-ng-click="openBoard(board.id)">{{ board.name }}</td>
+                            <td data-ng-click="openBoard(board.id)"><a data-ng-click="openBoard(board.id)">{{ board.name }}</a></td>
                             <td>{{ board.totalTopics }}</td>
                             <td>{{ board.totalPosts }}</td>
-                            <td>None</td>
+                            <td>
+                                <a href="/#/forums/{{ board.id }}/{{ board.lastTopicId }}">{{ board.lastTopicTitle }}</a>
+                                <div class="last-post-author">by {{ board.lastPostAuthor }}</div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

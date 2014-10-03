@@ -86,3 +86,26 @@ input[type="checkbox"].input-validation-error {
 .post-data img {
     max-width: 100%;
 }
+
+.last-post-author {
+    text-align: right;
+}
+
+.board-row > td {
+    text-align: center;
+}
+
+.board-row > td:nth-child(2), .board-row > td:last-child {
+    text-align: left;
+}
+
+.board-row > td:nth-child(2) {
+    cursor: pointer;
+}
+
+.board-row > td:last-child {
+    max-width: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

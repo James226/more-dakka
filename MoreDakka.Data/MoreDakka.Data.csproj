@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201409281141219_AddPostedAtTime.Designer.cs">
       <DependentUpon>201409281141219_AddPostedAtTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410031919321_AddLastPostToTopic.cs" />
+    <Compile Include="Migrations\201410031919321_AddLastPostToTopic.Designer.cs">
+      <DependentUpon>201410031919321_AddLastPostToTopic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Topic.cs" />
@@ -89,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409281141219_AddPostedAtTime.resx">
       <DependentUpon>201409281141219_AddPostedAtTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410031919321_AddLastPostToTopic.resx">
+      <DependentUpon>201410031919321_AddLastPostToTopic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

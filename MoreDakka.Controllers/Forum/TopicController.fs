@@ -60,7 +60,7 @@ type TopicController() =
         topic.LastPost <- post
         context.SaveChanges() |> ignore
 
-        x.Ok(topic) :> _
+        x.Ok({ Id = topic.Id; Title = topic.Name; TotalPosts = topic.Posts.Count; LastPost = post.PostedAt }) :> _
 
     [<Route("{id:guid}")>]
     [<HttpDelete>]

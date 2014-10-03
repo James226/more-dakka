@@ -28,7 +28,7 @@ type PostController() =
         topic.LastPost <- post
         topic.LastUpdate <- DateTime.UtcNow
         context.SaveChanges() |> ignore
-        x.Ok(post) :> _
+        x.Ok({ Id = post.Id; Username = post.User.UserName; Body = post.Body; PostedAt = post.PostedAt }) :> _
 
     [<Route("{id:guid}")>]
     [<HttpDelete>]

@@ -25,7 +25,9 @@ var MoreDakka;
 
                     $scope.createPost = function () {
                         return forumService.createPost(topicId, $scope.postBody).then(function (post) {
-                            return $scope.posts.push(post);
+                            return $scope.posts.push(new MoreDakka.TopicViewModel(post.id, post.username, post.body, post.postedAt));
+                        }).then(function () {
+                            return $scope.postBody = '';
                         });
                     };
 

@@ -20,8 +20,9 @@ module MoreDakka.Controllers.Forum {
 
             $scope.createPost = () =>
                 forumService
-                    .createPost(topicId, $scope.postBody)
-                    .then(post => $scope.posts.push(post));
+                .createPost(topicId, $scope.postBody)
+                .then(post => $scope.posts.push(new TopicViewModel(post.id, post.username, post.body, post.postedAt)))
+                .then(() => $scope.postBody = '');
 
             $scope.markUp = (text) => $sce.trustAsHtml(textMarkupService.markUp(text));
         }

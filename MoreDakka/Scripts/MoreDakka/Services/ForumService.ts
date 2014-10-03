@@ -78,7 +78,7 @@ module MoreDakka {
                 .then(data => {
                     var posts: ForumViewModel[] = [];
                     for (var i in data.data) {
-                        var record = data.data[i]
+                        var record = data.data[i];
                         posts.push(new ForumViewModel(record.id, record.title, record.totalPosts, record.lastPost));
                     }
                     return posts;
@@ -91,7 +91,7 @@ module MoreDakka {
                 .then(data => {
                     var posts: TopicViewModel[] = [];
                     for (var i in data.data) {
-                        var record = data.data[i]
+                        var record = data.data[i];
                         posts.push(new TopicViewModel(record.id, record.username, record.body, record.postedAt));
                     }
                     return posts;
@@ -100,13 +100,13 @@ module MoreDakka {
 
         createTopic(boardId: string, title: string, body: string) {
             return this.$http
-                .post<Post>('api/forum/topic', { BoardId: boardId, Title: title, Body: body })
+                .post<any>('api/forum/topic', { BoardId: boardId, Title: title, Body: body })
                 .then(data => data.data);
         }
 
         createPost(topicId: string, body: string) {
             return this.$http
-                .post<Post>('api/forum/post', { TopicId: topicId, Body: body })
+                .post<any>('api/forum/post', { TopicId: topicId, Body: body })
                 .then(data => data.data);
         }
     }

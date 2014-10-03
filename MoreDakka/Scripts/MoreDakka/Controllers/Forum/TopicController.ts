@@ -22,7 +22,8 @@ module MoreDakka.Controllers.Forum {
             $scope.createTopic = () =>
                 forumService
                     .createTopic(boardId, $scope.title, $scope.body)
-                    .then(topic => $scope.topics.push(topic));
+                    .then(topic => $scope.topics.push(new ForumViewModel(topic.id, topic.title, topic.totalPosts, topic.lastPost)))
+                    .then(() => { $scope.title = ''; $scope.body = ''; });
         }
     }
 

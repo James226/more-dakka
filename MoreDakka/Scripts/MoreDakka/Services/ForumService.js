@@ -42,9 +42,10 @@ var MoreDakka;
     MoreDakka.Post = Post;
 
     var TopicViewModel = (function () {
-        function TopicViewModel(id, username, body, postedAt) {
+        function TopicViewModel(id, username, authorPosts, body, postedAt) {
             this.id = id;
             this.username = username;
+            this.authorPosts = authorPosts;
             this.body = body;
             this.postedAt = new Date(Date.parse(postedAt));
         }
@@ -84,7 +85,7 @@ var MoreDakka;
                 var posts = [];
                 for (var i in data.data) {
                     var record = data.data[i];
-                    posts.push(new TopicViewModel(record.id, record.username, record.body, record.postedAt));
+                    posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, record.body, record.postedAt));
                 }
                 return posts;
             });

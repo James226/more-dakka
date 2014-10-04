@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace MoreDakka.Data
 {
     using System;
@@ -31,6 +33,9 @@ namespace MoreDakka.Data
         public int AccessFailedCount { get; set; }
 
         public string UserName { get; set; }
+
+        [Required, DefaultValue(0)]
+        public int NumberOfPosts { get; set; }
 
         [Required]
         [StringLength(128)]

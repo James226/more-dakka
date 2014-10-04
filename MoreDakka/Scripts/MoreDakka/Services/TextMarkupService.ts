@@ -10,7 +10,7 @@ module MoreDakka {
                 .replace(/\n/g, '<br />')
                 .replace(/'''(.*?)'''/g, (m, l) => '<strong>' + l + '</strong>')
                 .replace(/''(.*?)''/g, (m, l) => '<em>' + l + '</em>')
-                .replace(/\[\[([A-Za-z0-9:\?\\\/&%\!@;#~\.]*)\]\]/g, (m, l: string) => {
+                .replace(/\[\[([A-Za-z0-9:\?\\\/&%\!@;#~\.\-\_]*)\]\]/g, (m, l: string) => {
                     var p = l.split(/\|/);
                     var link = p.shift();
 

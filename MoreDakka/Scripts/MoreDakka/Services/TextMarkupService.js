@@ -9,7 +9,7 @@ var MoreDakka;
                 return '<strong>' + l + '</strong>';
             }).replace(/''(.*?)''/g, function (m, l) {
                 return '<em>' + l + '</em>';
-            }).replace(/\[\[([A-Za-z0-9:\?\\\/&%\!@;#~\.]*)\]\]/g, function (m, l) {
+            }).replace(/\[\[([A-Za-z0-9:\?\\\/&%\!@;#~\.\-\_]*)\]\]/g, function (m, l) {
                 var p = l.split(/\|/);
                 var link = p.shift();
 

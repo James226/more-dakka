@@ -18,7 +18,7 @@ type PostController() =
     [<Route("{id:guid}")>]
     [<HttpGet>]
     member x.Get(id) : IHttpActionResult =
-        x.Ok(context.Topics.Include("Posts").Include("Posts.User").First(fun t -> t.Id = id).Posts.Select(fun p -> { Id = p.Id; Username = p.User.UserName; Body = p.Body; PostedAt = p.PostedAt })) :> _
+        x.Ok(context.Topics.Include("Posts").Include("Posts.User").First(fun t -> t.Id = id).Posts.Select(fun p -> { Id = p.Id; Username = p.User.UserName; AuthorPosts = p.User.NumberOfPosts; Body = p.Body; PostedAt = p.PostedAt })) :> _
 
     [<Route("")>]
     member x.Post(post: Post) : IHttpActionResult =
@@ -27,8 +27,9 @@ type PostController() =
         topic.Posts.Add(post)
         topic.LastPost <- post
         topic.LastUpdate <- DateTime.UtcNow
+        post.User.NumberOfPosts <- post.User.NumberOfPosts + 1
         context.SaveChanges() |> ignore
-        x.Ok({ Id = post.Id; Username = post.User.UserName; Body = post.Body; PostedAt = post.PostedAt }) :> _
+        x.Ok({ Id = post.Id; Username = post.User.UserName; AuthorPosts = post.User.NumberOfPosts; Body = post.Body; PostedAt = post.PostedAt }) :> _
 
     [<Route("{id:guid}")>]
     [<HttpDelete>]

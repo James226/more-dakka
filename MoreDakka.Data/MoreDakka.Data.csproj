@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201410031919321_AddLastPostToTopic.Designer.cs">
       <DependentUpon>201410031919321_AddLastPostToTopic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410040843524_AddNumberOfPostsToUsers.cs" />
+    <Compile Include="Migrations\201410040843524_AddNumberOfPostsToUsers.Designer.cs">
+      <DependentUpon>201410040843524_AddNumberOfPostsToUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Topic.cs" />
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410031919321_AddLastPostToTopic.resx">
       <DependentUpon>201410031919321_AddLastPostToTopic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410040843524_AddNumberOfPostsToUsers.resx">
+      <DependentUpon>201410040843524_AddNumberOfPostsToUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

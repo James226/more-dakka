@@ -58,6 +58,9 @@ type TopicController() =
         topic.Posts <- List<Post>()
         topic.Posts.Add(post)
         topic.LastPost <- post
+
+        user.NumberOfPosts <- user.NumberOfPosts + 1
+
         context.SaveChanges() |> ignore
 
         x.Ok({ Id = topic.Id; Title = topic.Name; TotalPosts = topic.Posts.Count; LastPost = post.PostedAt }) :> _

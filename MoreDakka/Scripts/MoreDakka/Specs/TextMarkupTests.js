@@ -52,4 +52,8 @@ describe("Text Markup Service", function () {
     it("should replace a maximum of 3 nested quotes", function () {
         expect(textMarkup.markUp(("This contains {{Quote|text=\"a quote{{Quote|text=\"within a{{Quote|text=\"within a{{Quote|text=\"within a quote\"}}quote\"}}quote\"}}\"|source=\"some cool author\"}}"))).toEqual("This contains {{Quote|text=\"a quote<blockquote><p>within a<blockquote><p>within a<blockquote><p>within a quote</p></blockquote>quote</p></blockquote>quote</p></blockquote>\"|source=\"some cool author\"}}");
     });
+
+    it("should replace non-nested quotes", function () {
+        expect(textMarkup.markUp(("This contains {{Quote|text=\"a quote\"|source=\"some cool author\"}}\n\n{{Quote|text=\"a quote\"|source=\"some cool author\"}}"))).toEqual("This contains {{Quote|text=\"a quote<blockquote><p>within a<blockquote><p>within a<blockquote><p>within a quote</p></blockquote>quote</p></blockquote>quote</p></blockquote>\"|source=\"some cool author\"}}");
+    });
 });

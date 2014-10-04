@@ -60,7 +60,7 @@ module MoreDakka {
         boards: BoardViewModel[];
         boardPromise: ng.IPromise<BoardViewModel[]>;
 
-        constructor(private $http: ng.IHttpService) {
+        constructor(private $http: ng.IHttpService, private textMarkupService: TextMarkupService) {
 
         }
 
@@ -94,7 +94,7 @@ module MoreDakka {
                     var posts: TopicViewModel[] = [];
                     for (var i in data.data) {
                         var record = data.data[i];
-                        posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, record.body, record.postedAt));
+                        posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, this.textMarkupService.markUp(record.body), record.postedAt));
                     }
                     return posts;
                 });
@@ -112,5 +112,5 @@ module MoreDakka {
                 .then(data => data.data);
         }
     }
-    moreDakka.service('forumService', ['$http', ForumService]);
+    moreDakka.service('forumService', ['$http', 'textMarkupService', ForumService]);
 }

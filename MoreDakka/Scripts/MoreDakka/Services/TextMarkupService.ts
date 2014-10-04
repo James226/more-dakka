@@ -23,7 +23,8 @@ module MoreDakka {
                 });
 
             var maxNest = 3;
-            while(maxNest-- > 0 && text.match(/\{\{Quote(.*?)\}\}/)) {
+            while (maxNest-- > 0 && text.match(/\{\{Quote(.*?)\}\}/)) {
+                console.log("loop: " + maxNest);
                 text = text.replace(/\{\{Quote\|text=\"((?:[^\\"]+|\\.)*)\"(\|source=\"(.*?)\")?\}\}/g, (m, l, _, source) => {
                     var sourceHtml = '';
                     if (source != undefined) {

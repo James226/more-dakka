@@ -54,8 +54,9 @@ var MoreDakka;
     MoreDakka.TopicViewModel = TopicViewModel;
 
     var ForumService = (function () {
-        function ForumService($http) {
+        function ForumService($http, textMarkupService) {
             this.$http = $http;
+            this.textMarkupService = textMarkupService;
         }
         ForumService.prototype.getBoards = function () {
             var _this = this;
@@ -81,11 +82,12 @@ var MoreDakka;
         };
 
         ForumService.prototype.getPosts = function (topicId) {
+            var _this = this;
             return this.$http.get('api/forum/post/' + topicId).then(function (data) {
                 var posts = [];
                 for (var i in data.data) {
                     var record = data.data[i];
-                    posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, record.body, record.postedAt));
+                    posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, _this.textMarkupService.markUp(record.body), record.postedAt));
                 }
                 return posts;
             });
@@ -105,5 +107,5 @@ var MoreDakka;
         return ForumService;
     })();
     MoreDakka.ForumService = ForumService;
-    MoreDakka.moreDakka.service('forumService', ['$http', ForumService]);
+    MoreDakka.moreDakka.service('forumService', ['$http', 'textMarkupService', ForumService]);
 })(MoreDakka || (MoreDakka = {}));

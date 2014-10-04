@@ -33,4 +33,24 @@ describe("Text Markup Service", function () {
     it("should replace image tags", () => {
         expect(textMarkup.markUp("This is a [[Image:http://domain.com/myimage.jpg]]. ")).toEqual("This is a <img src=\"http://domain.com/myimage.jpg\" />. ");
     });
+
+    it("should replace basic quotes", () => {
+        expect(textMarkup.markUp(("This contains {{Quote|text=\"a quote\"}}"))).toEqual("This contains <blockquote><p>a quote</p></blockquote>");
+    });
+
+    it("should replace multiline quotes", () => {
+        expect(textMarkup.markUp(("This contains {{Quote|text=\"a\r\nquote\"}}"))).toEqual("This contains <blockquote><p>a<br />quote</p></blockquote>");
+    });
+
+    it("should replace source quotes", () => {
+        expect(textMarkup.markUp(("This contains {{Quote|text=\"a quote\"|source=\"some cool author\"}}"))).toEqual("This contains <blockquote><p>a quote</p><footer>some cool author</footer></blockquote>");
+    });
+
+    it("should replace nested quotes", () => {
+        expect(textMarkup.markUp(("This contains {{Quote|text=\"a quote{{Quote|text=\"within a quote\"}}\"|source=\"some cool author\"}}"))).toEqual("This contains <blockquote><p>a quote<blockquote><p>within a quote</p></blockquote></p><footer>some cool author</footer></blockquote>");
+    });
+
+    it("should replace a maximum of 3 nested quotes", () => {
+        expect(textMarkup.markUp(("This contains {{Quote|text=\"a quote{{Quote|text=\"within a{{Quote|text=\"within a{{Quote|text=\"within a quote\"}}quote\"}}quote\"}}\"|source=\"some cool author\"}}"))).toEqual("This contains {{Quote|text=\"a quote<blockquote><p>within a<blockquote><p>within a<blockquote><p>within a quote</p></blockquote>quote</p></blockquote>quote</p></blockquote>\"|source=\"some cool author\"}}");
+    });
 });

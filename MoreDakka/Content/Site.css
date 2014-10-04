@@ -87,6 +87,10 @@ input[type="checkbox"].input-validation-error {
     max-width: 100%;
 }
 
+.post-data blockquote {
+    font-size: inherit;
+}
+
 .last-post-author {
     text-align: right;
 }

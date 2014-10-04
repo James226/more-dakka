@@ -23,7 +23,7 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                @Html.ActionLink("Hello, " + User.Identity.GetUserName(), "Manage", "Account", routeValues: null, htmlAttributes: null)
+                                <a data-ng-href="#/account/manage">Hello @User.Identity.GetUserName()</a>
                             </li>
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
                         </ul>

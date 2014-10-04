@@ -17,6 +17,7 @@ var MoreDakka;
                         $scope.posts = posts;
                     });
 
+                    $scope.postBody = '';
                     $scope.boardId = $routeParams.board_id;
                     $scope.topicId = topicId;
                     $scope.goToBoard = function (boardId) {
@@ -33,6 +34,10 @@ var MoreDakka;
 
                     $scope.markUp = function (text) {
                         return $sce.trustAsHtml(textMarkupService.markUp(text));
+                    };
+
+                    $scope.quote = function (post) {
+                        $scope.postBody += '{{Quote|text="' + post.body + '"|source="' + post.username + '"}}\n\n';
                     };
                 }
                 return PostController;

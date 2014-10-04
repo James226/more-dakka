@@ -12,7 +12,6 @@ module MoreDakka {
         private guildProgressPromise: ng.IHttpPromise<BossProgress[]>;
 
         constructor(private $http: ng.IHttpService) {
-
         }
 
         getProgress() {

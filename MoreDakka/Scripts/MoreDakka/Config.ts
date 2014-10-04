@@ -29,6 +29,10 @@ module MoreDakka {
                 templateUrl: 'Account/Register',
                 controller: 'registerController'
             })
+            .when('/account/manage', {
+                templateUrl: 'Account/Manage',
+                controller: 'manageAccountController'
+            });
     });
 
     moreDakka.factory('responseObserver',

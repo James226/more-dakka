@@ -5,7 +5,7 @@ var MoreDakka;
         function TextMarkupService() {
         }
         TextMarkupService.prototype.markUp = function (text) {
-            return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br />').replace(/'''(.*?)'''/g, function (m, l) {
+            var text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r?\n/g, '<br />').replace(/'''(.*?)'''/g, function (m, l) {
                 return '<strong>' + l + '</strong>';
             }).replace(/''(.*?)''/g, function (m, l) {
                 return '<em>' + l + '</em>';
@@ -20,6 +20,18 @@ var MoreDakka;
                     return '<a href="' + link + '">' + (p.length ? p.join('|') : link) + '</a>';
                 }
             });
+
+            var maxNest = 3;
+            while (maxNest-- > 0 && text.match(/\{\{Quote(.*?)\}\}/)) {
+                text = text.replace(/\{\{Quote\|text=\"((?:[^\\"]+|\\.)*)\"(\|source=\"(.*?)\")?\}\}/g, function (m, l, _, source) {
+                    var sourceHtml = '';
+                    if (source != undefined) {
+                        sourceHtml = '<footer>' + source + '</footer>';
+                    }
+                    return '<blockquote><p>' + l + "</p>" + sourceHtml + '</blockquote>';
+                });
+            }
+            return text;
         };
         return TextMarkupService;
     })();

@@ -19,11 +19,11 @@ type BundleConfig() =
         bundles.Add(ScriptBundle("~/bundles/modernizr").Include([|"~/Scripts/Libraries/modernizr-*"|]))
 
         bundles.Add(ScriptBundle("~/bundles/bootstrap").Include(
-                        "~/Scripts/Libraries/bootstrap.js",
+                        "~/Scripts/Libraries/bootstrap.min.js",
                         "~/Scripts/Libraries/respond.js"))
 
         bundles.Add(StyleBundle("~/Content/css").Include(
-                        "~/Content/bootstrap.css",
+                        "~/Content/bootstrap.min.css",
                         "~/Content/site.css"))
 
 /// Route for ASP.NET MVC applications

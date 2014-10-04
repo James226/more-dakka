@@ -16,10 +16,17 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3">
-                                <div>{{ post.username }}</div>
-                                <div>Post Count: {{ post.authorPosts }}</div>
+                                <div style="border-right: 1px solid darkgray">
+                                    <div>{{ post.username }}</div>
+                                    <div>Post Count: {{ post.authorPosts }}</div>
+                                </div>
                             </div>
-                            <div class="col-md-9 post-data" data-ng-bind-html="markUp(post.body)"></div>
+                            <div class="col-md-9 post-data">
+                                <div data-ng-bind-html="markUp(post.body)"></div>
+                                <div style="text-align: right;">
+                                    <button class="btn btn-default" data-ng-click="quote(post)">Quote</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

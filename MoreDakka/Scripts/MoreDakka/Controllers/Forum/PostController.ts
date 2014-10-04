@@ -13,6 +13,7 @@ module MoreDakka.Controllers.Forum {
                 $scope.posts = posts;
             });
 
+            $scope.postBody = '';
             $scope.boardId = $routeParams.board_id;
             $scope.topicId = topicId;
             $scope.goToBoard = (boardId) =>
@@ -25,6 +26,10 @@ module MoreDakka.Controllers.Forum {
                 .then(() => $scope.postBody = '');
 
             $scope.markUp = (text) => $sce.trustAsHtml(textMarkupService.markUp(text));
+
+            $scope.quote = (post: TopicViewModel) => {
+                $scope.postBody += '{{Quote|text="' + post.body + '"|source="' + post.username + '"}}\n\n';
+            };
         }
     }
 

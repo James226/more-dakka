@@ -1,4 +1,4 @@
-﻿/// <reference path="../../typings/jasmine/jasmine.d.ts" />
+/// <reference path="../../typings/jasmine/jasmine.d.ts" />
 /// <reference path="../../typings/angularjs/angular-mocks.d.ts" />
 /// <reference path="../Controllers/Forum/ForumController.ts" />
 /// <reference path="../Services/TextMarkupService.ts" />
@@ -34,26 +34,26 @@ describe("Text Markup Service", function () {
     });
 
     it("should replace basic quotes", function () {
-        expect(textMarkup.markUp(("This contains {{Quote|text=\"a quote\"}}"))).toEqual("This contains <blockquote><p>a quote</p></blockquote>");
+        expect(textMarkup.markUp(("This contains {Quote}a quote{/Quote}"))).toEqual("This contains <blockquote><p>a quote</p></blockquote>");
     });
 
     it("should replace multiline quotes", function () {
-        expect(textMarkup.markUp(("This contains {{Quote|text=\"a\r\nquote\"}}"))).toEqual("This contains <blockquote><p>a<br />quote</p></blockquote>");
+        expect(textMarkup.markUp(("This contains {Quote}a\r\nquote{/Quote}"))).toEqual("This contains <blockquote><p>a<br />quote</p></blockquote>");
     });
 
     it("should replace source quotes", function () {
-        expect(textMarkup.markUp(("This contains {{Quote|text=\"a quote\"|source=\"some cool author\"}}"))).toEqual("This contains <blockquote><p>a quote</p><footer>some cool author</footer></blockquote>");
+        expect(textMarkup.markUp(("This contains {Quote|source=\"some cool author\"}a quote{/Quote}"))).toEqual("This contains <blockquote><p>a quote</p><footer>some cool author</footer></blockquote>");
     });
 
     it("should replace nested quotes", function () {
-        expect(textMarkup.markUp(("This contains {{Quote|text=\"a quote{{Quote|text=\"within a quote\"}}\"|source=\"some cool author\"}}"))).toEqual("This contains <blockquote><p>a quote<blockquote><p>within a quote</p></blockquote></p><footer>some cool author</footer></blockquote>");
+        expect(textMarkup.markUp(("This contains {Quote|source=\"some cool author\"}a quote{Quote}within a quote{/Quote}{/Quote}"))).toEqual("This contains <blockquote><p>a quote<blockquote><p>within a quote</p></blockquote></p><footer>some cool author</footer></blockquote>");
     });
 
     it("should replace a maximum of 3 nested quotes", function () {
-        expect(textMarkup.markUp(("This contains {{Quote|text=\"a quote{{Quote|text=\"within a{{Quote|text=\"within a{{Quote|text=\"within a quote\"}}quote\"}}quote\"}}\"|source=\"some cool author\"}}"))).toEqual("This contains {{Quote|text=\"a quote<blockquote><p>within a<blockquote><p>within a<blockquote><p>within a quote</p></blockquote>quote</p></blockquote>quote</p></blockquote>\"|source=\"some cool author\"}}");
+        expect(textMarkup.markUp(("This contains {Quote|source=\"some cool author\"}a quote{Quote}within a{Quote}within a{Quote}within a quote{/Quote}quote{/Quote}quote{/Quote}{/Quote}"))).toEqual("This contains {Quote|source=\"some cool author\"}a quote<blockquote><p>within a<blockquote><p>within a<blockquote><p>within a quote</p></blockquote>quote</p></blockquote>quote</p></blockquote>{/Quote}");
     });
 
     it("should replace non-nested quotes", function () {
-        expect(textMarkup.markUp(("This contains {{Quote|text=\"a quote\"|source=\"some cool author\"}}\n\n{{Quote|text=\"a quote\"|source=\"some cool author\"}}"))).toEqual("This contains {{Quote|text=\"a quote<blockquote><p>within a<blockquote><p>within a<blockquote><p>within a quote</p></blockquote>quote</p></blockquote>quote</p></blockquote>\"|source=\"some cool author\"}}");
+        expect(textMarkup.markUp(("This contains {Quote|source=\"some cool author\"}a quote{/Quote}\n\n{Quote|source=\"some cool author\"}a quote{/Quote}"))).toEqual("This contains <blockquote><p>a quote</p><footer>some cool author</footer></blockquote><br /><br /><blockquote><p>a quote</p><footer>some cool author</footer></blockquote>");
     });
 });

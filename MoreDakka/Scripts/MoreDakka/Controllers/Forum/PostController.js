@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../typings/angularjs/angular.d.ts"/>
+/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 /// <reference path="../../MoreDakka.ts" />
 /// <reference path="../../Services/ForumService.ts" />
 /// <reference path="../../Services/TextMarkupService.ts" />
@@ -37,7 +37,7 @@ var MoreDakka;
                     };
 
                     $scope.quote = function (post) {
-                        $scope.postBody += '{{Quote|text="' + post.body + '"|source="' + post.username + '"}}\n\n';
+                        $scope.postBody += '{Quote|source="' + post.username + '"}' + post.body + '{/Quote}\n\n';
                     };
                 }
                 return PostController;

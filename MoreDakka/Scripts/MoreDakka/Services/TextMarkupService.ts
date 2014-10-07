@@ -3,7 +3,7 @@
 module MoreDakka {
     export class TextMarkupService {
         markUp(text: string) {
-            var text = text
+            text = text
                 .replace(/&/g, '&amp;')
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;')
@@ -23,9 +23,9 @@ module MoreDakka {
                 });
 
             var maxNest = 3;
-            while (maxNest-- > 0 && text.match(/\{\{Quote(.*?)\}\}/)) {
-                console.log("loop: " + maxNest);
-                text = text.replace(/\{\{Quote\|text=\"((?:[^\\"]+|\\.)*)\"(\|source=\"(.*?)\")?\}\}/g, (m, l, _, source) => {
+            while (maxNest-- > 0 && text.match(/\{Quote(.*?)\}(.*?)\{\/Quote\}/)) {
+                text = text.replace(/\{Quote(\|source=\"((?:[^\\"]+|\\.)*)\")?\}(((\{?!Quote\})|(?!\{\/?Quote).)+)\{\/Quote\}/g, (m, x1, source, l, a, b, c, d, e, f) => {
+                    console.log(m, x1, source, l, a, b, c, d, e, f);
                     var sourceHtml = '';
                     if (source != undefined) {
                         sourceHtml = '<footer>' + source + '</footer>';

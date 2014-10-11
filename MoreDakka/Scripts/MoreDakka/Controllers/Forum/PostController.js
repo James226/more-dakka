@@ -39,7 +39,7 @@ var MoreDakka;
                     $scope.quote = function (post) {
                         $scope.postBody += post.body.replace(/^(.*)$/gm, function (l) {
                             return '> ' + l;
-                        }) + '\n> <cite>' + post.username + '</cite>\n\n';
+                        }) + '\n> \n> <footer>' + post.username + '</footer>\n\n';
                     };
                 }
                 return PostController;

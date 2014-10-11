@@ -28,7 +28,7 @@ module MoreDakka.Controllers.Forum {
             $scope.markUp = (text) => $sce.trustAsHtml(window.marked(text));
 
             $scope.quote = (post: TopicViewModel) => {
-                $scope.postBody += post.body.replace(/^(.*)$/gm, l => '> ' + l) + '\n> <cite>' + post.username + '</cite>\n\n';
+                $scope.postBody += post.body.replace(/^(.*)$/gm, l => '> ' + l) + '\n> \n> <footer>' + post.username + '</footer>\n\n';
             };
         }
     }

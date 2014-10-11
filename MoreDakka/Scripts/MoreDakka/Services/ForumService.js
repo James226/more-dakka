@@ -1,5 +1,6 @@
-﻿/// <reference path="../../typings/angularjs/angular.d.ts" />
+/// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../MoreDakka.ts" />
+
 var MoreDakka;
 (function (MoreDakka) {
     var Board = (function () {
@@ -82,12 +83,11 @@ var MoreDakka;
         };
 
         ForumService.prototype.getPosts = function (topicId) {
-            var _this = this;
             return this.$http.get('api/forum/post/' + topicId).then(function (data) {
                 var posts = [];
                 for (var i in data.data) {
                     var record = data.data[i];
-                    posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, _this.textMarkupService.markUp(record.body), record.postedAt));
+                    posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, window.marked(record.body), record.postedAt));
                 }
                 return posts;
             });

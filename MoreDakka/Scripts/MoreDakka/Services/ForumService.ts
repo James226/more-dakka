@@ -1,6 +1,10 @@
 /// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../MoreDakka.ts" />
 
+interface Window {
+    marked: any;
+}
+
 module MoreDakka {
     export class Board {
         Id: string;
@@ -94,7 +98,7 @@ module MoreDakka {
                     var posts: TopicViewModel[] = [];
                     for (var i in data.data) {
                         var record = data.data[i];
-                        posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, this.textMarkupService.markUp(record.body), record.postedAt));
+                        posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, window.marked(record.body), record.postedAt));
                     }
                     return posts;
                 });

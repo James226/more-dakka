@@ -28,7 +28,7 @@ var MoreDakka;
         });
     });
 
-    MoreDakka.moreDakka.factory('responseObserver', function responseObserver($q, $window, $location) {
+    MoreDakka.moreDakka.factory('responseObserver', function ($q, $window, $location) {
         return function (promise) {
             return promise.then(function (successResponse) {
                 return successResponse;

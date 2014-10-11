@@ -36,19 +36,16 @@ module MoreDakka {
     });
 
     moreDakka.factory('responseObserver',
-        function responseObserver($q, $window, $location) {
-            return function (promise) {
-                return promise.then(function (successResponse) {
-                    return successResponse;
-                }, function (errorResponse) {
+        ($q, $window, $location) =>
+        promise =>
+        promise.then(successResponse =>
+            successResponse, errorResponse => {
 
-                        switch (errorResponse.status) {
-                            case 401:
-                                $location.path("/account/login");
-                        }
+                switch (errorResponse.status) {
+                case 401:
+                    $location.path("/account/login");
+                }
 
-                        return $q.reject(errorResponse);
-                    });
-            };
-        });
+                return $q.reject(errorResponse);
+            }));
 }

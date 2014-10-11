@@ -141,6 +141,7 @@
     <Content Include="Content\home-02.jpg" />
     <Content Include="Content\home-03.jpg" />
     <Content Include="Content\jasmine.css" />
+    <Content Include="Scripts\Libraries\strapdown.js" />
     <Content Include="Scripts\Libraries\modernizr-2.6.2.js" />
     <Content Include="Scripts\Libraries\bootstrap.min.js" />
     <Content Include="Scripts\Libraries\bootstrap.js" />

@@ -21,10 +21,20 @@
                                     <div>Post Count: {{ post.authorPosts }}</div>
                                 </div>
                             </div>
-                            <div class="col-md-9 post-data">
+                            <div class="col-md-9 post-data" data-ng-show="!post.editing">
                                 <div data-ng-bind-html="markUp(post.body)"></div>
+                                
                                 <div style="text-align: right;">
+                                    <button class="btn btn-default" data-ng-show="post.editable" data-ng-click="post.editing = true">Edit</button>
                                     <button class="btn btn-default" data-ng-click="quote(post)">Quote</button>
+                                </div>
+                            </div>
+                            <div class="col-md-9 post-data" data-ng-show="post.editing">
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="3" style="max-width: 100%" data-ng-model="post.body" placeholder="Body"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" data-ng-disabled="post.pendingAction" class="btn btn-success" data-ng-click="editPost(post)">Post</button>
                                 </div>
                             </div>
                         </div>

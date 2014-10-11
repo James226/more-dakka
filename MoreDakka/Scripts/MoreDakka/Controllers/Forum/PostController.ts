@@ -5,7 +5,7 @@
 
 module MoreDakka.Controllers.Forum {
     export class PostController {
-        constructor(private $scope, private $location: ng.ILocationService, $routeParams, $sce : ng.ISCEService, forumService: ForumService, textMarkupService: TextMarkupService) {
+        constructor(private $scope, private $location: ng.ILocationService, $routeParams, $sce: ng.ISCEService, forumService: ForumService, textMarkupService: TextMarkupService) {
             $scope.boards = [];
 
             var topicId = $routeParams.topic_id;
@@ -22,13 +22,23 @@ module MoreDakka.Controllers.Forum {
             $scope.createPost = () =>
                 forumService
                 .createPost(topicId, $scope.postBody)
-                    .then(post => $scope.posts.push(new TopicViewModel(post.id, post.username, post.authorPosts, post.body, post.postedAt)))
+                .then(post => $scope.posts.push(new TopicViewModel(post.id, post.username, post.authorPosts, post.body, post.postedAt, post.editable)))
                 .then(() => $scope.postBody = '');
 
             $scope.markUp = (text) => $sce.trustAsHtml(window.marked(text));
 
             $scope.quote = (post: TopicViewModel) => {
                 $scope.postBody += post.body.replace(/^(.*)$/gm, l => '> ' + l) + '\n> \n> <footer>' + post.username + '</footer>\n\n';
+            };
+
+            $scope.editPost = (post: TopicViewModel) => {
+                post.pendingAction = true;
+                forumService
+                    .editPost(post.id, post.body)
+                    .then(p => {
+                        post.editing = false;
+                        post.pendingAction = false;
+                    });
             };
         }
     }

@@ -26,7 +26,7 @@ var MoreDakka;
 
                     $scope.createPost = function () {
                         return forumService.createPost(topicId, $scope.postBody).then(function (post) {
-                            return $scope.posts.push(new MoreDakka.TopicViewModel(post.id, post.username, post.authorPosts, post.body, post.postedAt));
+                            return $scope.posts.push(new MoreDakka.TopicViewModel(post.id, post.username, post.authorPosts, post.body, post.postedAt, post.editable));
                         }).then(function () {
                             return $scope.postBody = '';
                         });
@@ -40,6 +40,14 @@ var MoreDakka;
                         $scope.postBody += post.body.replace(/^(.*)$/gm, function (l) {
                             return '> ' + l;
                         }) + '\n> \n> <footer>' + post.username + '</footer>\n\n';
+                    };
+
+                    $scope.editPost = function (post) {
+                        post.pendingAction = true;
+                        forumService.editPost(post.id, post.body).then(function (p) {
+                            post.editing = false;
+                            post.pendingAction = false;
+                        });
                     };
                 }
                 return PostController;

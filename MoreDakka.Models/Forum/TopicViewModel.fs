@@ -8,4 +8,5 @@ type TopicViewModel = {
     AuthorPosts: int
     Body: String
     PostedAt: DateTime
+    Editable: bool
 }

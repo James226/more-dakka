@@ -9,6 +9,11 @@ open MoreDakka.Data
 open MoreDakka.Models.Forum
 open System.Web
 
+[<CLIMutable>]
+type EditPostModel = {
+    Body: string
+}
+
 [<RoutePrefix("api/forum/post")>]
 [<AppAuthorize>]
 type PostController() =
@@ -18,7 +23,7 @@ type PostController() =
     [<Route("{id:guid}")>]
     [<HttpGet>]
     member x.Get(id) : IHttpActionResult =
-        x.Ok(context.Topics.Include("Posts").Include("Posts.User").First(fun t -> t.Id = id).Posts.Select(fun p -> { Id = p.Id; Username = p.User.UserName; AuthorPosts = p.User.NumberOfPosts; Body = p.Body; PostedAt = p.PostedAt })) :> _
+        x.Ok(context.Topics.Include("Posts").Include("Posts.User").First(fun t -> t.Id = id).Posts.Select(fun p -> { Id = p.Id; Username = p.User.UserName; AuthorPosts = p.User.NumberOfPosts; Body = p.Body; PostedAt = p.PostedAt; Editable = (p.User.UserName = HttpContext.Current.User.Identity.Name) })) :> _
 
     [<Route("")>]
     member x.Post(post: Post) : IHttpActionResult =
@@ -29,7 +34,16 @@ type PostController() =
         topic.LastUpdate <- DateTime.UtcNow
         post.User.NumberOfPosts <- post.User.NumberOfPosts + 1
         context.SaveChanges() |> ignore
-        x.Ok({ Id = post.Id; Username = post.User.UserName; AuthorPosts = post.User.NumberOfPosts; Body = post.Body; PostedAt = post.PostedAt }) :> _
+        x.Ok({ Id = post.Id; Username = post.User.UserName; AuthorPosts = post.User.NumberOfPosts; Body = post.Body; PostedAt = post.PostedAt; Editable = true }) :> _
+
+    [<Route("{id:guid}")>]
+    [<HttpPut>]
+    member x.Put(id: Guid, [<FromBody>] editedPost: EditPostModel) : IHttpActionResult =
+        let post = context.Posts.FirstOrDefault(fun p -> p.Id = id && p.User.UserName = HttpContext.Current.User.Identity.Name)
+        match post with
+        | null -> x.NotFound() :> _
+        | _ -> post.Body <- editedPost.Body; context.SaveChanges() |> ignore; x.Ok() :> _
+        
 
     [<Route("{id:guid}")>]
     [<HttpDelete>]

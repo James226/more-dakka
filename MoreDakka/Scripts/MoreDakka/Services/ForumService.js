@@ -43,12 +43,15 @@ var MoreDakka;
     MoreDakka.Post = Post;
 
     var TopicViewModel = (function () {
-        function TopicViewModel(id, username, authorPosts, body, postedAt) {
+        function TopicViewModel(id, username, authorPosts, body, postedAt, editable) {
             this.id = id;
             this.username = username;
             this.authorPosts = authorPosts;
             this.body = body;
             this.postedAt = new Date(Date.parse(postedAt));
+            this.editable = editable;
+            this.editing = false;
+            this.pendingAction = false;
         }
         return TopicViewModel;
     })();
@@ -87,7 +90,7 @@ var MoreDakka;
                 var posts = [];
                 for (var i in data.data) {
                     var record = data.data[i];
-                    posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, record.body, record.postedAt));
+                    posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, record.body, record.postedAt, record.editable));
                 }
                 return posts;
             });
@@ -101,6 +104,12 @@ var MoreDakka;
 
         ForumService.prototype.createPost = function (topicId, body) {
             return this.$http.post('api/forum/post', { TopicId: topicId, Body: body }).then(function (data) {
+                return data.data;
+            });
+        };
+
+        ForumService.prototype.editPost = function (id, body) {
+            return this.$http.put('api/forum/post/' + id, { Body: body }).then(function (data) {
                 return data.data;
             });
         };

@@ -50,13 +50,19 @@ module MoreDakka {
         authorPosts: number;
         body: string;
         postedAt: Date;
+        editable: boolean;
+        editing: boolean;
+        pendingAction: boolean;
 
-        constructor(id: string, username: string, authorPosts: number, body: string, postedAt: string) {
+        constructor(id: string, username: string, authorPosts: number, body: string, postedAt: string, editable: boolean) {
             this.id = id;
             this.username = username;
             this.authorPosts = authorPosts;
             this.body = body;
             this.postedAt = new Date(Date.parse(postedAt));
+            this.editable = editable;
+            this.editing = false;
+            this.pendingAction = false;
         }
     }
 
@@ -98,7 +104,7 @@ module MoreDakka {
                     var posts: TopicViewModel[] = [];
                     for (var i in data.data) {
                         var record = data.data[i];
-                        posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, record.body, record.postedAt));
+                        posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, record.body, record.postedAt, record.editable));
                     }
                     return posts;
                 });
@@ -113,6 +119,12 @@ module MoreDakka {
         createPost(topicId: string, body: string) {
             return this.$http
                 .post<any>('api/forum/post', { TopicId: topicId, Body: body })
+                .then(data => data.data);
+        }
+
+        editPost(id: string, body: string) {
+            return this.$http
+                .put<any>('api/forum/post/' + id, { Body: body })
                 .then(data => data.data);
         }
     }

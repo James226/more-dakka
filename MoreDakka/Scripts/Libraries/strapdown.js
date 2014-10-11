@@ -202,7 +202,7 @@
                     row = this.token.cells[i]; body += '<tr>\n'; for (j = 0; j < row.length; j++) { cell = this.inline.output(row[j]); body += this.token.align[j] ? '<td align="' + this.token.align[j] + '">' + cell + '</td>\n' : '<td>' + cell + '</td>\n'; }
                     body += '</tr>\n';
                 }
-                body += '</tbody>\n'; return '<table>\n'
+                body += '</tbody>\n'; return '<table class="table table-striped table-bordered">\n'
                 + body
                 + '</table>\n';
             }

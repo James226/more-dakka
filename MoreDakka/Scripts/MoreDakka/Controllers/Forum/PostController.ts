@@ -22,13 +22,13 @@ module MoreDakka.Controllers.Forum {
             $scope.createPost = () =>
                 forumService
                 .createPost(topicId, $scope.postBody)
-                    .then(post => $scope.posts.push(new TopicViewModel(post.id, post.username, post.authorPosts, window.marked(post.body), post.postedAt)))
+                    .then(post => $scope.posts.push(new TopicViewModel(post.id, post.username, post.authorPosts, post.body, post.postedAt)))
                 .then(() => $scope.postBody = '');
 
-            $scope.markUp = (text) => $sce.trustAsHtml(textMarkupService.markUp(text));
+            $scope.markUp = (text) => $sce.trustAsHtml(window.marked(text));
 
             $scope.quote = (post: TopicViewModel) => {
-                $scope.postBody += '{Quote|source="' + post.username + '"}' + post.body + '{/Quote}\n\n';
+                $scope.postBody += post.body.replace(/^(.*)$/gm, l => '> ' + l) + '\n> <cite>' + post.username + '</cite>\n\n';
             };
         }
     }

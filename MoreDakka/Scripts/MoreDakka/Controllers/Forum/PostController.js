@@ -26,18 +26,20 @@ var MoreDakka;
 
                     $scope.createPost = function () {
                         return forumService.createPost(topicId, $scope.postBody).then(function (post) {
-                            return $scope.posts.push(new MoreDakka.TopicViewModel(post.id, post.username, post.authorPosts, window.marked(post.body), post.postedAt));
+                            return $scope.posts.push(new MoreDakka.TopicViewModel(post.id, post.username, post.authorPosts, post.body, post.postedAt));
                         }).then(function () {
                             return $scope.postBody = '';
                         });
                     };
 
                     $scope.markUp = function (text) {
-                        return $sce.trustAsHtml(textMarkupService.markUp(text));
+                        return $sce.trustAsHtml(window.marked(text));
                     };
 
                     $scope.quote = function (post) {
-                        $scope.postBody += '{Quote|source="' + post.username + '"}' + post.body + '{/Quote}\n\n';
+                        $scope.postBody += post.body.replace(/^(.*)$/gm, function (l) {
+                            return '> ' + l;
+                        }) + '\n> <cite>' + post.username + '</cite>\n\n';
                     };
                 }
                 return PostController;

@@ -98,7 +98,7 @@ module MoreDakka {
                     var posts: TopicViewModel[] = [];
                     for (var i in data.data) {
                         var record = data.data[i];
-                        posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, window.marked(record.body), record.postedAt));
+                        posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, record.body, record.postedAt));
                     }
                     return posts;
                 });

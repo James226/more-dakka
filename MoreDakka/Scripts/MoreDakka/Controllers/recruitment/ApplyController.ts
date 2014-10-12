@@ -82,7 +82,7 @@ module MoreDakka.Controllers.Recruitment {
             console.log("Update Character");
 
             this.$http
-                .jsonp<any>("http://eu.battle.net/api/wow/character/Doomhammer/Sator?jsonp=JSON_CALLBACK")
+                .jsonp<any>("http://eu.battle.net/api/wow/character/" + application.realmName + "/" + application.characterName + "?jsonp=JSON_CALLBACK")
                 .success(data => this.$scope.application.character = {
                     characterName: data.name,
                     realmName: data.realm,

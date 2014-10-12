@@ -12,9 +12,14 @@ var MoreDakka;
 
             var Application = (function () {
                 function Application() {
-                    this.character = null;
                 }
                 return Application;
+            })();
+
+            var Registration = (function () {
+                function Registration() {
+                }
+                return Registration;
             })();
 
             var ApplyController = (function () {
@@ -30,7 +35,7 @@ var MoreDakka;
                         console.log("Update Character");
 
                         _this.$http.jsonp("http://eu.battle.net/api/wow/character/" + application.realmName + "/" + application.characterName + "?jsonp=JSON_CALLBACK").success(function (data) {
-                            return _this.$scope.application.character = {
+                            return _this.$scope.character = {
                                 characterName: data.name,
                                 realmName: data.realm,
                                 className: data.class,
@@ -43,7 +48,12 @@ var MoreDakka;
                     this.races = [];
                     this.classes = [];
 
+                    $scope.character = null;
+
                     $scope.application = new Application();
+                    $scope.registration = new Registration();
+
+                    $scope.processing = false;
 
                     $scope.updateCharacter = function () {
                         if (_this.updateTimer != undefined) {
@@ -83,6 +93,13 @@ var MoreDakka;
                         if (_this.races[race] == undefined)
                             return race;
                         return _this.races[race].name;
+                    };
+
+                    $scope.submitApplication = function () {
+                        $scope.processing = true;
+                        $http.post('Recruitment/Apply', $scope.application).success(function (data) {
+                            return $scope.processing = false;
+                        });
                     };
                 }
                 return ApplyController;

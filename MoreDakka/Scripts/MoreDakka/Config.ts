@@ -36,6 +36,10 @@ module MoreDakka {
             .when('/recruitment/apply', {
                 templateUrl: 'Recruitment/Apply',
                 controller: 'applyController'
+            })
+            .when('/recruitment/list', {
+                templateUrl: 'Recruitment/List',
+                controller: 'recruitment.listController'
             });
     });
 

@@ -7,7 +7,7 @@
         <div class="panel panel-default">
             <div class="panel-body" style="padding: 0 50px 20px 50px">
                 <h1>Application</h1>
-                <form role="form">
+                <form role="form" data-ng-submit="submitApplication()">
                     <div class="row">
                         <div class="col-lg-9">
                             <div class="form-group">
@@ -29,49 +29,54 @@
                             {
                                 <div class="form-group">
                                     <label for="username">Username</label>
-                                    <input type="text" class="form-control" id="username" data-ng-model="application.emailAddress" placeholder="Enter username" />
+                                    <input type="text" class="form-control" id="username" data-ng-model="registration.emailAddress" placeholder="Enter username" />
                                 </div>
                                 <div class="form-group">
                                     <label for="emailAddress">Email Address</label>
-                                    <input type="email" class="form-control" id="emailAddress" data-ng-model="application.emailAddress" placeholder="Enter email" />
+                                    <input type="email" class="form-control" id="emailAddress" data-ng-model="registration.emailAddress" placeholder="Enter email" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" data-ng-model="registration" placeholder="Password" />
                                 </div>
                             }
                         </div>
                         <div class="col-lg-3">
-                            <div data-ng-show="application.character != null">
+                            <div data-ng-show="character != null">
                                 <table class="table table-bordered">
                                     <tr>
-                                        <td colspan="2" style="text-align: center;"><img src="{{application.character.thumbnail}}"/></td>
+                                        <td colspan="2" style="text-align: center;"><img src="{{character.thumbnail}}" /></td>
                                     </tr>
                                     <tr>
                                         <td>Character Name</td>
-                                        <td>{{application.character.characterName}}</td>
+                                        <td>{{character.characterName}}</td>
                                     </tr>
                                     <tr>
                                         <td>Realm Name</td>
-                                        <td>{{application.character.realmName}}</td>
+                                        <td>{{character.realmName}}</td>
                                     </tr>
                                     <tr>
                                         <td>Class</td>
-                                        <td>{{getClass(application.character.className)}}</td>
+                                        <td>{{getClass(character.className)}}</td>
                                     </tr>
                                     <tr>
                                         <td>Race</td>
-                                        <td>{{getRace(application.character.race)}}</td>
+                                        <td>{{getRace(character.race)}}</td>
                                     </tr>
                                     <tr>
                                         <td>Level</td>
-                                        <td>{{application.character.level}}</td>
+                                        <td>{{character.level}}</td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default" data-ng-disabled="processing">Submit</button>
                 </form>
             </div>
         </div>

@@ -185,6 +185,7 @@
     <TypeScriptCompile Include="Scripts\MoreDakka\controllers\Forum\TopicController.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\controllers\Forum\PostController.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\controllers\recruitment\ApplyController.ts" />
+    <TypeScriptCompile Include="Scripts\MoreDakka\controllers\recruitment\ListController.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Services\ForumService.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Services\AccountService.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Services\GuildProgressService.ts" />
@@ -204,6 +205,7 @@
     <Content Include="Views\Forums\Board.cshtml" />
     <Content Include="Views\Forums\Topic.cshtml" />
     <Content Include="Views\Recruitment\Apply.cshtml" />
+    <Content Include="Views\Recruitment\List.cshtml" />
     <Content Include="Views\Tests\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />

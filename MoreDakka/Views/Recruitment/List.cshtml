@@ -1,0 +1,56 @@
+@{
+    Layout = null;
+    
+}
+<div class="container" style="padding-top: 50px;">
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body" style="padding: 0 50px 20px 50px">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1>Applications</h1>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="width: 60px;">Status</th>
+                                    <th>Name</th>
+                                    <th>Main Spec</th>
+                                    <th>Off Spec</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="app in applications">
+                                    <td style="text-align: center;"><span class="glyphicon glyphicon-ok" style="color: darkgreen;"></span></td>
+                                    <td>{{app.Submission.characterName}}</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <h1>Roster</h1>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="width: 60px;">Status</th>
+                                    <th>Name</th>
+                                    <th>Main Spec</th>
+                                    <th>Off Spec</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="member in members">
+                                    <td style="text-align: center;"><span class="glyphicon glyphicon-ok" style="color: darkgreen;"></span></td>
+                                    <td>{{member.characterName}}</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

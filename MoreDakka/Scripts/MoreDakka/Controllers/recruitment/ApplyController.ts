@@ -14,14 +14,12 @@ module MoreDakka.Controllers.Recruitment {
     class Application {
         characterName: string;
         realmName: string;
+    }
+
+    class Registration {
         username: string;
         emailAddress: string;
         password: string;
-        character: Character;
-
-        constructor() {
-            this.character = null;
-        }
     }
 
     class ApplyController {
@@ -32,7 +30,12 @@ module MoreDakka.Controllers.Recruitment {
             this.races = [];
             this.classes = [];
 
+            $scope.character = null;
+
             $scope.application = new Application();
+            $scope.registration = new Registration();
+
+            $scope.processing = false;
 
             $scope.updateCharacter = () => {
                 if (this.updateTimer != undefined) {
@@ -73,6 +76,13 @@ module MoreDakka.Controllers.Recruitment {
                 if (this.races[race] == undefined) return race;
                 return this.races[race].name;
             }
+
+            $scope.submitApplication = () => {
+                $scope.processing = true;
+                $http
+                    .post('Recruitment/Apply', $scope.application)
+                    .success(data => $scope.processing = false);
+            }
         }
 
         updateCharacter = () => {
@@ -83,7 +93,7 @@ module MoreDakka.Controllers.Recruitment {
 
             this.$http
                 .jsonp<any>("http://eu.battle.net/api/wow/character/" + application.realmName + "/" + application.characterName + "?jsonp=JSON_CALLBACK")
-                .success(data => this.$scope.application.character = {
+                .success(data => this.$scope.character = {
                     characterName: data.name,
                     realmName: data.realm,
                     className: data.class,

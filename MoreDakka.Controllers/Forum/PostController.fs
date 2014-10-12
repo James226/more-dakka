@@ -47,7 +47,8 @@ type PostController() =
 
     [<Route("{id:guid}")>]
     [<HttpDelete>]
-    member x.Delete(id: System.Guid) :IHttpActionResult =
+    [<Authorize>]
+    member x.Delete(id: System.Guid) : IHttpActionResult =
         try
             let board = context.Posts.Find id
             context.Posts.Remove(board) |> ignore

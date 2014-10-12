@@ -25,6 +25,9 @@ var MoreDakka;
         }).when('/account/manage', {
             templateUrl: 'Account/Manage',
             controller: 'manageAccountController'
+        }).when('/recruitment/apply', {
+            templateUrl: 'Recruitment/Apply',
+            controller: 'applyController'
         });
     });
 

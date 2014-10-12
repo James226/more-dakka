@@ -21,6 +21,7 @@ type NewTopic() =
     [<Required>] member x.BoardId with get() = boardId and set v = boardId <- v
 
 [<RoutePrefix("api/forum/topic")>]
+[<Authorize>]
 type TopicController() =
     inherit ApiController()
     let context = new BoardContext()

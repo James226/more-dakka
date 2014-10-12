@@ -1,0 +1,79 @@
+@{
+    Layout = null;
+    
+}
+<div class="container" style="padding-top: 50px;">
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body" style="padding: 0 50px 20px 50px">
+                <h1>Application</h1>
+                <form role="form">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="form-group">
+                                <label for="characterName">Character Name</label>
+                                <input type="text" class="form-control" id="characterName" data-ng-model="application.characterName" data-ng-change="updateCharacter()" placeholder="Enter character name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="realmName">Realm Name</label>
+                                <input type="text" class="form-control" id="realmName" data-ng-model="application.realmName" data-ng-change="updateCharacter()" placeholder="Enter realm" />
+                            </div>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="email" disabled="disabled" class="form-control" id="username" value="@User.Identity.Name" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" data-ng-model="application.emailAddress" placeholder="Enter username" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="emailAddress">Email Address</label>
+                                    <input type="email" class="form-control" id="emailAddress" data-ng-model="application.emailAddress" placeholder="Enter email" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                                </div>
+                            }
+                        </div>
+                        <div class="col-lg-3">
+                            <div data-ng-show="application.character != null">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td colspan="2" style="text-align: center;"><img src="{{application.character.thumbnail}}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Character Name</td>
+                                        <td>{{application.character.characterName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Realm Name</td>
+                                        <td>{{application.character.realmName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Class</td>
+                                        <td>{{getClass(application.character.className)}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Race</td>
+                                        <td>{{getRace(application.character.race)}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Level</td>
+                                        <td>{{application.character.level}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -51,14 +51,15 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Compile Include="AccountController.fs" />
+    <Compile Include="RecruitmentController.fs" />
     <Compile Include="GuildProgress.fs" />
     <Compile Include="HomeController.fs" />
-    <Compile Include="ForumsController.fs" />
     <Compile Include="TestsController.fs" />
     <Compile Include="Forum\PostController.fs" />
     <Compile Include="Forum\TopicController.fs" />
     <Compile Include="Forum\BoardController.fs" />
     <None Include="App.config" />
+    <Compile Include="ForumsController.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">

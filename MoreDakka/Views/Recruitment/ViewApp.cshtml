@@ -1,0 +1,24 @@
+@{
+    Layout = null;
+    
+}
+<div class="container" style="padding-top: 50px;">
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body" style="padding: 0 50px 20px 50px">
+                <div data-ng-show="application == undefined && application != null" style="text-align: center;">
+                    <h1><span class="glyphicon glyphicon-refresh loading-icon"></span></h1>
+                </div>
+                <div data-ng-show="application == null" style="text-align: center">
+                    <h1>Application Not Found</h1>
+                </div>
+                <div data-ng-show="application != undefined">
+                    <h1>{{application.Submission.characterName}}</h1>
+                    <div class="row" data-ng-repeat="field in application.Submission">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

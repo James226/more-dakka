@@ -11,12 +11,15 @@ open System.Web
 type ApplicationSubmission = {
     characterName: string;
     realmName: string;
+    mainspec: string;
+    offspec: string;
 }
 
 type ApplicationResponse = {
     result: bool;
 }
 
+[<AppAuthorize>]
 type RecruitmentController() =
     inherit System.Web.Mvc.Controller()
 
@@ -34,6 +37,10 @@ type RecruitmentController() =
         
     [<HttpGet>]
     member x.List() =
+        x.View()
+
+    [<HttpGet>]
+    member x.ViewApp() =
         x.View()
 
     [<HttpGet>]

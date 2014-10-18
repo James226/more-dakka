@@ -5,15 +5,13 @@ module MoreDakka.Controllers.Recruitment {
 
     class ListController {
 
-        constructor(private $scope, private $http: ng.IHttpService) {
-            $http.get<any[]>('/Recruitment/Applications')
-                .success(data => {
-                    $scope.applications = [];
-                    for (var i in data) {
-                        data[i].Submission = JSON.parse(data[i].Submission);
-                        $scope.applications.push(data[i]);
-                    }
-                });
+        constructor(private $scope, $location: ng.ILocationService, applicationService: ApplicationService) {
+            applicationService.getApplications()
+                .then(apps => $scope.applications = apps);
+
+            $scope.openApplication = (app) => {
+                $location.path('/recruitment/view/' + app.Id);
+            }
         }
     }
 

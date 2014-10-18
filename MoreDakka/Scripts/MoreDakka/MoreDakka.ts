@@ -1,4 +1,5 @@
 ﻿/// <reference path="../typings/angularjs/angular.d.ts"/>
+/// <reference path="../typings/bootstrap/bootstrap.d.ts"/>
 
 module MoreDakka {
     export var moreDakka: ng.IModule;

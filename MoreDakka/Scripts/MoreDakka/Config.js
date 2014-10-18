@@ -31,6 +31,9 @@ var MoreDakka;
         }).when('/recruitment/list', {
             templateUrl: 'Recruitment/List',
             controller: 'recruitment.listController'
+        }).when('/recruitment/view/:app_id', {
+            templateUrl: 'Recruitment/ViewApp',
+            controller: 'recruitment.viewController'
         });
     });
 

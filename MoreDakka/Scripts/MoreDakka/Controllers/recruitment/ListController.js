@@ -5,16 +5,15 @@ var MoreDakka;
     (function (Controllers) {
         (function (Recruitment) {
             var ListController = (function () {
-                function ListController($scope, $http) {
+                function ListController($scope, $location, applicationService) {
                     this.$scope = $scope;
-                    this.$http = $http;
-                    $http.get('/Recruitment/Applications').success(function (data) {
-                        $scope.applications = [];
-                        for (var i in data) {
-                            data[i].Submission = JSON.parse(data[i].Submission);
-                            $scope.applications.push(data[i]);
-                        }
+                    applicationService.getApplications().then(function (apps) {
+                        return $scope.applications = apps;
                     });
+
+                    $scope.openApplication = function (app) {
+                        $location.path('/recruitment/view/' + app.Id);
+                    };
                 }
                 return ListController;
             })();

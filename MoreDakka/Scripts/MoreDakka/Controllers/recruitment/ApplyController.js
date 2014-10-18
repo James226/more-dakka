@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../typings/angularjs/angular.d.ts"/>
+/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 /// <reference path="../../MoreDakka.ts" />
 var MoreDakka;
 (function (MoreDakka) {
@@ -12,6 +12,8 @@ var MoreDakka;
 
             var Application = (function () {
                 function Application() {
+                    this.mainspec = 'tank';
+                    this.offspec = 'melee';
                 }
                 return Application;
             })();
@@ -32,7 +34,6 @@ var MoreDakka;
                         var application = _this.$scope.application;
                         if (application.characterName == undefined || application.characterName == '' || application.realmName == undefined || application.realmName == '')
                             return;
-                        console.log("Update Character");
 
                         _this.$http.jsonp("http://eu.battle.net/api/wow/character/" + application.realmName + "/" + application.characterName + "?jsonp=JSON_CALLBACK").success(function (data) {
                             return _this.$scope.character = {

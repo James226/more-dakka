@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <h1>Applications</h1>
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped applications">
                             <thead>
                                 <tr>
                                     <th style="width: 60px;">Status</th>
@@ -21,16 +21,16 @@
                             <tbody>
                                 <tr data-ng-repeat="app in applications">
                                     <td style="text-align: center;"><span class="glyphicon glyphicon-ok" style="color: darkgreen;"></span></td>
-                                    <td>{{app.Submission.characterName}}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td data-ng-click="openApplication(app)">{{app.Submission.characterName}}</td>
+                                    <td>{{app.Submission.mainspec}}</td>
+                                    <td>{{app.Submission.offspec}}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="col-lg-6">
                         <h1>Roster</h1>
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped applications">
                             <thead>
                                 <tr>
                                     <th style="width: 60px;">Status</th>

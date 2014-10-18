@@ -14,6 +14,13 @@ module MoreDakka.Controllers.Recruitment {
     class Application {
         characterName: string;
         realmName: string;
+        mainspec: string;
+        offspec: string;
+
+        constructor() {
+            this.mainspec = 'tank';
+            this.offspec = 'melee';
+        }
     }
 
     class Registration {
@@ -89,7 +96,6 @@ module MoreDakka.Controllers.Recruitment {
             var application = this.$scope.application;
             if (application.characterName == undefined || application.characterName == '' ||
                 application.realmName == undefined || application.realmName == '') return;
-            console.log("Update Character");
 
             this.$http
                 .jsonp<any>("http://eu.battle.net/api/wow/character/" + application.realmName + "/" + application.characterName + "?jsonp=JSON_CALLBACK")

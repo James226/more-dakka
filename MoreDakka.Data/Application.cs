@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MoreDakka.Data
 {
-
     [Serializable]
     public class Application
     {

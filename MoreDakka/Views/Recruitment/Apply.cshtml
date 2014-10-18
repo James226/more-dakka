@@ -40,6 +40,41 @@
                                     <input type="password" class="form-control" id="password" data-ng-model="registration" placeholder="Password" />
                                 </div>
                             }
+                            
+                            <div class="form-group">
+                                <label>Main Spec:</label><br />
+                                <div class="btn-group">
+                                    <label class="btn btn-default" ng-class="{'active': application.mainspec == 'tank'}">
+                                        <input type="radio" data-ng-model="application.mainspec" name="mainspec" value="tank">Tank
+                                    </label>
+                                    <label class="btn btn-default" ng-class="{'active': application.mainspec == 'melee'}">
+                                        <input type="radio" data-ng-model="application.mainspec" name="mainspec" value="melee">Melee DPS
+                                    </label>
+                                    <label class="btn btn-default" ng-class="{'active': application.mainspec == 'ranged'}">
+                                        <input type="radio" data-ng-model="application.mainspec" name="mainspec" value="ranged">Ranged DPS
+                                    </label>
+                                    <label class="btn btn-default" ng-class="{'active': application.mainspec == 'healer'}">
+                                        <input type="radio" data-ng-model="application.mainspec" name="mainspec" value="healer">Healer
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Offspec:</label><br />
+                                <div class="btn-group">
+                                    <label class="btn btn-default" ng-class="{'active': application.offspec == 'tank'}">
+                                        <input type="radio" data-ng-model="application.offspec" name="offspec" value="tank">Tank
+                                    </label>
+                                    <label class="btn btn-default" ng-class="{'active': application.offspec == 'melee'}">
+                                        <input type="radio" data-ng-model="application.offspec" name="offspec" value="melee">Melee DPS
+                                    </label>
+                                    <label class="btn btn-default" ng-class="{'active': application.offspec == 'ranged'}">
+                                        <input type="radio" data-ng-model="application.offspec" name="offspec" value="ranged">Ranged DPS
+                                    </label>
+                                    <label class="btn btn-default" ng-class="{'active': application.offspec == 'healer'}">
+                                        <input type="radio" data-ng-model="application.offspec" name="offspec" value="healer">Healer
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-3">
                             <div data-ng-show="character != null">
@@ -73,10 +108,10 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-6">
-
+                           
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default" data-ng-disabled="processing">Submit</button>
+                    <button type="submit" class="btn btn-primary" data-ng-disabled="processing">Submit</button>
                 </form>
             </div>
         </div>

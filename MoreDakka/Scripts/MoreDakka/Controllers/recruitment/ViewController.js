@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../typings/angularjs/angular.d.ts"/>
+/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 /// <reference path="../../MoreDakka.ts" />
 var MoreDakka;
 (function (MoreDakka) {
@@ -12,6 +12,14 @@ var MoreDakka;
                     applicationService.getApplication(appId).then(function (app) {
                         return $scope.application = app;
                     });
+
+                    $scope.toTitleCase = function (text) {
+                        return text.replace(/[A-Z]/g, function (txt) {
+                            return ' ' + txt;
+                        }).replace(/\w\S*/g, function (txt) {
+                            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                        });
+                    };
                 }
                 return ViewController;
             })();

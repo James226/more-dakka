@@ -42,6 +42,15 @@ module MoreDakka {
                 return null;
             });
         }
+
+        getOwnApplication() {
+                return this.$http
+                    .get<Application>('/Recruitment/Application')
+                    .then(data => {
+                        data.data.Submission = JSON.parse(data.data.Submission);
+                        return data.data;
+                    });
+        }
     }
     moreDakka.service('applicationService', ['$http', ApplicationService]);
 }

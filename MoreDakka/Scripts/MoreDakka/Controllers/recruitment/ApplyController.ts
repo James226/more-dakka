@@ -18,8 +18,8 @@ module MoreDakka.Controllers.Recruitment {
         offspec: string;
 
         constructor() {
-            this.mainspec = 'tank';
-            this.offspec = 'melee';
+            this.mainspec = 'Tank';
+            this.offspec = 'Melee';
         }
     }
 
@@ -33,13 +33,19 @@ module MoreDakka.Controllers.Recruitment {
         updateTimer: ng.IPromise<any>;
         races: any[];
         classes: any[];
-        constructor(private $scope, private $timeout: ng.ITimeoutService, private $http: ng.IHttpService) {
+        constructor(private $scope, private $timeout: ng.ITimeoutService, private $http: ng.IHttpService, applicationService: ApplicationService) {
             this.races = [];
             this.classes = [];
 
             $scope.character = null;
 
             $scope.application = new Application();
+
+            applicationService.getOwnApplication()
+                .then(app => {
+                console.log(app);
+                $scope.application = app.Submission;
+            });
             $scope.registration = new Registration();
 
             $scope.processing = false;

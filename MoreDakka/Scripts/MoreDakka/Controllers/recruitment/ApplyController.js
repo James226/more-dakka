@@ -12,8 +12,8 @@ var MoreDakka;
 
             var Application = (function () {
                 function Application() {
-                    this.mainspec = 'tank';
-                    this.offspec = 'melee';
+                    this.mainspec = 'Tank';
+                    this.offspec = 'Melee';
                 }
                 return Application;
             })();
@@ -25,7 +25,7 @@ var MoreDakka;
             })();
 
             var ApplyController = (function () {
-                function ApplyController($scope, $timeout, $http) {
+                function ApplyController($scope, $timeout, $http, applicationService) {
                     var _this = this;
                     this.$scope = $scope;
                     this.$timeout = $timeout;
@@ -52,6 +52,11 @@ var MoreDakka;
                     $scope.character = null;
 
                     $scope.application = new Application();
+
+                    applicationService.getOwnApplication().then(function (app) {
+                        console.log(app);
+                        $scope.application = app.Submission;
+                    });
                     $scope.registration = new Registration();
 
                     $scope.processing = false;

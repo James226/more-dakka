@@ -6,6 +6,9 @@ open System.Web.Mvc
 open MoreDakka.Data
 open Newtonsoft.Json
 open System.Web
+open System.Linq
+open System.Data.Entity
+
 
 [<CLIMutable>]
 type ApplicationSubmission = {
@@ -31,9 +34,18 @@ type RecruitmentController() =
 
     [<HttpPost>]
     member x.Apply(application: ApplicationSubmission) : ActionResult =
-        context.Applications.Add(new Application(Submission = JsonConvert.SerializeObject(application))) |> ignore
-        context.SaveChanges() |> ignore
-        upcast x.Json({ result = false })
+        let app = context.Applications.Include("User").FirstOrDefault(fun a -> a.User.UserName = HttpContext.Current.User.Identity.Name)
+
+        if app <> null then
+            app.Submission <- JsonConvert.SerializeObject(application)
+            context.SaveChanges() |> ignore
+        else
+            let app = new Application(Submission = JsonConvert.SerializeObject(application))
+            app.User <- context.Users.First(fun u -> u.UserName = HttpContext.Current.User.Identity.Name)
+            context.Applications.Add(app) |> ignore
+            context.SaveChanges() |> ignore
+
+        upcast x.Json({ result = true })
         
     [<HttpGet>]
     member x.List() =
@@ -42,6 +54,11 @@ type RecruitmentController() =
     [<HttpGet>]
     member x.ViewApp() =
         x.View()
+
+    [<HttpGet>]
+    member x.Application() : ActionResult =
+        let app = context.Applications.Include("User").First(fun a -> a.User.UserName = HttpContext.Current.User.Identity.Name)
+        upcast x.Json(app, JsonRequestBehavior.AllowGet)
 
     [<HttpGet>]
     member x.Applications() : ActionResult =

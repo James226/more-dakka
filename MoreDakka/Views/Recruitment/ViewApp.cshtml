@@ -9,13 +9,16 @@
                 <div data-ng-show="application == undefined && application != null" style="text-align: center;">
                     <h1><span class="glyphicon glyphicon-refresh loading-icon"></span></h1>
                 </div>
-                <div data-ng-show="application == null" style="text-align: center">
+                <div data-ng-show="application == null" style="display: none; text-align: center">
                     <h1>Application Not Found</h1>
                 </div>
                 <div data-ng-show="application != undefined">
-                    <h1>{{application.Submission.characterName}}</h1>
-                    <div class="row" data-ng-repeat="field in application.Submission">
-                        
+                    <h1>View Application</h1>
+                    <div class="row" data-ng-repeat="(field, value) in application.Submission">
+                        <div class="form-group">
+                            <h4>{{ toTitleCase(field) }}</h4>
+                            {{ value }}
+                        </div>
                     </div>
                 </div>
             </div>

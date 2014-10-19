@@ -11,6 +11,12 @@ module MoreDakka.Controllers.Recruitment {
             applicationService
                 .getApplication(appId)
                 .then(app => $scope.application = app);
+
+            $scope.toTitleCase = (text) =>
+                text
+                    .replace(/[A-Z]/g, (txt) => ' ' + txt)
+                    .replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+
         }
     }
 

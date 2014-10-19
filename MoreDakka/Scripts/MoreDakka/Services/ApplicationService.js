@@ -1,4 +1,4 @@
-﻿/// <reference path="../../typings/angularjs/angular.d.ts" />
+/// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../MoreDakka.ts" />
 var MoreDakka;
 (function (MoreDakka) {
@@ -37,6 +37,13 @@ var MoreDakka;
                     }
                 }
                 return null;
+            });
+        };
+
+        ApplicationService.prototype.getOwnApplication = function () {
+            return this.$http.get('/Recruitment/Application').then(function (data) {
+                data.data.Submission = JSON.parse(data.data.Submission);
+                return data.data;
             });
         };
         return ApplicationService;

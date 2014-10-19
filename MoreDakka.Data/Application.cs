@@ -25,6 +25,6 @@ namespace MoreDakka.Data
             set { _submittedAt = value; }
         }
 
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

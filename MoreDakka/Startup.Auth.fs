@@ -6,6 +6,7 @@ open Microsoft.Owin.Security.Cookies
 open Microsoft.AspNet.Identity
 open Microsoft.Owin.Security.OAuth;
 open Microsoft.Owin.Security.Google;
+open System
 
 type Startup() =
 //    let OAuthOptions = OAuthAuthorizationServerOptions()
@@ -19,7 +20,7 @@ type Startup() =
     let configureAuth (app:IAppBuilder) : unit =
         CookieAuthenticationOptions(
             AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-            LoginPath = PathString("/Account/Login")
+            LoginPath = PathString("/\#/account/login")
         )
         |> app.UseCookieAuthentication |> ignore
 

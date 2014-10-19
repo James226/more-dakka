@@ -7,6 +7,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MoreDakka.Data
 {
@@ -30,18 +31,17 @@ namespace MoreDakka.Data
         public ICollection<Topic> Topics { get; set; }
     }
 
-    public class BoardContext : DbContext
+    public class BoardContext : IdentityDbContext<ApplicationUser> 
     {
         public BoardContext()
             : base("MoreDakka")
         {
-            Database.SetInitializer<BoardContext>(new CreateDatabaseIfNotExists<BoardContext>());
+            Database.SetInitializer(new CreateDatabaseIfNotExists<BoardContext>());
         }
 
         public IDbSet<Board> Boards { get; set; }
         public IDbSet<Topic> Topics { get; set; }
         public IDbSet<Post> Posts { get; set; }
-        public IDbSet<User> Users { get; set; }
         public IDbSet<Application> Applications { get; set; }
     }
 }

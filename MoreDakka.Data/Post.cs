@@ -36,6 +36,6 @@ namespace MoreDakka.Data
             set { postedAt = value; }
         }
 
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace MoreDakka.Data
 
         public Post LastPost { get; set; }
 
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
 
         [ForeignKey("TopicId")]
         public ICollection<Post> Posts { get; set; }

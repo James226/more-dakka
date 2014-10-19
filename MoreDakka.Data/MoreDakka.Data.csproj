@@ -36,6 +36,12 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -76,6 +82,10 @@
     <Compile Include="Migrations\201410121105290_AddApplicationsTable.Designer.cs">
       <DependentUpon>201410121105290_AddApplicationsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410192033053_UseIdentityUser.cs" />
+    <Compile Include="Migrations\201410192033053_UseIdentityUser.Designer.cs">
+      <DependentUpon>201410192033053_UseIdentityUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="Post.cs" />
@@ -111,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410121105290_AddApplicationsTable.resx">
       <DependentUpon>201410121105290_AddApplicationsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410192033053_UseIdentityUser.resx">
+      <DependentUpon>201410192033053_UseIdentityUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

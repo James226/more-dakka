@@ -116,6 +116,10 @@
   </ProjectExtensions>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.fs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.fs" />
+    <Content Include="Areas\Admin\views\home\Index.cshtml" />
+    <Content Include="Areas\Admin\views\web.config" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.fs" />
     <Content Include="Content\BossImages\Immerseus.jpg" />
     <Content Include="Content\BossImages\Galakras.jpg" />
     <Content Include="Content\BossImages\GarroshHellscream.jpg" />
@@ -221,6 +225,7 @@
     <Compile Include="Global.asax.fs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <None Include="Areas\Admin\views\home\Create.cshtml" />
     <None Include="packages.config" />
     <Compile Include="Startup.Auth.fs" />
     <Compile Include="Startup.Db.fs" />

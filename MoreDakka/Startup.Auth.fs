@@ -20,7 +20,7 @@ type Startup() =
     let configureAuth (app:IAppBuilder) : unit =
         CookieAuthenticationOptions(
             AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-            LoginPath = PathString("/\#/account/login")
+            LoginPath = PathString("/Account/LoginRedirect")
         )
         |> app.UseCookieAuthentication |> ignore
 

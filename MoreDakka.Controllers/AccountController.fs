@@ -89,6 +89,10 @@ type AccountController() =
         else
             upcast this.Json({ Result = false; ErrorMessage = Some("Error processing request.")})
 
+    [<AllowAnonymous>]
+    member this.LoginRedirect(redirectUrl: string) : ActionResult =
+        upcast this.Redirect("/#/account/login")
+
     // GET : /Account/Manage
     member this.Manage() =
         let userId = this.User.Identity.GetUserId()

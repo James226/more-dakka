@@ -16,5 +16,5 @@ type IdentityContext() =
 
     override this.OnModelCreating(builder:DbModelBuilder) =
         base.OnModelCreating(builder)
-        builder.Entity<IdentityUser>().ToTable("Users") |> ignore
-        builder.Entity<ApplicationUser>().ToTable("Users") |> ignore
+        //builder.Entity<IdentityUser>().ToTable("Users") |> ignore
+        //builder.Entity<ApplicationUser>().ToTable("AspNetUsers") |> ignore

@@ -8,5 +8,8 @@ namespace MoreDakka.Data
     {
         [Required, DefaultValue(0)]
         public int NumberOfPosts { get; set; }
+
+        [MaxLength(254)]
+        public string Signature { get; set; }
     }
 }

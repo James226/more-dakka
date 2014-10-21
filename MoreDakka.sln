@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MoreDakka", "MoreDakka\MoreDakka.fsproj", "{643DCC91-7C7A-4A45-82CC-369A25D941CF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8435B617-B060-4D26-A238-EA8E104F5EFE}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
@@ -18,16 +16,14 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MoreDakka.Models", "MoreDak
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreDakka.Data", "MoreDakka.Data\MoreDakka.Data.csproj", "{901CBC21-0321-4CD1-87CF-A3332363AB5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreDakka", "MoreDakka\MoreDakka.csproj", "{1280206C-A9E3-4DC6-9EAC-8A9EC8E2866F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{643DCC91-7C7A-4A45-82CC-369A25D941CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{643DCC91-7C7A-4A45-82CC-369A25D941CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{643DCC91-7C7A-4A45-82CC-369A25D941CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{643DCC91-7C7A-4A45-82CC-369A25D941CF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B31A6B4A-8915-48ED-B2F8-1C1299522083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B31A6B4A-8915-48ED-B2F8-1C1299522083}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B31A6B4A-8915-48ED-B2F8-1C1299522083}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -44,6 +40,10 @@ Global
 		{901CBC21-0321-4CD1-87CF-A3332363AB5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{901CBC21-0321-4CD1-87CF-A3332363AB5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{901CBC21-0321-4CD1-87CF-A3332363AB5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1280206C-A9E3-4DC6-9EAC-8A9EC8E2866F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1280206C-A9E3-4DC6-9EAC-8A9EC8E2866F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1280206C-A9E3-4DC6-9EAC-8A9EC8E2866F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1280206C-A9E3-4DC6-9EAC-8A9EC8E2866F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

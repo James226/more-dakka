@@ -1,1 +1,1 @@
-<%@ Application Inherits="MoreDakka.Global" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="MoreDakka.MvcApplication" Language="C#" %>

@@ -12,6 +12,7 @@ open Microsoft.Owin.Security
 open MoreDakka.Models
 open Newtonsoft.Json
 open System.Net
+open MoreDakka.Data
 
 type private AppUserManager = UserManager<ApplicationUser>
 type private AppUserStore   = UserStore<ApplicationUser>
@@ -36,7 +37,7 @@ type LoginResult = {
 [<AppAuthorize>]
 type AccountController() =
     inherit Controller()
-    let userManager = new AppUserManager(new AppUserStore(new IdentityContext()))
+    let userManager = new AppUserManager(new AppUserStore(new BoardContext()))
 
     new (manager:AppUserManager) as this = new AccountController() then
         this.UserManager <- manager

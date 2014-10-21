@@ -40,3 +40,4 @@ var MoreDakka;
 
     MoreDakka.moreDakka.service('textMarkupService', TextMarkupService);
 })(MoreDakka || (MoreDakka = {}));
+//# sourceMappingURL=TextMarkupService.js.map

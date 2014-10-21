@@ -51,3 +51,4 @@ var MoreDakka;
     MoreDakka.ApplicationService = ApplicationService;
     MoreDakka.moreDakka.service('applicationService', ['$http', ApplicationService]);
 })(MoreDakka || (MoreDakka = {}));
+//# sourceMappingURL=ApplicationService.js.map

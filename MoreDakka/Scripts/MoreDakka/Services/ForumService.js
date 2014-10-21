@@ -118,3 +118,4 @@ var MoreDakka;
     MoreDakka.ForumService = ForumService;
     MoreDakka.moreDakka.service('forumService', ['$http', 'textMarkupService', ForumService]);
 })(MoreDakka || (MoreDakka = {}));
+//# sourceMappingURL=ForumService.js.map

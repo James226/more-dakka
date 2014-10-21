@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../typings/angularjs/angular.d.ts"/>
+/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 /// <reference path="../../MoreDakka.ts" />
 var MoreDakka;
 (function (MoreDakka) {
@@ -24,3 +24,4 @@ var MoreDakka;
     })(MoreDakka.Controllers || (MoreDakka.Controllers = {}));
     var Controllers = MoreDakka.Controllers;
 })(MoreDakka || (MoreDakka = {}));
+//# sourceMappingURL=ListController.js.map

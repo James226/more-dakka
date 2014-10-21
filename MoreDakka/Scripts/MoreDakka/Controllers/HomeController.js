@@ -18,3 +18,4 @@ var MoreDakka;
 
     MoreDakka.moreDakka.controller('homeController', HomeController);
 })(MoreDakka || (MoreDakka = {}));
+//# sourceMappingURL=HomeController.js.map

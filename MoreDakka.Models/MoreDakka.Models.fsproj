@@ -54,18 +54,17 @@
     <Compile Include="Forum\BoardViewModel.fs" />
     <Compile Include="Forum\TopicViewModel.fs" />
     <Compile Include="RoleViewModel.fs" />
-    <Compile Include="AppModel.fs" />
     <None Include="packages.config" />
     <None Include="App.config" />
     <Compile Include="GuildProgression.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FSharp.Data">

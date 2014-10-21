@@ -57,3 +57,4 @@ describe("Text Markup Service", function () {
         expect(textMarkup.markUp(("This contains {Quote|source=\"some cool author\"}a quote{/Quote}\n\n{Quote|source=\"some cool author\"}a quote{/Quote}"))).toEqual("This contains <blockquote><p>a quote</p><footer>some cool author</footer></blockquote><br /><br /><blockquote><p>a quote</p><footer>some cool author</footer></blockquote>");
     });
 });
+//# sourceMappingURL=TextMarkupTests.js.map

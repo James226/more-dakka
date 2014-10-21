@@ -1,4 +1,4 @@
-﻿/// <reference path="../../typings/angularjs/angular.d.ts" />
+/// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../MoreDakka.ts" />
 var MoreDakka;
 (function (MoreDakka) {
@@ -34,3 +34,4 @@ var MoreDakka;
     MoreDakka.AccountService = AccountService;
     MoreDakka.moreDakka.service('accountService', ['$http', AccountService]);
 })(MoreDakka || (MoreDakka = {}));
+//# sourceMappingURL=AccountService.js.map

@@ -1,4 +1,4 @@
-﻿/// <reference path="../../typings/jasmine/jasmine.d.ts" />
+/// <reference path="../../typings/jasmine/jasmine.d.ts" />
 /// <reference path="../../typings/angularjs/angular-mocks.d.ts" />
 /// <reference path="../Controllers/Forum/ForumController.ts" />
 /// <reference path="../Services/ForumService.ts" />
@@ -42,3 +42,4 @@ describe("Forum Controller", function () {
         expect(forumService.getBoards).toHaveBeenCalled();
     });
 });
+//# sourceMappingURL=Test.js.map

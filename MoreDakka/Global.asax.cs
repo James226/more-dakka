@@ -30,13 +30,13 @@ namespace MoreDakka
 
         protected void Application_EndRequest()
         {
-            var context = new HttpContextWrapper(Context);
+            //var context = new HttpContextWrapper(Context);
 
-            if (FormsAuthentication.IsEnabled && context.Response.StatusCode == 302)
-            {
-                context.Response.Clear();
-                context.Response.StatusCode = 401;
-            }
+            //if (FormsAuthentication.IsEnabled && context.Response.StatusCode == 302)
+            //{
+            //    context.Response.Clear();
+            //    context.Response.StatusCode = 401;
+            //}
         }
 
     }

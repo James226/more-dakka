@@ -50,12 +50,11 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <None Include="packages.config" />
-    <Compile Include="AccountController.fs" />
+    <Compile Include="RecruitmentController.fs" />
     <Compile Include="Api\PostController.fs" />
     <Compile Include="Api\TopicController.fs" />
     <Compile Include="Api\BoardController.fs" />
     <Compile Include="Api\GuildProgress.fs" />
-    <Compile Include="RecruitmentController.fs" />
     <Compile Include="HomeController.fs" />
     <Compile Include="TestsController.fs" />
     <None Include="App.config" />
@@ -121,6 +120,10 @@
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers">
+      <HintPath>..\packages\Owin.Security.Providers.1.9.0\lib\net45\Owin.Security.Providers.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="policy.2.3.FSharp.Core">

@@ -9,6 +9,16 @@ open System.Web
 open System.Linq
 open System.Data.Entity
 
+[<AttributeUsage(AttributeTargets.All, Inherited = true, AllowMultiple = true)>]
+type AppAuthorizeAttribute() =
+    inherit System.Web.Mvc.AuthorizeAttribute()
+    override x.HandleUnauthorizedRequest(filterContext: System.Web.Mvc.AuthorizationContext) =
+        let response = filterContext.HttpContext.Response
+
+        if (filterContext.HttpContext.Request.IsAuthenticated) 
+            then response.StatusCode <- int HttpStatusCode.Forbidden
+            else response.StatusCode <- int HttpStatusCode.Unauthorized
+        response.End()
 
 [<CLIMutable>]
 type ApplicationSubmission = {

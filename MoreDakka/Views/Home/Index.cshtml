@@ -1,0 +1,86 @@
+@using Microsoft.AspNet.Identity
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html data-ng-app="moreDakka">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>More Dakka</title>
+    <link rel="icon" type="image/png" href="@Url.Content("Content/Favicon.png")" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta name="description" content="More Dakka Guild Website" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div style="float: right">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/Manage">Hello @User.Identity.GetUserName()</a>
+                            </li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+                        </ul>
+                    }
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/Account/Login">Login</a></li>
+                    </ul>
+                }
+            </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("More Dakka", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/">Home</a></li>
+                    <li><a href="#/forums">Forums</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div data-ng-view>
+    </div>
+
+    @Scripts.Render("~/Scripts/Libraries/strapdown.js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/Libraries/angular.js")
+    @Scripts.Render("~/Scripts/Libraries/angular-route.js")
+    @Scripts.Render("~/Scripts/Libraries/angular-animate.js")
+    @Scripts.Render("~/Scripts/Libraries/angular-sanitize.js")
+    @Scripts.Render("~/Scripts/MoreDakka/MoreDakka.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Config.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Services/AccountService.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Services/ApplicationService.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Services/ForumService.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Services/GuildProgressService.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Services/TextMarkupService.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Controllers/HomeController.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Account/LoginController.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Account/RegisterController.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Forum/ForumController.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Forum/TopicController.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Forum/PostController.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Recruitment/ApplyController.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Recruitment/ListController.js")
+    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Recruitment/ViewController.js")
+</body>
+</html>

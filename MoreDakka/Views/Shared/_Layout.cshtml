@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>More Dakka</title>
-    <link rel="icon" type="image/png" href="@Url.Content("Content/Favicon.png")" />
+    <link rel="icon" type="image/png" href="@Url.Content("~/Views/Home/Content/Favicon.png")" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <meta name="description" content="More Dakka Guild Website" />
@@ -16,13 +16,13 @@
             <div style="float: right">
                 @if (Request.IsAuthenticated)
                 {
-                    using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
                         @Html.AntiForgeryToken()
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a data-ng-href="#/account/manage">Hello @User.Identity.GetUserName()</a>
+                                <a href="/Manage">Hello @User.Identity.GetUserName()</a>
                             </li>
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
                         </ul>
@@ -31,8 +31,7 @@
                 else
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/#/account/register">Register</a></li>
-                        <li><a href="/#/account/login">Login</a></li>
+                        <li><a href="/Account/Login">Login</a></li>
                     </ul>
                 }
             </div>
@@ -46,39 +45,23 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#/">Home</a></li>
-					<li><a href="#/forums">Forums</a></li>
+                    <li><a href="/#/">Home</a></li>
+                    <li><a href="/#/forums">Forums</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div data-ng-view>
-        @RenderBody()
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @RenderBody()
+            </div>
+        </div>
     </div>
-    
+
     @Scripts.Render("~/Scripts/Libraries/strapdown.js")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Scripts/Libraries/angular.js")
-    @Scripts.Render("~/Scripts/Libraries/angular-route.js")
-    @Scripts.Render("~/Scripts/Libraries/angular-animate.js")
-    @Scripts.Render("~/Scripts/Libraries/angular-sanitize.js")
-    @Scripts.Render("~/Scripts/MoreDakka/MoreDakka.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Config.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Services/AccountService.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Services/ApplicationService.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Services/ForumService.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Services/GuildProgressService.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Services/TextMarkupService.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Controllers/HomeController.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Account/LoginController.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Account/RegisterController.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Forum/ForumController.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Forum/TopicController.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Forum/PostController.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Recruitment/ApplyController.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Recruitment/ListController.js")
-    @Scripts.Render("~/Scripts/MoreDakka/Controllers/Recruitment/ViewController.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -11,6 +11,7 @@ using MoreDakka.Models;
 namespace MoreDakka.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class ManageController : Controller
     {
         public ManageController()

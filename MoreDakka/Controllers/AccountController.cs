@@ -39,6 +39,7 @@ namespace MoreDakka.Controllers
 
         //
         // GET: /Account/Login
+        [RequireHttps]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -62,6 +63,7 @@ namespace MoreDakka.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [RequireHttps]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -279,6 +281,7 @@ namespace MoreDakka.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [RequireHttps]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
@@ -323,6 +326,7 @@ namespace MoreDakka.Controllers
         //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
+        [RequireHttps]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
@@ -355,6 +359,7 @@ namespace MoreDakka.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [RequireHttps]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
@@ -401,6 +406,7 @@ namespace MoreDakka.Controllers
         //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
+        [RequireHttps]
         public ActionResult ExternalLoginFailure()
         {
             return View();

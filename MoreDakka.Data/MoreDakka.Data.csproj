@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201410192033053_UseIdentityUser.Designer.cs">
       <DependentUpon>201410192033053_UseIdentityUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410251252171_AddApplicationStatus.cs" />
+    <Compile Include="Migrations\201410251252171_AddApplicationStatus.Designer.cs">
+      <DependentUpon>201410251252171_AddApplicationStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="Post.cs" />
@@ -130,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410192033053_UseIdentityUser.resx">
       <DependentUpon>201410192033053_UseIdentityUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410251252171_AddApplicationStatus.resx">
+      <DependentUpon>201410251252171_AddApplicationStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

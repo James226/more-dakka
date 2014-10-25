@@ -12,6 +12,17 @@ module MoreDakka.Controllers.Recruitment {
             $scope.openApplication = (app) => {
                 $location.path('/recruitment/view/' + app.Id);
             }
+
+            $scope.getStatusClass = app => {
+                switch (app.Status) {
+                    case ApplicationStatus.Accepted:
+                        return 'glyphicon-ok';
+                    case ApplicationStatus.Declined:
+                        return 'glyphicon-remove';
+                    default:
+                        return 'glyphicon-question-sign';
+                }
+            };
         }
     }
 

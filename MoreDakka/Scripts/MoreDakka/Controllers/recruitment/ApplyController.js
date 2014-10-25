@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/angularjs/angular.d.ts"/>
+﻿/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 /// <reference path="../../MoreDakka.ts" />
 var MoreDakka;
 (function (MoreDakka) {
@@ -25,11 +25,12 @@ var MoreDakka;
             })();
 
             var ApplyController = (function () {
-                function ApplyController($scope, $timeout, $http, applicationService) {
+                function ApplyController($scope, $timeout, $http, $location, applicationService) {
                     var _this = this;
                     this.$scope = $scope;
                     this.$timeout = $timeout;
                     this.$http = $http;
+                    this.$location = $location;
                     this.updateCharacter = function () {
                         var application = _this.$scope.application;
                         if (application.characterName == undefined || application.characterName == '' || application.realmName == undefined || application.realmName == '')
@@ -104,7 +105,9 @@ var MoreDakka;
                     $scope.submitApplication = function () {
                         $scope.processing = true;
                         $http.post('Recruitment/Apply', $scope.application).success(function (data) {
-                            return $scope.processing = false;
+                            $scope.processing = false;
+                            if (data.result)
+                                $location.path('/');
                         });
                     };
                 }

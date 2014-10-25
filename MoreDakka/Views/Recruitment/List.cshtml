@@ -19,8 +19,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-ng-repeat="app in applications">
-                                    <td style="text-align: center;"><span class="glyphicon glyphicon-question-sign"></span></td>
+                                <tr data-ng-repeat="app in applications | filter: {Status: 1}">
+                                    <td style="text-align: center;"><span class="glyphicon" data-ng-class="getStatusClass(app)"></span></td>
+                                    <td data-ng-click="openApplication(app)">{{app.Submission.characterName}}</td>
+                                    <td>{{app.Submission.mainspec}}</td>
+                                    <td>{{app.Submission.offspec}}</td>
+                                </tr>
+                                <tr data-ng-repeat="app in applications | filter: {Status: 2}">
+                                    <td style="text-align: center;"><span class="glyphicon" data-ng-class="getStatusClass(app)"></span></td>
                                     <td data-ng-click="openApplication(app)">{{app.Submission.characterName}}</td>
                                     <td>{{app.Submission.mainspec}}</td>
                                     <td>{{app.Submission.offspec}}</td>
@@ -40,11 +46,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-ng-repeat="member in members">
-                                    <td style="text-align: center;"><span class="glyphicon glyphicon-ok" style="color: darkgreen;"></span></td>
-                                    <td>{{member.characterName}}</td>
-                                    <td></td>
-                                    <td></td>
+                                <tr data-ng-repeat="app in applications | filter: {Status: 0}">
+                                    <td style="text-align: center;"><span class="glyphicon" data-ng-class="getStatusClass(app)"></span></td>
+                                    <td data-ng-click="openApplication(app)">{{app.Submission.characterName}}</td>
+                                    <td>{{app.Submission.mainspec}}</td>
+                                    <td>{{app.Submission.offspec}}</td>
                                 </tr>
                             </tbody>
                         </table>

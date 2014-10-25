@@ -20,6 +20,22 @@
                             {{ value }}
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Status:</label><br />
+                            <div class="btn-group">
+                                <label class="btn btn-default" ng-class="{'active': application.Status == '0', 'btn-success': application.Status == '0'}">
+                                    <input type="radio" data-ng-model="application.Status" data-ng-change="updateStatus()" name="status" data-ng-value="0">Accepted
+                                </label>
+                                <label class="btn btn-default" ng-class="{'active': application.Status == '1', 'btn-warning': application.Status == '1'}">
+                                    <input type="radio" data-ng-model="application.Status" data-ng-change="updateStatus()" name="status" data-ng-value="1">Undecided
+                                </label>
+                                <label class="btn btn-default" ng-class="{'active': application.Status == '2', 'btn-danger': application.Status == '2'}">
+                                    <input type="radio" data-ng-model="application.Status" data-ng-change="updateStatus()" name="status" data-ng-value="2">Declined
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

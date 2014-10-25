@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/angularjs/angular.d.ts"/>
+﻿/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 /// <reference path="../../MoreDakka.ts" />
 var MoreDakka;
 (function (MoreDakka) {
@@ -19,6 +19,10 @@ var MoreDakka;
                         }).replace(/\w\S*/g, function (txt) {
                             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
                         });
+                    };
+
+                    $scope.updateStatus = function () {
+                        return applicationService.updateStatus($scope.application, $scope.application.Status);
                     };
                 }
                 return ViewController;

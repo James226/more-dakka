@@ -1,7 +1,14 @@
-/// <reference path="../../typings/angularjs/angular.d.ts" />
+﻿/// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../MoreDakka.ts" />
 var MoreDakka;
 (function (MoreDakka) {
+    (function (ApplicationStatus) {
+        ApplicationStatus[ApplicationStatus["Accepted"] = 0] = "Accepted";
+        ApplicationStatus[ApplicationStatus["Undecided"] = 1] = "Undecided";
+        ApplicationStatus[ApplicationStatus["Declined"] = 2] = "Declined";
+    })(MoreDakka.ApplicationStatus || (MoreDakka.ApplicationStatus = {}));
+    var ApplicationStatus = MoreDakka.ApplicationStatus;
+
     var Application = (function () {
         function Application() {
         }
@@ -38,6 +45,10 @@ var MoreDakka;
                 }
                 return null;
             });
+        };
+
+        ApplicationService.prototype.updateStatus = function (application, status) {
+            this.$http.put("/Recruitment/SetStatus", { 'id': application.Id, 'status': status });
         };
 
         ApplicationService.prototype.getOwnApplication = function () {

@@ -2,6 +2,7 @@
 
 open System.Web.Mvc
 open System.Web.Http
+open MoreDakka.Data
 
 type GuildProgressController() =
     inherit ApiController()

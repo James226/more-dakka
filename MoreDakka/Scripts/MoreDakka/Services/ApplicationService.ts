@@ -2,10 +2,17 @@
 /// <reference path="../MoreDakka.ts" />
 
 module MoreDakka {
+    export enum ApplicationStatus {
+        Accepted,
+        Undecided,
+        Declined
+    }
+
     export class Application {
         Id: string;
         SubmittedAt: Date;
         Submission: string;
+        Status: ApplicationStatus;
     }
 
     export class ApplicationService {
@@ -41,6 +48,13 @@ module MoreDakka {
                     }
                 return null;
             });
+        }
+
+        updateStatus(application: Application, status: number) {
+            this.$http.put(
+                "/Recruitment/SetStatus",
+                { 'id': application.Id, 'status': status }
+            );
         }
 
         getOwnApplication() {

@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/angularjs/angular.d.ts"/>
+﻿/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 /// <reference path="../../MoreDakka.ts" />
 var MoreDakka;
 (function (MoreDakka) {
@@ -13,6 +13,17 @@ var MoreDakka;
 
                     $scope.openApplication = function (app) {
                         $location.path('/recruitment/view/' + app.Id);
+                    };
+
+                    $scope.getStatusClass = function (app) {
+                        switch (app.Status) {
+                            case 0 /* Accepted */:
+                                return 'glyphicon-ok';
+                            case 2 /* Declined */:
+                                return 'glyphicon-remove';
+                            default:
+                                return 'glyphicon-question-sign';
+                        }
                     };
                 }
                 return ListController;

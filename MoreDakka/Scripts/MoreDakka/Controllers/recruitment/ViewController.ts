@@ -4,7 +4,6 @@
 module MoreDakka.Controllers.Recruitment {
 
     class ViewController {
-
         constructor(private $scope, $routeParams, applicationService: ApplicationService) {
             var appId = $routeParams.app_id;
 
@@ -16,6 +15,9 @@ module MoreDakka.Controllers.Recruitment {
                 text
                     .replace(/[A-Z]/g, (txt) => ' ' + txt)
                     .replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+
+            $scope.updateStatus = () =>
+                applicationService.updateStatus($scope.application, $scope.application.Status);
 
         }
     }

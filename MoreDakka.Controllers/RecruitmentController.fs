@@ -73,3 +73,11 @@ type RecruitmentController() =
     [<HttpGet>]
     member x.Applications() : ActionResult =
         upcast x.Json(context.Applications, JsonRequestBehavior.AllowGet)
+
+    [<HttpPut>]
+    member x.SetStatus(id: System.Guid, status: ApplicationStatus) =
+        let app = context.Applications.Find(id)
+        app.Status <- status
+        context.SaveChanges() |> ignore
+
+        x.Json({ result = true })

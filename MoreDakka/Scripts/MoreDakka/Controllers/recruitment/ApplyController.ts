@@ -33,7 +33,7 @@ module MoreDakka.Controllers.Recruitment {
         updateTimer: ng.IPromise<any>;
         races: any[];
         classes: any[];
-        constructor(private $scope, private $timeout: ng.ITimeoutService, private $http: ng.IHttpService, applicationService: ApplicationService) {
+        constructor(private $scope, private $timeout: ng.ITimeoutService, private $http: ng.IHttpService, private $location: ng.ILocationService, applicationService: ApplicationService) {
             this.races = [];
             this.classes = [];
 
@@ -93,8 +93,11 @@ module MoreDakka.Controllers.Recruitment {
             $scope.submitApplication = () => {
                 $scope.processing = true;
                 $http
-                    .post('Recruitment/Apply', $scope.application)
-                    .success(data => $scope.processing = false);
+                    .post<any>('Recruitment/Apply', $scope.application)
+                    .success(data => {
+                        $scope.processing = false;
+                        if (data.result) $location.path('/');
+                });
             }
         }
 

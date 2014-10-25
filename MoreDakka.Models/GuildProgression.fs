@@ -37,7 +37,10 @@ let GetProgression() : RaidProgression =
             guildInfo?members.AsArray()
 
         async {
-            let! request = Http.AsyncRequestString "http://eu.battle.net/api/wow/guild/Doomhammer/More%20Dakka?fields=members"
+            //let! request = Http.AsyncRequestString "http://eu.battle.net/api/wow/guild/Doomhammer/More%20Dakka?fields=members"
+            let request = "{\"members\":[
+                {\"character\":{\"name\": \"Sator\", \"level\": \"90\"}, \"rank\": \"1\"}
+                ]}"
             return JsonValue.Parse request
                 |> GetMembers
                 |> Seq.filter (fun m -> m?character?level.AsInteger() = 90)

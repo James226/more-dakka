@@ -1,17 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using MoreDakka.BattleNetAuth;
+using MoreDakka.BattleNetAuth.Provider;
 using MoreDakka.Data;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Ninject.Activation;
 using Owin;
 
 namespace MoreDakka
 {
     public class Startup
     {
+        const string XmlSchemaString = "http://www.w3.org/2001/XMLSchema#string";
+
         public void Configuration(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
@@ -48,7 +58,24 @@ namespace MoreDakka
             app.UseBattleNetAuthentication(new BattleNetAuthenticationOptions
             {
                 ClientId = ConfigurationManager.AppSettings["BattleNetClientId"],
-                ClientSecret = ConfigurationManager.AppSettings["BattleNetSecret"]
+                ClientSecret = ConfigurationManager.AppSettings["BattleNetSecret"],
+                Provider = new BattleNetAuthenticationProvider()
+                {
+                    OnAuthenticated = async (context) =>
+                    {
+                        context.Identity.AddClaim(new System.Security.Claims.Claim("urn:BattleNet:access_token", context.AccessToken, XmlSchemaString, "BattleNet"));
+
+                        var httpClient = new HttpClient();
+
+                        // Get the BattleNet user
+                        HttpRequestMessage userRequest = new HttpRequestMessage(HttpMethod.Get, "https://eu.api.battle.net/wow/user/characters?locale=en_GB&access_token=" + Uri.EscapeDataString(context.AccessToken));
+                        userRequest.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                        HttpResponseMessage userResponse = await httpClient.SendAsync(userRequest);
+                        userResponse.EnsureSuccessStatusCode();
+                        var text = await userResponse.Content.ReadAsStringAsync();
+                        JObject user = JObject.Parse(text);
+                    }
+                }
             });
 
         }

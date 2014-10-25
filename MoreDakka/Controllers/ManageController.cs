@@ -1,9 +1,11 @@
 ﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using MoreDakka.Data;
 using MoreDakka.Models;
@@ -48,6 +50,9 @@ namespace MoreDakka.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
+
+            var identity = (ClaimsIdentity)User.Identity;
+            var claims = identity.Claims;
 
             var model = new IndexViewModel
             {

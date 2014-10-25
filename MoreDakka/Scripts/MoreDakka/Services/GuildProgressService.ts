@@ -17,7 +17,7 @@ module MoreDakka {
         getProgress() {
             if (this.guildProgressPromise == null) {
                 this.guildProgressPromise = this.$http
-                    .get<BossProgress[]>('api/GuildProgress')
+                    .get<BossProgress[]>('api/GuildProgress');
             }
             return this.guildProgressPromise;
         }

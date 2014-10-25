@@ -187,8 +187,8 @@
                             <li data-ng-repeat="bossProgress in raidProgress">
                                 <div class="bossProgress">
                                     <div style="height: 140px; text-align: center; background-image: url('content/bossimages/{{stripSpaces(bossProgress.Name)}}.jpg'); background-size: 100%" class="icon"></div>
-                                    <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.NormalKills > 7}">Normal</div>
-                                    <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.HeroicKills > 7}">Heroic</div>
+                                    <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.NormalKills > 0}">Normal</div>
+                                    <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.HeroicKills > 0}">Heroic</div>
                                 </div>
                             </li>
                         </ul>

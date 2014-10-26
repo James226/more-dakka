@@ -1,0 +1,65 @@
+@{
+    Layout = null;
+    var canViewApplications = User.IsInRole("Admin");
+}
+<div class="container" style="padding-top: 50px;">
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body" style="padding: 0 50px 20px 50px">
+                <div class="row">
+                    @if (canViewApplications)
+                    {
+                        <div class="col-lg-6">
+                            <h1>Applications</h1>
+                            <table class="table table-bordered table-striped applications">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 60px;">Status</th>
+                                        <th>Name</th>
+                                        <th>Main Spec</th>
+                                        <th>Off Spec</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="app in applications | filter: {Status: 1}">
+                                        <td style="text-align: center;"><span class="glyphicon" data-ng-class="getStatusClass(app)"></span></td>
+                                        <td data-ng-click="openApplication(app)">{{app.Submission.characterName}}</td>
+                                        <td>{{app.Submission.mainspec}}</td>
+                                        <td>{{app.Submission.offspec}}</td>
+                                    </tr>
+                                    <tr data-ng-repeat="app in applications | filter: {Status: 2}">
+                                        <td style="text-align: center;"><span class="glyphicon" data-ng-class="getStatusClass(app)"></span></td>
+                                        <td data-ng-click="openApplication(app)">{{app.Submission.characterName}}</td>
+                                        <td>{{app.Submission.mainspec}}</td>
+                                        <td>{{app.Submission.offspec}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    <div class="@(canViewApplications ? "col-lg-6" : "col-lg-12")">
+                        <h1>Roster</h1>
+                        <table class="table table-bordered table-striped applications">
+                            <thead>
+                                <tr>
+                                    <th style="width: 60px;">Status</th>
+                                    <th>Name</th>
+                                    <th>Main Spec</th>
+                                    <th>Off Spec</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="app in applications | filter: {Status: 0}">
+                                    <td style="text-align: center;"><span class="glyphicon" data-ng-class="getStatusClass(app)"></span></td>
+                                    <td data-ng-click="openApplication(app)">{{app.Submission.characterName}}</td>
+                                    <td>{{app.Submission.mainspec}}</td>
+                                    <td>{{app.Submission.offspec}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

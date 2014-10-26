@@ -284,7 +284,7 @@
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Recruitment\Apply.cshtml" />
-    <Content Include="Views\Recruitment\List.cshtml" />
+    <Content Include="Views\Recruitment\Index.cshtml" />
     <Content Include="Views\Recruitment\ViewApp.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

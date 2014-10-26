@@ -28,8 +28,8 @@ var MoreDakka;
         }).when('/recruitment/apply', {
             templateUrl: 'Recruitment/Apply',
             controller: 'applyController'
-        }).when('/recruitment/list', {
-            templateUrl: 'Recruitment/List',
+        }).when('/recruitment', {
+            templateUrl: 'Recruitment/Index',
             controller: 'recruitment.listController'
         }).when('/recruitment/view/:app_id', {
             templateUrl: 'Recruitment/ViewApp',

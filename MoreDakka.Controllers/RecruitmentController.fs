@@ -58,7 +58,7 @@ type RecruitmentController() =
         upcast x.Json({ result = true })
         
     [<HttpGet>]
-    member x.List() =
+    member x.Index() =
         x.View()
 
     [<HttpGet>]
@@ -72,7 +72,9 @@ type RecruitmentController() =
 
     [<HttpGet>]
     member x.Applications() : ActionResult =
-        upcast x.Json(context.Applications, JsonRequestBehavior.AllowGet)
+        if HttpContext.Current.User.IsInRole("Admin")
+            then upcast x.Json(context.Applications, JsonRequestBehavior.AllowGet)
+            else upcast x.Json(context.Applications.Where(fun a -> a.Status = ApplicationStatus.Accepted), JsonRequestBehavior.AllowGet)
 
     [<HttpPut>]
     member x.SetStatus(id: System.Guid, status: ApplicationStatus) =

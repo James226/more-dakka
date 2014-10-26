@@ -227,6 +227,11 @@
     <Content Include="Scripts\Libraries\bootstrap.min.js" />
     <Content Include="Scripts\Libraries\jasmine-html.js" />
     <Content Include="Scripts\Libraries\jasmine.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <None Include="Scripts\Libraries\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\Libraries\jquery-2.0.3.js" />
     <Content Include="Scripts\Libraries\jquery-2.0.3.min.js" />
@@ -243,8 +248,9 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
-    <Compile Include="App_Start\Startup.Db.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="BattleNetAuth\BattleNetAuthenticationExtensions.cs" />
     <Compile Include="BattleNetAuth\BattleNetAuthenticationHandler.cs" />
     <Compile Include="BattleNetAuth\BattleNetAuthenticationMiddleware.cs" />
@@ -306,6 +312,7 @@
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -315,6 +322,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\MoreDakka\Config.ts" />

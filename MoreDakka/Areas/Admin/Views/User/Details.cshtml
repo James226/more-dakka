@@ -1,0 +1,23 @@
+﻿@model MoreDakka.Data.ApplicationUser
+
+@{
+    ViewBag.Title = string.Format("User Details: '{0}'", Model.UserName);
+}
+
+<h2>User Details: @Model.UserName</h2>
+
+<p>
+    <h4>Username</h4>
+    @Model.UserName
+
+    <h4>Email Address</h4>
+    @Model.Email
+
+    <h4>Email Confirmed</h4>
+    @Model.EmailConfirmed
+</p>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", routeValues: new { Id = Model.Id }, htmlAttributes: new { @class = "btn btn-default" })
+    @Html.ActionLink("Delete", "Delete", routeValues: new { Id = Model.Id }, htmlAttributes: new { @class = "btn btn-danger" })
+</p>

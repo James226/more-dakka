@@ -1,0 +1,18 @@
+﻿@model MoreDakka.Data.ApplicationUser
+
+@{
+    ViewBag.Title = string.Format("Edit User: {0}", Model.UserName);
+}
+
+<h2>Edit User: @Model.UserName</h2>
+
+@using (var form = Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    @Html.HiddenFor(m => m.Id)
+    @Html.EditorFor(m => m.UserName)
+    @Html.EditorFor(m => m.Email)
+    
+    <button type="submit" class="btn btn-success">Save</button>
+}

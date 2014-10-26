@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
+using MoreDakka.Data.Migrations;
 
 namespace MoreDakka.Data
 {
@@ -36,7 +37,7 @@ namespace MoreDakka.Data
         public BoardContext()
             : base("MoreDakka")
         {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<BoardContext>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BoardContext, Configuration>());
         }
 
         public IDbSet<Board> Boards { get; set; }

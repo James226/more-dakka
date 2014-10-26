@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Reflection;
 using System.Web;
@@ -9,6 +10,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using MoreDakka.Controllers;
+using MoreDakka.Data;
 
 namespace MoreDakka
 {
@@ -30,13 +32,13 @@ namespace MoreDakka
 
         protected void Application_EndRequest()
         {
-            //var context = new HttpContextWrapper(Context);
+            var context = new HttpContextWrapper(Context);
 
-            //if (FormsAuthentication.IsEnabled && context.Response.StatusCode == 302)
-            //{
-            //    context.Response.Clear();
-            //    context.Response.StatusCode = 401;
-            //}
+            if (FormsAuthentication.IsEnabled && context.Response.StatusCode == 302)
+            {
+                context.Response.Clear();
+                context.Response.StatusCode = 401;
+            }
         }
 
     }

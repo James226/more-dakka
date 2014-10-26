@@ -1,0 +1,23 @@
+﻿@model ICollection<MoreDakka.Data.ApplicationUser>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+    </tr>
+    @foreach (var user in Model.OrderBy(u => u.UserName))
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(user.UserName, "Details", routeValues: new {Id = user.Id})
+        </td>
+            <td>@user.Email</td>
+        </tr>
+    }
+</table>

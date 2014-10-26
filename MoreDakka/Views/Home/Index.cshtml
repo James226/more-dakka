@@ -29,6 +29,12 @@
                             <li>
                                 <a href="/Manage">Hello @User.Identity.GetUserName()</a>
                             </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li>
+                                    @Html.ActionLink("Admin", "Index", "User", new { area = "Admin" }, null)
+                                </li>
+                            }
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
                         </ul>
                     }

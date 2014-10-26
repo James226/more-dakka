@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using MoreDakka.Data;
@@ -14,16 +10,16 @@ namespace MoreDakka.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
-        BoardContext context = new BoardContext();
+        private readonly BoardContext _context = new BoardContext();
 
         public ActionResult Index()
         {
-            return View(context.Users.ToArray());
+            return View(_context.Users.ToArray());
         }
 
         public ActionResult Details(string id)
         {
-            var user = context.Users.Find(id);
+            var user = _context.Users.Find(id);
             if (user == null)
                 return HttpNotFound();
             return View(user);
@@ -31,7 +27,7 @@ namespace MoreDakka.Areas.Admin.Controllers
 
         public ActionResult Edit(string id)
         {
-            var user = context.Users.Find(id);
+            var user = _context.Users.Find(id);
             if (user == null)
                 return HttpNotFound();
             return View(user);
@@ -42,10 +38,10 @@ namespace MoreDakka.Areas.Admin.Controllers
         {
             try
             {
-                var user = context.Users.Find(id);
+                var user = _context.Users.Find(id);
                 if (TryUpdateModel(user, collection))
                 {
-                    context.SaveChanges();
+                    _context.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 return View();

@@ -1,0 +1,78 @@
+﻿@model MoreDakka.Areas.Admin.Models.ManageRolesViewModel
+
+@{
+    ViewBag.Title = "Manage Roles for " + Model.User.UserName;
+}
+
+<h2>Manage Roles for @Model.User.UserName</h2>
+
+<div class="well well-lg">
+    <div class="row">
+        <div class="col-lg-6">
+            @using (Html.BeginForm("UnassignRole", "Role", routeValues: new { Id = Model.User.Id }))
+            {
+                @Html.HiddenFor(m => m.User.Id)
+                <div class="form-group">
+                    <label>Assigned Roles:</label>
+                    <ul>
+                        @foreach (var role in Model.AssignedRoles)
+                        {
+                            <li>@role.Name</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm("UnassignRole", "Role", routeValues: new { Id = Model.User.Id }))
+            {
+                @Html.HiddenFor(m => m.User.Id)
+                <div class="form-group">
+                    <label>Unassign Role</label>
+                    <select class="form-control" name="role">
+                        @foreach (var role in Model.AssignedRoles.OrderBy(r => r.Name))
+                        {
+                            <option>@role.Name</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">Unassign Role</button>
+            }
+        </div>
+    </div>
+</div>
+<div class="well well-lg">
+    <div class="row">
+        <div class="col-lg-6">
+            @using (Html.BeginForm("UnassignRole", "Role", routeValues: new { Id = Model.User.Id }))
+            {
+                @Html.HiddenFor(m => m.User.Id)
+                <div class="form-group">
+                    <label>Available Roles:</label>
+                    <ul>
+                        @foreach (var role in Model.AvailableRoles)
+                        {
+                            <li>@role.Name</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm("AssignRole", "Role", routeValues: new { Id = Model.User.Id }))
+            {
+                @Html.HiddenFor(m => m.User.Id)
+                <div class="form-group">
+                    <label>Assign Role</label>
+                    <select class="form-control" name="role">
+                        @foreach (var role in Model.AvailableRoles.OrderBy(r => r.Name))
+                        {
+                            <option>@role.Name</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">Assign Role</button>
+            }
+        </div>
+    </div>
+</div>

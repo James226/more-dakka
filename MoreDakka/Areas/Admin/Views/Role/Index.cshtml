@@ -1,0 +1,25 @@
+﻿@model ICollection<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+
+@{
+    ViewBag.Title = "Roles";
+}
+
+<h2>Roles</h2>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Name</th>
+        <th>
+            Users
+        </th>
+    </tr>
+    @foreach (var role in Model.OrderBy(u => u.Name))
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(role.Name, "Details", routeValues: new { Id = role.Id })
+            </td>
+            <td>@string.Join(", ", role.Users.Select(u => u.UserId))</td>
+        </tr>
+    }
+</table>

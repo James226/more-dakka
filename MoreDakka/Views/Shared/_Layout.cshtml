@@ -24,6 +24,12 @@
                             <li>
                                 <a href="/Manage">Hello @User.Identity.GetUserName()</a>
                             </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li>
+                                    @Html.ActionLink("Admin", "Index", "User", new { area = "Admin" }, null)
+                                </li>
+                            }
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
                         </ul>
                     }
@@ -41,7 +47,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("More Dakka", "Index", "Home", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("More Dakka", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

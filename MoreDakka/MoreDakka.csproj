@@ -232,6 +232,8 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\User\Details.cshtml" />
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Manage.cshtml" />
     <None Include="Scripts\Libraries\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\Libraries\jquery-2.0.3.js" />
     <Content Include="Scripts\Libraries\jquery-2.0.3.min.js" />
@@ -250,7 +252,10 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\ManageRolesViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\SelectRoleEditorViewModel.cs" />
     <Compile Include="BattleNetAuth\BattleNetAuthenticationExtensions.cs" />
     <Compile Include="BattleNetAuth\BattleNetAuthenticationHandler.cs" />
     <Compile Include="BattleNetAuth\BattleNetAuthenticationMiddleware.cs" />
@@ -322,7 +327,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

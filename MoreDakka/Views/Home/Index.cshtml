@@ -16,36 +16,8 @@
     <meta name="description" content="More Dakka Guild Website" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            <div style="float: right">
-                @if (Request.IsAuthenticated)
-                {
-                    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                    {
-                        @Html.AntiForgeryToken()
-
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="/Manage">Hello @User.Identity.GetUserName()</a>
-                            </li>
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <li>
-                                    @Html.ActionLink("Admin", "Index", "User", new { area = "Admin" }, null)
-                                </li>
-                            }
-                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
-                        </ul>
-                    }
-                }
-                else
-                {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/Account/Login">Login</a></li>
-                    </ul>
-                }
-            </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -61,8 +33,38 @@
                     <li><a href="/#/recruitment">Roster</a></li>
                     <li><a href="/#/recruitment/apply">Apply</a></li>
                 </ul>
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+
+                            @Html.AntiForgeryToken()
+
+
+                            <li>
+                                <a href="/Manage">Hello @User.Identity.GetUserName()</a>
+                            </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li>
+                                    @Html.ActionLink("Admin", "Index", "User", new { area = "Admin" }, null)
+                                </li>
+                            }
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+                        </ul>
+
+                    }
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/Account/Login">Login</a></li>
+                    </ul>
+                }
             </div>
         </div>
+
     </div>
     <div data-ng-view>
     </div>

@@ -74,17 +74,18 @@
   }
 
   #group1 {
-    z-index: 5; /* slide over group 2 */
+    z-index: 3; /* slide over group 2 */
   }
-  #group1 .parallax__layer--base {
+  #group1 .parallax__layer--back {
     background-image: url('/Content/home-00.jpg');
   }
 
   #group2 {
-    z-index: 3; /* slide under groups 1 and 3 */
+    z-index: 5; /* slide under groups 1 and 3 */
   }
-  #group2 .parallax__layer--back {
-	background-image: url('/Content/home-01.jpg');
+  #group2 .parallax__layer--base {
+	/*background-image: url('/Content/home-01.jpg');*/
+      background-color: #f1f1f1;
   }
 
   #group3 {
@@ -152,33 +153,31 @@
 		});
 	});
 
-	var currentPos = 1;
-	$(document).ready(function () {
-		$('.parallax').bind('mousewheel', function (e) {
-		    if (e.originalEvent.wheelDelta / 120 > 0)
-		        --currentPos;
-		    else
-		        ++currentPos;
+	//var currentPos = 1;
+	//$(document).ready(function () {
+	//	$('.parallax').bind('mousewheel', function (e) {
+	//	    if (e.originalEvent.wheelDelta / 120 > 0)
+	//	        --currentPos;
+	//	    else
+	//	        ++currentPos;
 
-		    currentPos = Math.min(7 * 2, Math.max(1, currentPos));
-		    var page = Math.floor(currentPos / 2);
-            if (currentPos / 2 == page)
-		        scrollToPage(page);
-		    return false;
-		});
-	});
+	//	    currentPos = Math.min(7 * 2, Math.max(1, currentPos));
+	//	    var page = Math.floor(currentPos / 2);
+    //        if (currentPos / 2 == page)
+	//	        scrollToPage(page);
+	//	    return false;
+	//	});
+	//});
 </script>
 
 <div class="parallax">
-    <a name="page-1" />
     <div id="group1" class="parallax__group">
-        <div class="parallax__layer parallax__layer--base">
+        <div class="parallax__layer parallax__layer--back">
         </div>
     </div>
-    <a name="page-2" />
     <div id="group2" class="parallax__group">
         <div class="parallax__layer parallax__layer--base">
-            <div class="title forum-wrapper">
+            <div class="body-content">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h1>Raid Progression</h1>
@@ -196,93 +195,5 @@
                 </div>
             </div>
         </div>
-        <div class="parallax__layer parallax__layer--back">
-        </div>
     </div>
-<!--    <a name="page-3" />
-    <div id="group3" class="parallax__group">
-        <div class="parallax__layer parallax__layer--fore">
-            <div class="title">
-                <div class="panel">
-                    <div class="panel-body panel-default">
-                        <div class="alert alert-success">You did something right!</div>
-                        Foreground!	<br />
-                        Foreground!	<br />
-                        Foreground!	<br />
-                        Foreground!	<br />
-                        Foreground!	<br />
-                        Foreground!	<br />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="parallax__layer parallax__layer--base">
-        </div>
-    </div>
-    <a name="page-4" />
-    <div id="group4" class="parallax__group">
-        <div class="parallax__layer parallax__layer--base">
-        </div>
-        <div class="parallax__layer parallax__layer--back">
-            <div class="title">
-                <div class="panel">
-                    <div class="panel-body panel-default">
-                        Something really important...
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="parallax__layer parallax__layer--deep">
-
-        </div>
-    </div>
-    <a name="page-5" />
-    <div id="group5" class="parallax__group">
-        <div class="parallax__layer parallax__layer--fore">
-
-            <div class="title">
-                <div class="panel">
-                    <div class="panel-body panel-default">
-                        <div class="alert alert-danger">You did something wrong :(</div>
-                        Foreground!	<br />
-                        Foreground!	<br />
-                        Foreground!	<br />
-                        Foreground!	<br />
-                        Foreground!	<br />
-                        Foreground!	<br />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="parallax__layer parallax__layer--base">
-        </div>
-    </div>
-    <a name="page-6" />
-    <div id="group6" class="parallax__group">
-
-        <div class="parallax__layer parallax__layer--back">
-        </div>
-        <div class="parallax__layer parallax__layer--base">
-            <div class="title">
-                <div class="panel">
-                    <div class="panel-body panel-default">
-                        Hmmm...
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a name="page-7" />
-    <div id="group7" class="parallax__group">
-        <div class="parallax__layer parallax__layer--base">
-            <div class="title">
-                <div class="panel">
-                    <div class="panel-body panel-default">
-                        Last and possibly least..
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
 </div>

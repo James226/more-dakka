@@ -4,6 +4,10 @@
 
 <style>
   .parallax {
+    height: 500px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
     -webkit-perspective: 300px;
     perspective: 300px;
     padding-bottom: 100px;
@@ -25,10 +29,32 @@
     bottom: 0;
   }
 
+  .parallax__layer--fore {
+    -webkit-transform: translateZ(90px) scale(.7);
+    transform: translateZ(90px) scale(.7);
+    z-index: 1;
+  }
+
+  .parallax__layer--base {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 4;
+    background-size: 100% 100%;
+	background-repeat: no-repeat;
+  }
+
   .parallax__layer--back {
     -webkit-transform: translateZ(-300px) scale(2);
     transform: translateZ(-300px) scale(2);
     z-index: 3;
+    background-size: 100% 100%;
+	background-repeat: no-repeat;
+  }
+
+  .parallax__layer--deep {
+    -webkit-transform: translateZ(-600px) scale(3);
+    transform: translateZ(-600px) scale(3);
+    z-index: 2;
     background-size: 100% 100%;
 	background-repeat: no-repeat;
   }
@@ -48,15 +74,53 @@
   }
 
   #group1 {
-    z-index: -1; /* slide over group 2 */
+    z-index: 3; /* slide over group 2 */
   }
   #group1 .parallax__layer--back {
     background-image: url('/Content/home-00.jpg');
   }
 
   #group2 {
+    z-index: 5; /* slide under groups 1 and 3 */
+  }
+  #group2 .parallax__layer--base {
 	/*background-image: url('/Content/home-01.jpg');*/
       background-color: #f1f1f1;
+  }
+
+  #group3 {
+    z-index: 4; /* slide over group 2 and 4 */
+  }
+  #group3 .parallax__layer--base {
+    background-image: url('/Content/home-03.jpg');
+  }
+
+  #group4 {
+    z-index: 2; /* slide under group 3 and 5 */
+  }
+  #group4 .parallax__layer--deep {
+    background-image: url('/Content/home-01.jpg');
+  }
+
+  #group5 {
+    z-index: 3; /* slide over group 4 and 6 */
+  }
+  #group5 .parallax__layer--base {
+    background-image: url('/Content/home-02.jpg');
+  }
+
+  #group6 {
+    z-index: 2; /* slide under group 5 and 7 */
+  }
+  #group6 .parallax__layer--back {
+    background-image: url('/Content/home-01.jpg');
+  }
+
+  #group7 {
+    z-index: 3; /* slide over group 7 */
+  }
+  #group7 .parallax__layer--base {
+    background-image: url('/Content/home-03.jpg');
   }
 
   .fullscreen {
@@ -111,7 +175,8 @@
         <div class="parallax__layer parallax__layer--back">
         </div>
     </div>
-    <div id="group2" class="">
+    <div id="group2" class="parallax__group">
+        <div class="parallax__layer parallax__layer--base">
             <div class="body-content">
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -130,4 +195,5 @@
                 </div>
             </div>
         </div>
+    </div>
 </div>

@@ -23,13 +23,8 @@
                             <td>{{ board.totalTopics }}</td>
                             <td>{{ board.totalPosts }}</td>
                             <td>
-                                <div data-ng-show="board.lastTopicTitle != null">
-                                    <a href="/#/forums/{{ board.id }}/{{ board.lastTopicId }}">{{ board.lastTopicTitle }}</a>
-                                    <div class="last-post-author">by {{ board.lastPostAuthor }}</div>
-                                </div>
-                                <div data-ng-show="board.lastTopicTitle == null">
-                                    <em>None</em>
-                                </div>
+                                <a href="/#/forums/{{ board.id }}/{{ board.lastTopicId }}">{{ board.lastTopicTitle }}</a>
+                                <div class="last-post-author">by {{ board.lastPostAuthor }}</div>
                             </td>
                         </tr>
                     </tbody>

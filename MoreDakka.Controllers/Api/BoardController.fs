@@ -13,9 +13,16 @@ type BoardController() =
     inherit ApiController()
     let boardContext = new BoardContext()
 
+    let CoerceBoardWithNoTopics (id: Guid, name: string, totalTopics: int, totalPosts: int) : BoardViewModel =
+        { Id = id; Name = name; TotalTopics = totalTopics; TotalPosts = totalPosts; LastTopicId = Guid.Empty; LastTopicTitle = null; LastPostAuthor = null }
 
-    let CoerceBoardViewModel (id: Guid, name: string, totalTopics: int, totalPosts: int, lastTopic: Topic, lastAuthor: String) : BoardViewModel =
+    let CoerceBoardWithTopics (id: Guid, name: string, totalTopics: int, totalPosts: int, lastTopic: Topic, lastAuthor: string) : BoardViewModel =
         { Id = id; Name = name; TotalTopics = totalTopics; TotalPosts = totalPosts; LastTopicId = lastTopic.Id; LastTopicTitle = lastTopic.Name; LastPostAuthor = lastAuthor }
+
+    let CoerceBoardViewModel (id: Guid, name: string, totalTopics: int, totalPosts: int, lastTopic: Topic, lastAuthor: string) : BoardViewModel =
+        match lastTopic with
+        | null -> CoerceBoardWithNoTopics (id, name, totalTopics, totalPosts)
+        | _ -> CoerceBoardWithTopics (id, name, totalTopics, totalPosts, lastTopic, lastAuthor)
 
     [<Route("")>]
     member x.Get() : IHttpActionResult =

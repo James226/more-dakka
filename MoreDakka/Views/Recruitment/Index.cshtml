@@ -49,7 +49,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-ng-repeat="app in applications | filter: {Status: 0}">
+                                <tr data-ng-repeat="app in applications | filter: {Status: 0} | orderBy:'mainspec':true">
                                     <td style="text-align: center;"><span class="glyphicon" data-ng-class="getStatusClass(app)"></span></td>
                                     <td data-ng-click="openApplication(app)">{{app.Submission.characterName}}</td>
                                     <td>{{app.Submission.mainspec}}</td>

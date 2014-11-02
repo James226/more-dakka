@@ -56,8 +56,8 @@ input[type="checkbox"].input-validation-error {
     margin: 20px;
     border: 1px solid gray;
     float:left;
-    width: 180px;
-    height: 180px;
+    width: 10%;
+    min-width: 75px;
     border-radius: 5px;
     -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);

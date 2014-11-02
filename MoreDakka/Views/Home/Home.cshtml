@@ -1,136 +1,9 @@
+@using System.Web.UI.WebControls
 @{
     Layout = null;
 }
 
 <style>
-  .parallax {
-    height: 500px;
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-perspective: 300px;
-    perspective: 300px;
-    padding-bottom: 100px;
-  }
-
-  .parallax__group {
-    position: relative;
-    height: 500px;
-    height: 100vh;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-  }
-
-  .parallax__layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  .parallax__layer--fore {
-    -webkit-transform: translateZ(90px) scale(.7);
-    transform: translateZ(90px) scale(.7);
-    z-index: 1;
-  }
-
-  .parallax__layer--base {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    z-index: 4;
-    background-size: 100% 100%;
-	background-repeat: no-repeat;
-  }
-
-  .parallax__layer--back {
-    -webkit-transform: translateZ(-300px) scale(2);
-    transform: translateZ(-300px) scale(2);
-    z-index: 3;
-    background-size: 100% 100%;
-	background-repeat: no-repeat;
-  }
-
-  .parallax__layer--deep {
-    -webkit-transform: translateZ(-600px) scale(3);
-    transform: translateZ(-600px) scale(3);
-    z-index: 2;
-    background-size: 100% 100%;
-	background-repeat: no-repeat;
-  }
-
-
-  body, html {
-    overflow: hidden;
-  }
-
-  .title {
-    position: absolute;
-	width: 90%;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
-
-  #group1 {
-    z-index: 3; /* slide over group 2 */
-  }
-  #group1 .parallax__layer--back {
-    background-image: url('/Content/home-00.jpg');
-  }
-
-  #group2 {
-    z-index: 5; /* slide under groups 1 and 3 */
-  }
-  #group2 .parallax__layer--base {
-	/*background-image: url('/Content/home-01.jpg');*/
-      background-color: #f1f1f1;
-  }
-
-  #group3 {
-    z-index: 4; /* slide over group 2 and 4 */
-  }
-  #group3 .parallax__layer--base {
-    background-image: url('/Content/home-03.jpg');
-  }
-
-  #group4 {
-    z-index: 2; /* slide under group 3 and 5 */
-  }
-  #group4 .parallax__layer--deep {
-    background-image: url('/Content/home-01.jpg');
-  }
-
-  #group5 {
-    z-index: 3; /* slide over group 4 and 6 */
-  }
-  #group5 .parallax__layer--base {
-    background-image: url('/Content/home-02.jpg');
-  }
-
-  #group6 {
-    z-index: 2; /* slide under group 5 and 7 */
-  }
-  #group6 .parallax__layer--back {
-    background-image: url('/Content/home-01.jpg');
-  }
-
-  #group7 {
-    z-index: 3; /* slide over group 7 */
-  }
-  #group7 .parallax__layer--base {
-    background-image: url('/Content/home-03.jpg');
-  }
-
-  .fullscreen {
-      width: 100%;
-      height: 100%;
-  }
-
-  #forum-panel {
-      height: 100%;
-  }
 </style>
 
 
@@ -145,52 +18,200 @@
         }
     }
 
-	$(function() {
-		$('a[href*=#]:not([href=#])').click(function() {
-		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-			scrollToPage(this.hash.slice(1));
-		}
-		});
-	});
-
-	//var currentPos = 1;
-	//$(document).ready(function () {
-	//	$('.parallax').bind('mousewheel', function (e) {
-	//	    if (e.originalEvent.wheelDelta / 120 > 0)
-	//	        --currentPos;
-	//	    else
-	//	        ++currentPos;
-
-	//	    currentPos = Math.min(7 * 2, Math.max(1, currentPos));
-	//	    var page = Math.floor(currentPos / 2);
-    //        if (currentPos / 2 == page)
-	//	        scrollToPage(page);
-	//	    return false;
-	//	});
-	//});
+    $(function () {
+        $('a[href*=#]:not([href=#])').click(function () {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                scrollToPage(this.hash.slice(1));
+            }
+        });
+    });
 </script>
 
-<div class="parallax">
-    <div id="group1" class="parallax__group">
-        <div class="parallax__layer parallax__layer--back">
-        </div>
+<style>
+    .header {
+    }
+
+    .raid-progression {
+        background-color: #0A0A0A;
+        color: #DDDDDD;
+    }
+
+    .recruitment {
+        color: #0A0A0A;
+    }
+
+    .recruitment .positions {
+        column-count: 2;
+        column-gap: 20px;
+        -moz-column-count: 2;
+        -moz-column-gap: 20px;
+        -webkit-column-count: 2;
+        -webkit-column-gap: 20px;
+    }
+
+        .recruitment h2 {
+            text-align: right;
+        }
+
+        .recruitment .classes {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        
+        
+        .recruitment .classes .col-sm-4 > div {
+            width: 40%;
+            height: 25px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+
+    .recruitment-orb {
+        border: 1px solid darkgray;
+        border-radius: 10px;
+        height: 20px;
+        width: 20px;
+        display: inline-block;
+        background-size: 100%;
+    }
+
+    .recruitment-orb-tank {
+        background-color: blue;
+        background-image: url('/Content/icon-tank.png');
+    }
+
+    .recruitment-orb-melee {
+        background-color: red;
+        background-image: url('/Content/icon-melee.png');
+    }
+
+    .recruitment-orb-ranged {
+        background-color: red;
+        background-image: url('/Content/icon-ranged.png');
+    }
+
+    .recruitment-orb-healer {
+        background-color: green;
+        background-image: url('/Content/icon-healer.png');
+    }
+
+    .recruitment-container {
+        padding-left: 10px;
+        border: 1px solid darkgray;
+        background-color: #eee;
+        background-color: rgba(86,61,124,.15);
+    }
+</style>
+<div class="header">
+    <img src="/Content/home-00.jpg" style="width: 100%;" />
+</div>
+
+<div class="raid-progression">
+    <div class="container">
+        <h2>Raid Progression</h2>
+        <ul id="raidProgress">
+            <li data-ng-repeat="bossProgress in raidProgress">
+                <div class="bossProgress">
+                    <div class="icon">
+                        <img src="/content/bossimages/{{stripSpaces(bossProgress.Name)}}.jpg" style="width: 100%;">
+                    </div>
+                    <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.NormalKills > 0}">Normal</div>
+                    <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.HeroicKills > 0}">Heroic</div>
+                </div>
+            </li>
+        </ul>
+        <div style="clear: both;"></div>
     </div>
-    <div id="group2" class="parallax__group">
-        <div class="parallax__layer parallax__layer--base">
-            <div class="body-content">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h1>Raid Progression</h1>
-                        <hr />
-                        <ul id="raidProgress">
-                            <li data-ng-repeat="bossProgress in raidProgress">
-                                <div class="bossProgress">
-                                    <div style="height: 140px; text-align: center; background-image: url('content/bossimages/{{stripSpaces(bossProgress.Name)}}.jpg'); background-size: 100%" class="icon"></div>
-                                    <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.NormalKills > 0}">Normal</div>
-                                    <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.HeroicKills > 0}">Heroic</div>
-                                </div>
-                            </li>
-                        </ul>
+</div>
+
+<div class="recruitment">
+    <div class="container">
+        <h2>Recruitment</h2>
+        <div class="recruitment-container">
+            <div class="row classes">
+                <div class="col-sm-4">
+                    <div>Warrior</div>
+                    <div>
+                        <div class="recruitment-orb recruitment-orb-tank"></div>
+                        <div class="recruitment-orb recruitment-orb-melee"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div>Paladin</div>
+                    <div>
+                        <div class="recruitment-orb recruitment-orb-tank"></div>
+                        <div class="recruitment-orb recruitment-orb-melee"></div>
+                        <div class="recruitment-orb recruitment-orb-healer"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div>Hunter</div>
+                    <div>
+                        <div class="recruitment-orb recruitment-orb-ranged"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row classes">
+                <div class="col-sm-4">
+                    <div>Rogue</div>
+                    <div>
+                        <div class="recruitment-orb recruitment-orb-melee"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div>Priest</div>
+                    <div>
+                        <div class="recruitment-orb recruitment-orb-ranged"></div>
+                        <div class="recruitment-orb recruitment-orb-healer"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div>Deathknight</div>
+                    <div>
+                        <div class="recruitment-orb recruitment-orb-tank"></div>
+                        <div class="recruitment-orb recruitment-orb-melee"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row classes">
+                <div class="col-sm-4">
+                    <div>Shaman</div>
+                    <div>
+                        <div class="recruitment-orb recruitment-orb-melee"></div>
+                        <div class="recruitment-orb recruitment-orb-ranged"></div>
+                        <div class="recruitment-orb recruitment-orb-healer"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div>Mage</div>
+                    <div>
+                        <div class="recruitment-orb recruitment-orb-ranged"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div>Warlock</div>
+                    <div>
+                        <div class="recruitment-orb recruitment-orb-ranged"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row classes">
+                <div class="col-sm-4">
+                    <div>Monk</div>
+                    <div>
+                        <div class="recruitment-orb recruitment-orb-tank"></div>
+                        <div class="recruitment-orb recruitment-orb-melee"></div>
+                        <div class="recruitment-orb recruitment-orb-healer"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div>Druid</div>
+                    <div>
+                        <div class="recruitment-orb recruitment-orb-tank"></div>
+                        <div class="recruitment-orb recruitment-orb-melee"></div>
+                        <div class="recruitment-orb recruitment-orb-ranged"></div>
+                        <div class="recruitment-orb recruitment-orb-healer"></div>
                     </div>
                 </div>
             </div>

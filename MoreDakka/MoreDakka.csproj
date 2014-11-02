@@ -210,6 +210,10 @@
     <Content Include="Content\home-01.jpg" />
     <Content Include="Content\home-02.jpg" />
     <Content Include="Content\home-03.jpg" />
+    <Content Include="Content\icon-healer.png" />
+    <Content Include="Content\icon-melee.png" />
+    <Content Include="Content\icon-ranged.png" />
+    <Content Include="Content\icon-tank.png" />
     <Content Include="Content\jasmine.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

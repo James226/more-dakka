@@ -88,14 +88,14 @@
             if (cap = this.rules.escape.exec(src)) { src = src.substring(cap[0].length); out += cap[1]; continue; }
             if (cap = this.rules.autolink.exec(src)) {
                 src = src.substring(cap[0].length); if (cap[2] === '@') { text = cap[1][6] === ':' ? this.mangle(cap[1].substring(7)) : this.mangle(cap[1]); href = this.mangle('mailto:') + text; } else { text = escape(cap[1]); href = text; }
-                out += '<a href="'
+                out += '<a target="_blank" href="'
                 + href
                 + '">'
                 + text
                 + '</a>'; continue;
             }
             if (cap = this.rules.url.exec(src)) {
-                src = src.substring(cap[0].length); text = escape(cap[1]); href = text; out += '<a href="'
+                src = src.substring(cap[0].length); text = escape(cap[1]); href = text; out += '<a target="_blank" href="'
                 + href
                 + '">'
                 + text
@@ -137,7 +137,7 @@
         return out;
     }; InlineLexer.prototype.outputLink = function (cap, link) {
         if (cap[0][0] !== '!') {
-            return '<a href="'
+            return '<a target="_blank" href="'
             + escape(link.href)
             + '"'
             + (link.title ? ' title="'

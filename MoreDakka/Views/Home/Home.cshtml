@@ -40,14 +40,14 @@
         color: #0A0A0A;
     }
 
-    .recruitment .positions {
-        column-count: 2;
-        column-gap: 20px;
-        -moz-column-count: 2;
-        -moz-column-gap: 20px;
-        -webkit-column-count: 2;
-        -webkit-column-gap: 20px;
-    }
+        .recruitment .positions {
+            column-count: 2;
+            column-gap: 20px;
+            -moz-column-count: 2;
+            -moz-column-gap: 20px;
+            -webkit-column-count: 2;
+            -webkit-column-gap: 20px;
+        }
 
         .recruitment h2 {
             text-align: right;
@@ -57,14 +57,14 @@
             padding-top: 10px;
             padding-bottom: 10px;
         }
-        
-        
-        .recruitment .classes .col-sm-4 > div {
-            width: 40%;
-            height: 25px;
-            display: inline-block;
-            vertical-align: middle;
-        }
+
+
+            .recruitment .classes .col-sm-4 > div {
+                width: 40%;
+                height: 25px;
+                display: inline-block;
+                vertical-align: middle;
+            }
 
 
     .recruitment-orb {
@@ -96,11 +96,24 @@
         background-image: url('/Content/icon-healer.png');
     }
 
+    .recruitment-orb-full {
+        opacity: 0.4;
+    }
+
     .recruitment-container {
         padding-left: 10px;
         border: 1px solid darkgray;
         background-color: #eee;
         background-color: rgba(86,61,124,.15);
+    }
+
+    hr {
+        border: 0;
+        height: 1px;
+        background-image: -webkit-linear-gradient(left, rgba(50,50,50,0), rgba(50,50,50,0.75), rgba(50,50,50,0)); 
+        background-image: -moz-linear-gradient(left, rgba(50,50,50,0), rgba(50,50,50,0.75), rgba(50,50,50,0)); 
+        background-image: -ms-linear-gradient(left, rgba(50,50,50,0), rgba(50,50,50,0.75), rgba(50,50,50,0)); 
+        background-image: -o-linear-gradient(left, rgba(50,50,50,0), rgba(50,50,50,0.75), rgba(50,50,50,0)); 
     }
 </style>
 <div class="header">
@@ -133,16 +146,16 @@
                 <div class="col-sm-4">
                     <div>Warrior</div>
                     <div>
-                        <div class="recruitment-orb recruitment-orb-tank"></div>
-                        <div class="recruitment-orb recruitment-orb-melee"></div>
+                        <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
+                        <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div>Paladin</div>
                     <div>
-                        <div class="recruitment-orb recruitment-orb-tank"></div>
-                        <div class="recruitment-orb recruitment-orb-melee"></div>
-                        <div class="recruitment-orb recruitment-orb-healer"></div>
+                        <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
+                        <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
+                        <div class="recruitment-orb recruitment-orb-healer recruitment-orb-full"></div>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -169,8 +182,8 @@
                 <div class="col-sm-4">
                     <div>Deathknight</div>
                     <div>
-                        <div class="recruitment-orb recruitment-orb-tank"></div>
-                        <div class="recruitment-orb recruitment-orb-melee"></div>
+                        <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
+                        <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
                     </div>
                 </div>
             </div>
@@ -216,5 +229,17 @@
                 </div>
             </div>
         </div>
+        <div style="padding-top: 20px;">
+            <p>Feel you have what it takes to join our ranks?</p>
+            <p style="text-align: center;"><a href="/#/recruitment/apply" class="btn btn-success btn-lg">Apply Now!</a></p>
+        </div>
+
+        <hr />
+    </div>
+</div>
+<div class="live-stream">
+    <div class="container">
+        <h2>Live Streams</h2>
+        <p>There are currently no live streams active!</p>
     </div>
 </div>

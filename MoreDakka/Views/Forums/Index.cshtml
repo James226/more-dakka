@@ -19,7 +19,7 @@
                     <tbody>
                         <tr class="board-row" data-ng-repeat="board in boards">
                             <td></td>
-                            <td data-ng-click="openBoard(board.id)"><a data-ng-click="openBoard(board.id)">{{ board.name }}</a></td>
+                            <td data-ng-click="openBoard(board.id)"><a data-ng-href="/#/forums/{{board.id}}">{{ board.name }}</a></td>
                             <td>{{ board.totalTopics }}</td>
                             <td>{{ board.totalPosts }}</td>
                             <td>

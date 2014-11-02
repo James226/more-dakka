@@ -20,7 +20,7 @@
                 <tbody>
                     <tr data-ng-repeat="topic in topics | orderBy:'lastPost':true">
                         <td></td>
-                        <td data-ng-click="openTopic(topic.id)">{{ topic.title }}</td>
+                        <td data-ng-click="openTopic(topic.id)"><a data-ng-href="{{topicUrl(topic.id)}}">{{ topic.title }}</a></td>
                         <td>{{ topic.totalPosts }}</td>
                         <td>{{ topic.lastPost.toLocaleString("en-GB") }}</td>
                     </tr>

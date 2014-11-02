@@ -16,6 +16,10 @@ module MoreDakka.Controllers.Forum {
                 $location.path('/forums/' + boardId + '/' + id);
             };
 
+            $scope.topicUrl = id => {
+                return '/#/forums/' + boardId + '/' + id;
+            }
+
             $scope.goToForum = () =>
                 $location.path('/forums');
 

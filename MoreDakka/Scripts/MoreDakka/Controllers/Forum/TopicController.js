@@ -20,6 +20,10 @@ var MoreDakka;
                         $location.path('/forums/' + boardId + '/' + id);
                     };
 
+                    $scope.topicUrl = function (id) {
+                        return '/#/forums/' + boardId + '/' + id;
+                    };
+
                     $scope.goToForum = function () {
                         return $location.path('/forums');
                     };

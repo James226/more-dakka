@@ -3,6 +3,10 @@
 /// <reference path="../../Services/ForumService.ts" />
 /// <reference path="../../Services/TextMarkupService.ts" />
 
+interface Window {
+    md5: any;
+}
+
 module MoreDakka.Controllers.Forum {
     export class PostController {
         constructor(private $scope, private $location: ng.ILocationService, $routeParams, $sce: ng.ISCEService, forumService: ForumService, textMarkupService: TextMarkupService) {
@@ -22,7 +26,7 @@ module MoreDakka.Controllers.Forum {
             $scope.createPost = () =>
                 forumService
                 .createPost(topicId, $scope.postBody)
-                .then(post => $scope.posts.push(new TopicViewModel(post.id, post.username, post.authorPosts, post.body, post.postedAt, post.editable)))
+                .then(post => $scope.posts.push(new TopicViewModel(post.id, post.username, post.gravatarHash, post.authorPosts, post.body, post.postedAt, post.editable)))
                 .then(() => $scope.postBody = '');
 
             $scope.markUp = (text) => $sce.trustAsHtml(window.marked(text));

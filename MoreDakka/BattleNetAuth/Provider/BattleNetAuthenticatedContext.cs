@@ -25,8 +25,6 @@ namespace MoreDakka.BattleNetAuth.Provider
 
             Id = TryGetValue(user, "id");
             Name = TryGetValue(user, "name");
-            Link = TryGetValue(user, "url");
-            UserName = TryGetValue(user, "login");
         }
 
         /// <summary>

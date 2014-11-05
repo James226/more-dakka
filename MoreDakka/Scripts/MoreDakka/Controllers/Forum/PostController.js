@@ -2,6 +2,7 @@
 /// <reference path="../../MoreDakka.ts" />
 /// <reference path="../../Services/ForumService.ts" />
 /// <reference path="../../Services/TextMarkupService.ts" />
+
 var MoreDakka;
 (function (MoreDakka) {
     (function (Controllers) {
@@ -26,7 +27,7 @@ var MoreDakka;
 
                     $scope.createPost = function () {
                         return forumService.createPost(topicId, $scope.postBody).then(function (post) {
-                            return $scope.posts.push(new MoreDakka.TopicViewModel(post.id, post.username, post.authorPosts, post.body, post.postedAt, post.editable));
+                            return $scope.posts.push(new MoreDakka.TopicViewModel(post.id, post.username, post.gravatarHash, post.authorPosts, post.body, post.postedAt, post.editable));
                         }).then(function () {
                             return $scope.postBody = '';
                         });

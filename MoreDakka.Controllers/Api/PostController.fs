@@ -8,6 +8,8 @@ open System.Data.Entity
 open MoreDakka.Data
 open MoreDakka.Models.Forum
 open System.Web
+open System.Security.Cryptography
+open System.Text
 
 [<CLIMutable>]
 type EditPostModel = {
@@ -20,10 +22,16 @@ type PostController() =
     inherit ApiController()
     let context = new BoardContext()
 
+    let ComputeHash (str: string) =
+        use md5 = MD5.Create()
+        (StringBuilder(), md5.ComputeHash(Encoding.UTF8.GetBytes(str.ToLower().Trim())))
+        ||> Array.fold (fun sb b -> sb.Append(b.ToString("x2")))
+        |> string
+
     [<Route("{id:guid}")>]
     [<HttpGet>]
     member x.Get(id) : IHttpActionResult =
-        x.Ok(context.Topics.Include("Posts").Include("Posts.User").First(fun t -> t.Id = id).Posts.Select(fun p -> { Id = p.Id; Username = p.User.UserName; AuthorPosts = p.User.NumberOfPosts; Body = p.Body; PostedAt = p.PostedAt; Editable = (p.User.UserName = HttpContext.Current.User.Identity.Name) })) :> _
+        x.Ok(context.Topics.Include("Posts").Include("Posts.User").First(fun t -> t.Id = id).Posts.Select(fun p -> { Id = p.Id; Username = p.User.UserName; GravatarHash = ComputeHash p.User.Email; AuthorPosts = p.User.NumberOfPosts; Body = p.Body; PostedAt = p.PostedAt; Editable = (p.User.UserName = HttpContext.Current.User.Identity.Name) })) :> _
 
     [<Route("")>]
     member x.Post(post: Post) : IHttpActionResult =
@@ -34,7 +42,7 @@ type PostController() =
         topic.LastUpdate <- DateTime.UtcNow
         post.User.NumberOfPosts <- post.User.NumberOfPosts + 1
         context.SaveChanges() |> ignore
-        x.Ok({ Id = post.Id; Username = post.User.UserName; AuthorPosts = post.User.NumberOfPosts; Body = post.Body; PostedAt = post.PostedAt; Editable = true }) :> _
+        x.Ok({ Id = post.Id; Username = post.User.UserName; GravatarHash = ComputeHash post.User.Email; AuthorPosts = post.User.NumberOfPosts; Body = post.Body; PostedAt = post.PostedAt; Editable = true }) :> _
 
     [<Route("{id:guid}")>]
     [<HttpPut>]

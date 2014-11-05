@@ -47,6 +47,7 @@ module MoreDakka {
     export class TopicViewModel {
         id: string;
         username: string;
+        gravatarHash: string;
         authorPosts: number;
         body: string;
         postedAt: Date;
@@ -54,9 +55,10 @@ module MoreDakka {
         editing: boolean;
         pendingAction: boolean;
 
-        constructor(id: string, username: string, authorPosts: number, body: string, postedAt: string, editable: boolean) {
+        constructor(id: string, username: string, gravatarHash: string, authorPosts: number, body: string, postedAt: string, editable: boolean) {
             this.id = id;
             this.username = username;
+            this.gravatarHash = gravatarHash;
             this.authorPosts = authorPosts;
             this.body = body;
             this.postedAt = new Date(Date.parse(postedAt));
@@ -104,7 +106,7 @@ module MoreDakka {
                     var posts: TopicViewModel[] = [];
                     for (var i in data.data) {
                         var record = data.data[i];
-                        posts.push(new TopicViewModel(record.id, record.username, record.authorPosts, record.body, record.postedAt, record.editable));
+                        posts.push(new TopicViewModel(record.id, record.username, record.gravatarHash, record.authorPosts, record.body, record.postedAt, record.editable));
                     }
                     return posts;
                 });

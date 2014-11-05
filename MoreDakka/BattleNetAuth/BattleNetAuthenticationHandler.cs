@@ -98,9 +98,7 @@ namespace MoreDakka.BattleNetAuth
 
                 var context = new BattleNetAuthenticatedContext(Context, user, accessToken);
                 context.Identity = new ClaimsIdentity(
-                    Options.AuthenticationType,
-                    ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
+                    Options.SignInAsAuthenticationType);
                 if (!string.IsNullOrEmpty(context.Id))
                 {
                     context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, context.Id, XmlSchemaString, Options.AuthenticationType));
@@ -111,7 +109,7 @@ namespace MoreDakka.BattleNetAuth
                 }
                 if (!string.IsNullOrEmpty(context.Name))
                 {
-                    context.Identity.AddClaim(new Claim("urn:BattleNet:name", context.Name, XmlSchemaString, Options.AuthenticationType));
+                    context.Identity.AddClaim(new Claim(ClaimTypes.Name, context.Name, XmlSchemaString, Options.AuthenticationType));
                 }
                 if (!string.IsNullOrEmpty(context.Link))
                 {
@@ -120,7 +118,6 @@ namespace MoreDakka.BattleNetAuth
                 context.Properties = properties;
 
                 await Options.Provider.Authenticated(context);
-
                 return new AuthenticationTicket(context.Identity, context.Properties);
             }
             catch (Exception ex)

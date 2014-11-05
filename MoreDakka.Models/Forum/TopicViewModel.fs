@@ -5,6 +5,7 @@ open System
 type TopicViewModel = {
     Id: Guid
     Username: String
+    GravatarHash: String
     AuthorPosts: int
     Body: String
     PostedAt: DateTime

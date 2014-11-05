@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -54,6 +55,11 @@ namespace MoreDakka.Controllers
             var identity = (ClaimsIdentity)User.Identity;
             var claims = identity.Claims;
 
+            
+            var externalAuthenticationTypes = HttpContext.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+            var externalIdentity = HttpContext.GetOwinContext().Authentication.GetExternalIdentityAsync("ExternalCookie");
+            var pictureClaim = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type.Equals("token"));
+            var pictureUrl = pictureClaim.Value;
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),

@@ -142,7 +142,7 @@ namespace MoreDakka.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            //return HttpNotFound();
+            return HttpNotFound();
             return View();
         }
 
@@ -153,7 +153,7 @@ namespace MoreDakka.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            //return HttpNotFound();
+            return HttpNotFound();
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };

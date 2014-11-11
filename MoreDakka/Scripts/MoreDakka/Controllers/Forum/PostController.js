@@ -8,7 +8,7 @@ var MoreDakka;
     (function (Controllers) {
         (function (Forum) {
             var PostController = (function () {
-                function PostController($scope, $location, $routeParams, $sce, forumService, textMarkupService) {
+                function PostController($scope, $location, $routeParams, $sce, forumService, historyService, textMarkupService) {
                     this.$scope = $scope;
                     this.$location = $location;
                     $scope.boards = [];
@@ -55,7 +55,7 @@ var MoreDakka;
             })();
             Forum.PostController = PostController;
 
-            MoreDakka.moreDakka.controller('postController', ['$scope', '$location', '$routeParams', '$sce', 'forumService', 'textMarkupService', PostController]);
+            MoreDakka.moreDakka.controller('postController', ['$scope', '$location', '$routeParams', '$sce', 'forumService', 'historyService', 'textMarkupService', PostController]);
         })(Controllers.Forum || (Controllers.Forum = {}));
         var Forum = Controllers.Forum;
     })(MoreDakka.Controllers || (MoreDakka.Controllers = {}));

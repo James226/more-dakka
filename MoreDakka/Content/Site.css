@@ -122,6 +122,10 @@ input[type="checkbox"].input-validation-error {
     cursor: pointer;
 }
 
+.forum-unread td {
+    background-color: antiquewhite;
+}
+
 .loading-icon {
     -webkit-animation: spin 1s infinite linear;
     -moz-animation: spin 1s infinite linear;

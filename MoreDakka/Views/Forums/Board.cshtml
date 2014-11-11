@@ -8,18 +8,16 @@
             <div style="padding-bottom: 20px;">
                 <span style="font-size: 3.0em;" data-ng-click="goToForum()" class="glyphicon glyphicon-circle-arrow-left"></span>
             </div>
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>Topic Name</th>
                         <th>Posts</th>
                         <th>Last Post</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="topic in topics | orderBy:'lastPost':true">
-                        <td></td>
+                    <tr data-ng-repeat="topic in topics | orderBy:'lastPost':true" data-ng-class="{'forum-unread': !topic.isRead}">
                         <td data-ng-click="openTopic(topic.id)"><a data-ng-href="{{topicUrl(topic.id)}}">{{ topic.title }}</a></td>
                         <td>{{ topic.totalPosts }}</td>
                         <td>{{ topic.lastPost.toLocaleString("en-GB") }}</td>

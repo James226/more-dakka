@@ -30,12 +30,14 @@ module MoreDakka {
         title: string;
         totalPosts: number;
         lastPost: Date;
+        isRead: boolean;
 
-        constructor(id: string, title: string, totalPosts: number, lastPost: string) {
+        constructor(id: string, title: string, totalPosts: number, lastPost: string, isRead: boolean) {
             this.id = id;
             this.title = title;
             this.totalPosts = totalPosts;
             this.lastPost = new Date(Date.parse(lastPost));
+            this.isRead = isRead;
         }
     }
 
@@ -72,7 +74,7 @@ module MoreDakka {
         boards: BoardViewModel[];
         boardPromise: ng.IPromise<BoardViewModel[]>;
 
-        constructor(private $http: ng.IHttpService, private textMarkupService: TextMarkupService) {
+        constructor(private $http: ng.IHttpService, private historyService: HistoryService, private textMarkupService: TextMarkupService) {
 
         }
 
@@ -93,7 +95,7 @@ module MoreDakka {
                     var posts: ForumViewModel[] = [];
                     for (var i in data.data) {
                         var record = data.data[i];
-                        posts.push(new ForumViewModel(record.id, record.title, record.totalPosts, record.lastPost));
+                        posts.push(new ForumViewModel(record.id, record.title, record.totalPosts, record.lastPost, this.historyService.isRead(record.lastPost)));
                     }
                     return posts;
                 });
@@ -106,7 +108,15 @@ module MoreDakka {
                     var posts: TopicViewModel[] = [];
                     for (var i in data.data) {
                         var record = data.data[i];
-                        posts.push(new TopicViewModel(record.id, record.username, record.gravatarHash, record.authorPosts, record.body, record.postedAt, record.editable));
+                        this.historyService.markRead(record.postedAt);
+                        posts.push(new TopicViewModel(
+                            record.id,
+                            record.username,
+                            record.gravatarHash,
+                            record.authorPosts,
+                            record.body,
+                            record.postedAt,
+                            record.editable));
                     }
                     return posts;
                 });
@@ -130,5 +140,5 @@ module MoreDakka {
                 .then(data => data.data);
         }
     }
-    moreDakka.service('forumService', ['$http', 'textMarkupService', ForumService]);
+    moreDakka.service('forumService', ['$http', 'historyService', 'textMarkupService', ForumService]);
 }

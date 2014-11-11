@@ -9,7 +9,7 @@ interface Window {
 
 module MoreDakka.Controllers.Forum {
     export class PostController {
-        constructor(private $scope, private $location: ng.ILocationService, $routeParams, $sce: ng.ISCEService, forumService: ForumService, textMarkupService: TextMarkupService) {
+        constructor(private $scope, private $location: ng.ILocationService, $routeParams, $sce: ng.ISCEService, forumService: ForumService, historyService: HistoryService, textMarkupService: TextMarkupService) {
             $scope.boards = [];
 
             var topicId = $routeParams.topic_id;
@@ -26,7 +26,14 @@ module MoreDakka.Controllers.Forum {
             $scope.createPost = () =>
                 forumService
                 .createPost(topicId, $scope.postBody)
-                .then(post => $scope.posts.push(new TopicViewModel(post.id, post.username, post.gravatarHash, post.authorPosts, post.body, post.postedAt, post.editable)))
+                    .then(post => $scope.posts.push(new TopicViewModel(
+                        post.id,
+                        post.username,
+                        post.gravatarHash,
+                        post.authorPosts,
+                        post.body,
+                        post.postedAt,
+                        post.editable)))
                 .then(() => $scope.postBody = '');
 
             $scope.markUp = (text) => $sce.trustAsHtml(window.marked(text));
@@ -47,5 +54,5 @@ module MoreDakka.Controllers.Forum {
         }
     }
 
-    moreDakka.controller('postController', ['$scope', '$location', '$routeParams', '$sce', 'forumService', 'textMarkupService', PostController]);
+    moreDakka.controller('postController', ['$scope', '$location', '$routeParams', '$sce', 'forumService', 'historyService', 'textMarkupService', PostController]);
 }

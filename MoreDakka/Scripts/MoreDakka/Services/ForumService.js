@@ -25,11 +25,12 @@ var MoreDakka;
     MoreDakka.BoardViewModel = BoardViewModel;
 
     var ForumViewModel = (function () {
-        function ForumViewModel(id, title, totalPosts, lastPost) {
+        function ForumViewModel(id, title, totalPosts, lastPost, isRead) {
             this.id = id;
             this.title = title;
             this.totalPosts = totalPosts;
             this.lastPost = new Date(Date.parse(lastPost));
+            this.isRead = isRead;
         }
         return ForumViewModel;
     })();
@@ -59,8 +60,9 @@ var MoreDakka;
     MoreDakka.TopicViewModel = TopicViewModel;
 
     var ForumService = (function () {
-        function ForumService($http, textMarkupService) {
+        function ForumService($http, historyService, textMarkupService) {
             this.$http = $http;
+            this.historyService = historyService;
             this.textMarkupService = textMarkupService;
         }
         ForumService.prototype.getBoards = function () {
@@ -76,21 +78,24 @@ var MoreDakka;
         };
 
         ForumService.prototype.getTopics = function (boardId) {
+            var _this = this;
             return this.$http.get('api/forum/topic/' + boardId).then(function (data) {
                 var posts = [];
                 for (var i in data.data) {
                     var record = data.data[i];
-                    posts.push(new ForumViewModel(record.id, record.title, record.totalPosts, record.lastPost));
+                    posts.push(new ForumViewModel(record.id, record.title, record.totalPosts, record.lastPost, _this.historyService.isRead(record.lastPost)));
                 }
                 return posts;
             });
         };
 
         ForumService.prototype.getPosts = function (topicId) {
+            var _this = this;
             return this.$http.get('api/forum/post/' + topicId).then(function (data) {
                 var posts = [];
                 for (var i in data.data) {
                     var record = data.data[i];
+                    _this.historyService.markRead(record.postedAt);
                     posts.push(new TopicViewModel(record.id, record.username, record.gravatarHash, record.authorPosts, record.body, record.postedAt, record.editable));
                 }
                 return posts;
@@ -117,6 +122,6 @@ var MoreDakka;
         return ForumService;
     })();
     MoreDakka.ForumService = ForumService;
-    MoreDakka.moreDakka.service('forumService', ['$http', 'textMarkupService', ForumService]);
+    MoreDakka.moreDakka.service('forumService', ['$http', 'historyService', 'textMarkupService', ForumService]);
 })(MoreDakka || (MoreDakka = {}));
 //# sourceMappingURL=ForumService.js.map

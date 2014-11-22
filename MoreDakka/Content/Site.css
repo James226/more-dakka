@@ -3,9 +3,8 @@
     padding-bottom: 20px;
     /*background: url('/Content/home-00.jpg') no-repeat center center fixed;*/
     background-color: #f1f1f1;
-    -webkit-background-size: 100% 100%;
-    -moz-background-size: 100% 100%;
-    -o-background-size: 100% 100%;
+    background-image: url('/Content/background.png');
+    background-attachment: fixed;
     background-size: 100% 100%;
 }
 
@@ -147,4 +146,31 @@ input[type="checkbox"].input-validation-error {
 @keyframes spin {
   from { transform: rotate(0deg);   }
   to   { transform: rotate(360deg); }
+}
+
+.panel {
+    background-color: #120501;
+}
+
+table,
+.navbar {
+    background-color: #0b0300;
+}
+
+th,
+.panel-default>.panel-heading {
+    background-color: black;
+}
+
+.btn {
+    border-color: red;
+    background-color: black;
+}
+
+input.form-control {
+    background-color: black;
+}
+
+textarea.form-control {
+    background-color: black;
 }

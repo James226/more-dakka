@@ -220,6 +220,7 @@
     <Content Include="Content\icon-ranged.png" />
     <Content Include="Content\icon-tank.png" />
     <Content Include="Content\jasmine.css" />
+    <Content Include="Content\mdds.png" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

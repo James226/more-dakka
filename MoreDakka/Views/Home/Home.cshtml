@@ -27,219 +27,106 @@
     });
 </script>
 
-<style>
-    .header {
-    }
-
-    .raid-progression {
-        background-color: #0A0A0A;
-        color: #DDDDDD;
-    }
-
-    .recruitment {
-        color: #0A0A0A;
-    }
-
-        .recruitment .positions {
-            column-count: 2;
-            column-gap: 20px;
-            -moz-column-count: 2;
-            -moz-column-gap: 20px;
-            -webkit-column-count: 2;
-            -webkit-column-gap: 20px;
-        }
-
-        .recruitment h2 {
-            text-align: right;
-        }
-
-        .recruitment .classes {
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-
-
-            .recruitment .classes .col-sm-4 > div {
-                width: 40%;
-                height: 25px;
-                display: inline-block;
-                vertical-align: middle;
-            }
-
-
-    .recruitment-orb {
-        border: 1px solid darkgray;
-        border-radius: 10px;
-        height: 20px;
-        width: 20px;
-        display: inline-block;
-        background-size: 100%;
-    }
-
-    .recruitment-orb-tank {
-        background-color: blue;
-        background-image: url('/Content/icon-tank.png');
-    }
-
-    .recruitment-orb-melee {
-        background-color: red;
-        background-image: url('/Content/icon-melee.png');
-    }
-
-    .recruitment-orb-ranged {
-        background-color: red;
-        background-image: url('/Content/icon-ranged.png');
-    }
-
-    .recruitment-orb-healer {
-        background-color: green;
-        background-image: url('/Content/icon-healer.png');
-    }
-
-    .recruitment-orb-full {
-        opacity: 0.4;
-    }
-
-    .recruitment-container {
-        padding-left: 10px;
-        border: 1px solid darkgray;
-        background-color: #eee;
-        background-color: rgba(86,61,124,.15);
-    }
-
-    hr {
-        border: 0;
-        height: 1px;
-        background-image: -webkit-linear-gradient(left, rgba(50,50,50,0), rgba(50,50,50,0.75), rgba(50,50,50,0)); 
-        background-image: -moz-linear-gradient(left, rgba(50,50,50,0), rgba(50,50,50,0.75), rgba(50,50,50,0)); 
-        background-image: -ms-linear-gradient(left, rgba(50,50,50,0), rgba(50,50,50,0.75), rgba(50,50,50,0)); 
-        background-image: -o-linear-gradient(left, rgba(50,50,50,0), rgba(50,50,50,0.75), rgba(50,50,50,0)); 
-    }
-</style>
-<div class="header">
-    <img src="/Content/home-00.jpg" style="width: 100%;" />
-</div>
-
-<div class="raid-progression">
-    <div class="container">
-        <h2>Raid Progression</h2>
-        <ul id="raidProgress">
-            <li data-ng-repeat="bossProgress in raidProgress">
-                <div class="bossProgress">
-                    <div class="icon">
-                        <img src="/content/bossimages/{{stripSpaces(bossProgress.Name)}}.jpg" style="width: 100%;">
-                    </div>
-                    <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.NormalKills > 0}">Normal</div>
-                    <div style="height: 20px; text-align: center;" data-ng-class="{green: bossProgress.HeroicKills > 0}">Heroic</div>
-                </div>
-            </li>
-        </ul>
-        <div style="clear: both;"></div>
-    </div>
-</div>
-
-<div class="recruitment">
-    <div class="container">
-        <h2>Recruitment</h2>
-        <div class="recruitment-container">
-            <div class="row classes">
-                <div class="col-sm-4">
-                    <div>Warrior</div>
-                    <div>
-                        <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
-                        <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div>Paladin</div>
-                    <div>
-                        <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
-                        <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
-                        <div class="recruitment-orb recruitment-orb-healer recruitment-orb-full"></div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div>Hunter</div>
-                    <div>
-                        <div class="recruitment-orb recruitment-orb-ranged recruitment-orb-full"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row classes">
-                <div class="col-sm-4">
-                    <div>Rogue</div>
-                    <div>
-                        <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div>Priest</div>
-                    <div>
-                        <div class="recruitment-orb recruitment-orb-ranged recruitment-orb-full"></div>
-                        <div class="recruitment-orb recruitment-orb-healer recruitment-orb-full"></div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div>Deathknight</div>
-                    <div>
-                        <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
-                        <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row classes">
-                <div class="col-sm-4">
-                    <div>Shaman</div>
-                    <div>
-                        <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
-                        <div class="recruitment-orb recruitment-orb-ranged recruitment-orb-full"></div>
-                        <div class="recruitment-orb recruitment-orb-healer recruitment-orb-full"></div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div>Mage</div>
-                    <div>
-                        <div class="recruitment-orb recruitment-orb-ranged recruitment-orb-full"></div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div>Warlock</div>
-                    <div>
-                        <div class="recruitment-orb recruitment-orb-ranged"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row classes">
-                <div class="col-sm-4">
-                    <div>Monk</div>
-                    <div>
-                        <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
-                        <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
-                        <div class="recruitment-orb recruitment-orb-healer recruitment-orb-full"></div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div>Druid</div>
-                    <div>
-                        <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
-                        <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
-                        <div class="recruitment-orb recruitment-orb-ranged recruitment-orb-full"></div>
-                        <div class="recruitment-orb recruitment-orb-healer recruitment-orb-full"></div>
-                    </div>
+<img src="/Content/banner.png" class="header-image"/>
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Raid Progression</div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tr data-ng-repeat="bossProgress in raidProgress">
+                            <td>{{ bossProgress.Name }}</td>
+                            <td><div class="progression-orb" data-ng-class="{green: bossProgress.NormalKills > 0}">N</div></td>
+                            <td><div class="progression-orb" data-ng-class="{green: bossProgress.HeroicKills > 0}">H</div></td>
+                        </tr>
+                    </table>
+                    <div style="clear: both;"></div>
                 </div>
             </div>
         </div>
-        <div style="padding-top: 20px;">
-            <p>Feel you have what it takes to join our ranks?</p>
-            <p style="text-align: center;"><a href="/#/recruitment/apply" class="btn btn-success btn-lg">Apply Now!</a></p>
+
+
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5 style="padding: 5px 0 0 5px;">Live Streams</h5>
+                    <p>There are currently no live streams active!</p>
+                </div>
+            </div>
         </div>
 
-        <hr />
-    </div>
-</div>
-<div class="live-stream">
-    <div class="container">
-        <h2>Live Streams</h2>
-        <p>There are currently no live streams active!</p>
+        <div class="col-md-3">
+
+            <div class="recruitment">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Recruitment</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">Warrior</div>
+                            <div class="col-sm-6">
+                                <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
+                                <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
+                            </div>
+                            <div class="col-sm-6">Paladin</div>
+                            <div class="col-sm-6">
+                                <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
+                                <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
+                                <div class="recruitment-orb recruitment-orb-healer recruitment-orb-full"></div>
+                            </div>
+                            <div class="col-sm-6">Hunter</div>
+                            <div class="col-sm-6">
+                                <div class="recruitment-orb recruitment-orb-ranged recruitment-orb-full"></div>
+                            </div>
+                            <div class="col-sm-6">Rogue</div>
+                            <div class="col-sm-6">
+                                <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
+                            </div>
+                            <div class="col-sm-6">Priest</div>
+                            <div class="col-sm-6">
+                                <div class="recruitment-orb recruitment-orb-ranged recruitment-orb-full"></div>
+                                <div class="recruitment-orb recruitment-orb-healer recruitment-orb-full"></div>
+                            </div>
+                            <div class="col-sm-6">Deathknight</div>
+                            <div class="col-sm-6">
+                                <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
+                                <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
+                            </div>
+                            <div class="col-sm-6">Shaman</div>
+                            <div class="col-sm-6">
+                                <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
+                                <div class="recruitment-orb recruitment-orb-ranged recruitment-orb-full"></div>
+                                <div class="recruitment-orb recruitment-orb-healer recruitment-orb-full"></div>
+                            </div>
+                            <div class="col-sm-6">Mage</div>
+                            <div class="col-sm-6">
+                                <div class="recruitment-orb recruitment-orb-ranged recruitment-orb-full"></div>
+                            </div>
+                            <div class="col-sm-6">Warlock</div>
+                            <div class="col-sm-6">
+                                <div class="recruitment-orb recruitment-orb-ranged"></div>
+                            </div>
+                            <div class="col-sm-6">Monk</div>
+                            <div class="col-sm-6">
+                                <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
+                                <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
+                                <div class="recruitment-orb recruitment-orb-healer recruitment-orb-full"></div>
+                            </div>
+                            <div class="col-sm-6">Druid</div>
+                            <div class="col-sm-6" style="min-width: 120px;">
+                                <div class="recruitment-orb recruitment-orb-tank recruitment-orb-full"></div>
+                                <div class="recruitment-orb recruitment-orb-melee recruitment-orb-full"></div>
+                                <div class="recruitment-orb recruitment-orb-ranged recruitment-orb-full"></div>
+                                <div class="recruitment-orb recruitment-orb-healer recruitment-orb-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding-top: 20px;">
+                    <p>Feel you have what it takes to join our ranks?</p>
+                    <p style="text-align: center;"><a href="/#/recruitment/apply" class="btn btn-success btn-lg">Apply Now!</a></p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

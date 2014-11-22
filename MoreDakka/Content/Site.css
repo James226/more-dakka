@@ -45,40 +45,16 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
-#raidProgress li {
-    display: inline;
-    list-style-type: none;
-
-}
-
-#raidProgress li > div {    
-    margin: 20px;
-    border: 1px solid gray;
-    float:left;
-    width: 10%;
-    min-width: 75px;
+.progression-orb {
+    background-color: red;
+    border: 1px solid white;
     border-radius: 5px;
-    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    height: 20px;
+    width: 20px;
+    text-align: center;
 }
 
-#raidProgress li > div > .icon {
-    background-color: transparent;
-    color: darkgray;
-}
-
-#raidProgress li > div > div {
-    background-color: #b94a48;
-    border-bottom: 1px solid black;
-    color: white;
-}
-
-#raidProgress li > div > div:last-child {
-    border-radius: 0 0 5px 5px;
-}
-
-#raidProgress li > div > div.green {    
+.green {    
     background-color: green;
 }
 
@@ -148,8 +124,14 @@ input[type="checkbox"].input-validation-error {
   to   { transform: rotate(360deg); }
 }
 
+.header-image {
+    width: 100%;
+    border-bottom: 2px solid black;
+}
+
 .panel {
     background-color: #120501;
+    color: white;
 }
 
 table,
@@ -177,4 +159,76 @@ input.form-control {
 
 textarea.form-control {
     background-color: black;
+}
+
+
+.raid-progression {
+    background-color: #0A0A0A;
+    color: #DDDDDD;
+}
+
+.recruitment {
+    color: #0A0A0A;
+}
+
+.recruitment .positions {
+    column-count: 2;
+    column-gap: 20px;
+    -moz-column-count: 2;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 20px;
+}
+
+.recruitment h2 {
+    text-align: right;
+}
+
+.recruitment-orb {
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    background-size: 100%;
+}
+
+.recruitment-orb-tank {
+    background-color: blue;
+    background-image: url('/Content/icon-tank.png');
+}
+
+.recruitment-orb-melee {
+    background-color: red;
+    background-image: url('/Content/icon-melee.png');
+}
+
+.recruitment-orb-ranged {
+    background-color: red;
+    background-image: url('/Content/icon-ranged.png');
+}
+
+.recruitment-orb-healer {
+    background-color: green;
+    background-image: url('/Content/icon-healer.png');
+}
+
+.recruitment-orb-full {
+    opacity: 0.4;
+}
+
+.recruitment-container {
+    padding-left: 10px;
+    border: 1px solid darkgray;
+    background-color: #eee;
+    background-color: rgba(86,61,124,.15);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(50,50,50,0), rgba(50,50,50,0.75), rgba(50,50,50,0)); 
+    background-image: -moz-linear-gradient(left, rgba(50,50,50,0), rgba(50,50,50,0.75), rgba(50,50,50,0)); 
+    background-image: -ms-linear-gradient(left, rgba(50,50,50,0), rgba(50,50,50,0.75), rgba(50,50,50,0)); 
+    background-image: -o-linear-gradient(left, rgba(50,50,50,0), rgba(50,50,50,0.75), rgba(50,50,50,0)); 
 }

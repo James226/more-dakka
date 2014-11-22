@@ -157,6 +157,10 @@ table,
     background-color: #0b0300;
 }
 
+.table-striped>tbody>tr:nth-child(odd) {
+    background-color: #0e0401;
+}
+
 th,
 .panel-default>.panel-heading {
     background-color: black;

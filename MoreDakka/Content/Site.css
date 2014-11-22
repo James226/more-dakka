@@ -122,7 +122,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 .forum-unread td {
-    background-color: antiquewhite;
+    background-color: #2d0903;
 }
 
 .loading-icon {

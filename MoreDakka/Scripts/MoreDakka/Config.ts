@@ -48,14 +48,13 @@ module MoreDakka {
     });
 
     moreDakka.factory('responseObserver',
-        ($q, $window, $location) =>
+        ($q, $window: ng.IWindowService) =>
         promise =>
         promise.then(successResponse =>
             successResponse, errorResponse => {
-
                 switch (errorResponse.status) {
-                case 401:
-                    $location.path("/account/login");
+                    case 401:
+                        $window.location.href = '/Account/Login';
                 }
 
                 return $q.reject(errorResponse);

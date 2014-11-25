@@ -37,14 +37,14 @@ var MoreDakka;
         });
     });
 
-    MoreDakka.moreDakka.factory('responseObserver', function ($q, $window, $location) {
+    MoreDakka.moreDakka.factory('responseObserver', function ($q, $window) {
         return function (promise) {
             return promise.then(function (successResponse) {
                 return successResponse;
             }, function (errorResponse) {
                 switch (errorResponse.status) {
                     case 401:
-                        $location.path("/account/login");
+                        $window.location.href = '/Account/Login';
                 }
 
                 return $q.reject(errorResponse);

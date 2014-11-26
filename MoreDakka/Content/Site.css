@@ -70,6 +70,18 @@ input[type="checkbox"].input-validation-error {
     text-align: right;
 }
 
+.board-row {
+    height: 75px;
+}
+
+.board-row:hover > td {
+    background-color: #3e0d05;
+}
+
+.table > tbody > tr:hover > td {
+    background-color: #3e0d05;
+}
+
 .board-row > td {
     text-align: center;
 }

@@ -72,12 +72,12 @@ namespace MoreDakka
                         var httpClient = new HttpClient();
 
                         // Get the BattleNet user
-                        HttpRequestMessage userRequest = new HttpRequestMessage(HttpMethod.Get, "https://eu.api.battle.net/wow/user/characters?locale=en_GB&access_token=" + Uri.EscapeDataString(context.AccessToken));
-                        userRequest.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                        HttpResponseMessage userResponse = await httpClient.SendAsync(userRequest);
-                        userResponse.EnsureSuccessStatusCode();
-                        var text = await userResponse.Content.ReadAsStringAsync();
-                        JObject user = JObject.Parse(text);
+                        //HttpRequestMessage userRequest = new HttpRequestMessage(HttpMethod.Get, "https://eu.api.battle.net/wow/user/characters?locale=en_GB&access_token=" + Uri.EscapeDataString(context.AccessToken));
+                        //userRequest.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                        //HttpResponseMessage userResponse = await httpClient.SendAsync(userRequest);
+                        //userResponse.EnsureSuccessStatusCode();
+                        //var text = await userResponse.Content.ReadAsStringAsync();
+                        //JObject user = JObject.Parse(text);
                     }
                 }
             });

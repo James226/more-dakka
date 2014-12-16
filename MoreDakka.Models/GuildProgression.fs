@@ -5,8 +5,8 @@ open FSharp.Data.JsonExtensions
 
 type BossProgression = {
     Name: string
-    NormalKills: int
     HeroicKills: int
+    MythicKills: int
 }
 
 type RaidProgression = BossProgression seq
@@ -18,7 +18,7 @@ let GetProgression() : RaidProgression =
 
     let GetCurrentProgress(raidProgression: JsonValue) =
         seq { for raid in raidProgression?bosses.AsArray() do
-              yield { Name = raid?name.AsString(); NormalKills = raid?normalKills.AsInteger(); HeroicKills = raid?heroicKills.AsInteger() }}
+              yield { Name = raid?name.AsString(); HeroicKills = raid?heroicKills.AsInteger(); MythicKills = raid?mythicKills.AsInteger() }}
 
     let GetCharacterProgression(character) = 
         async {
@@ -60,9 +60,9 @@ let GetProgression() : RaidProgression =
                         if bossProgress.Name = name then
                             yield bossProgress }
 
-        let GetMaxNormalKills(bossProgress) =
+        let GetMaxMythicKills(bossProgress) =
             bossProgress
-            |> Seq.sumBy (fun b -> match b.NormalKills with 0 -> 0 | _ -> 1)
+            |> Seq.sumBy (fun b -> match b.MythicKills with 0 -> 0 | _ -> 1)
 
         let GetMaxHeroicKills(bossProgress) =
             bossProgress
@@ -71,7 +71,7 @@ let GetProgression() : RaidProgression =
         GetBossNames()
         |> Seq.distinct
         |> Seq.map GetBossProgress
-        |> Seq.map (fun b -> { Name = (Seq.head b).Name; NormalKills = GetMaxNormalKills b; HeroicKills = GetMaxHeroicKills b })
+        |> Seq.map (fun b -> { Name = (Seq.head b).Name; MythicKills = GetMaxMythicKills b; HeroicKills = GetMaxHeroicKills b })
 
     let characters = 
         GetActiveCharacters()

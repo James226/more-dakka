@@ -4,7 +4,7 @@
 module MoreDakka {
     export class BossProgress {
         Name: string;
-        NormalKills: string;
+        MythicKills: string;
         HeroicKills: string;
     }
 

@@ -1,7 +1,7 @@
 ﻿@model MoreDakka.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
 
-<h4>Use another service to log in.</h4>
+<h4>Use another service to log in or register.</h4>
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
@@ -16,7 +16,7 @@
     else {
         using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
             @Html.AntiForgeryToken()
-            <div id="socialLoginList">
+            <div id="socialLoginList" style="text-align: center; padding-top: 40px;">
                 <p>
                     @foreach (AuthenticationDescription p in loginProviders) {
                         <button type="submit" class="btn btn-success btn-lg" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">Log in with @p.AuthenticationType</button>

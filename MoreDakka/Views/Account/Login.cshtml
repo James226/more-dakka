@@ -59,6 +59,56 @@
         </section>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <hr />
+        <div class="well well-lg">
+            <h2>Login with Battle.Net via OAuth2</h2>
+            <p>
+                With the release of OAuth2 login from Battle.Net, many fansites have started to allow you to login to their website with your Battle.Net account. As such, we have decided to require all
+                new users to login via Battle.Net for the first time. This helps to keep our site secure, and keep out bots.
+            </p>
+            <p>
+                Well-known sites with 'Login with Battle.Net' allowed:
+                <ul>
+                    <li><a href="http://www.wowhead.com/" target="_blank">Wowhead</a>: (<a href="http://www.wowhead.com/news=242699/introducing-battle-net-oauth-login-on-wowhead-and-hearthhead" target="_blank">News Article</a>)</li>
+                    <li><a href="http://www.askmrrobot.com/" target="_blank">Ask Mr Robot</a>: (<a href="http://blog.askmrrobot.com/2014/08/battle-net-oauth-login-integration/" target="_blank">News Article</a>)</li>
+                    <li><a href="http://us.battle.net/wow/en/blog/15336025/attention-web-developers-8-21-2014">Battle.Net Official News Article</a></li>
+                </ul>
+            </p>
+            <h3>Is it safe?</h3>
+            <p>
+                Login with Battle.Net uses the same technology commonly used by Facebook apps, Google+ and Github. It works by redirecting you to the vendors site (in this case Battle.Net), in turn they send
+                us a token to say you have successfully authenticated with their service.
+            </p>
+            <p>
+                Battle.Net and Blizzard have always said you should only login to their sites directly, and this is no exception. When redirected, you should land on the Battle.Net of your region (i.e. https://eu.battle.net/oauth).
+                If you do not see this url in your address bar (see below) <b>you should avoid logging in with your Battle.Net credentials</b>.<br />
+                <div style="text-align: center;"><img src="/Content/BattleNetAddressBar.png" /></div>
+            </p>
+            <h3>What info can be obtained about my account?</h3>
+            <p>
+                Currently, using OAuth2 applications can access a list of your character names, though this can be disallowed during the login process by unchecking the 'Your World of Warcraft profile' checkbox.
+            </p>
+            <p>
+                <b>Applications are not able to in anyway interact with your account, nor access the game in any way.</b>
+            </p>
+            <h3>Can I revoke access once granted?</h3>
+            <p>
+                You can revoke access to applications at any point, after which they will no longer be able to access any information until you re-authenticate via that application.
+                To do this, go to the 'Authorized Applications' page under the 'Security Options' tab on your Battle.Net Account Management profile. You can then 'Disconnect' any application from your account.
+            </p>
+            <p>
+                You can use one of the following links to access the Authorized Applications lists directly:
+                <ul>
+                    <li><a href="https://eu.battle.net/account/management/authorizations.html">European Authorized Applications list.</a></li>
+                    <li><a href="https://us.battle.net/account/management/authorizations.html">American Authorized Applications list.</a></li>
+                </ul>
+                
+            </p>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -53,12 +53,6 @@ namespace MoreDakka.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
-            var externalAuthenticationTypes = HttpContext.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
-            //var identity = await AuthenticationManager.GetExternalLoginInfoAsync();
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            var pictureClaim = identity.Claims.FirstOrDefault(c => c.Type.Equals("urn:battlenet:battletag"));
-            var pictureUrl = pictureClaim.Value;
-
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),

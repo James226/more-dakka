@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -51,6 +52,12 @@ namespace MoreDakka.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
+
+            var externalAuthenticationTypes = HttpContext.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+            //var identity = await AuthenticationManager.GetExternalLoginInfoAsync();
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var pictureClaim = identity.Claims.FirstOrDefault(c => c.Type.Equals("urn:battlenet:battletag"));
+            var pictureUrl = pictureClaim.Value;
 
             var model = new IndexViewModel
             {
@@ -330,7 +337,50 @@ namespace MoreDakka.Controllers
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie, DefaultAuthenticationTypes.TwoFactorCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
+            var claimsIdentity = await user.GenerateUserIdentityAsync(UserManager);
+            await SetExternalProperties(claimsIdentity);
+
+            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, claimsIdentity);
+
+            await SaveAccessToken(user, claimsIdentity);
+
+        }
+
+        private async Task SetExternalProperties(ClaimsIdentity identity)
+        {
+            // get external claims captured in Startup.ConfigureAuth
+            ClaimsIdentity ext = await AuthenticationManager.GetExternalIdentityAsync(DefaultAuthenticationTypes.ExternalCookie);
+
+            if (ext != null)
+            {
+
+                var ignoreClaim = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims";
+                // add external claims to identity
+                foreach (var c in ext.Claims)
+                {
+                    if (!c.Type.StartsWith(ignoreClaim))
+                        if (!identity.HasClaim(c.Type, c.Value))
+                            identity.AddClaim(c);
+                }
+            }
+        }
+
+        private async Task SaveAccessToken(ApplicationUser user, ClaimsIdentity identity)
+        {
+            var userclaims = await UserManager.GetClaimsAsync(user.Id);
+
+            foreach (var at in (
+                from claims in identity.Claims
+                where claims.Type.EndsWith("access_token")
+                select new Claim(claims.Type, claims.Value, claims.ValueType, claims.Issuer)))
+            {
+
+                if (!userclaims.Contains(at))
+                {
+                    await UserManager.AddClaimAsync(user.Id, at);
+                }
+
+            };
         }
 
         private void AddErrors(IdentityResult result)

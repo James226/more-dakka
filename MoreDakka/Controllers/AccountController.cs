@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -340,6 +341,15 @@ namespace MoreDakka.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var ignoreClaim = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims";
+                    // add external claims to identity
+                    var identity = HttpContext.User.Identity as ClaimsIdentity;
+                    foreach (var c in loginInfo.ExternalIdentity.Claims)
+                    {
+                        if (!c.Type.StartsWith(ignoreClaim))
+                            if (!identity.HasClaim(c.Type, c.Value))
+                                identity.AddClaim(c);
+                    } 
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

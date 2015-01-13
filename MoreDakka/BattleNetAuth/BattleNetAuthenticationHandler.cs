@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Infrastructure;
 using Microsoft.Owin.Logging;
@@ -98,7 +99,7 @@ namespace MoreDakka.BattleNetAuth
 
                 var context = new BattleNetAuthenticatedContext(Context, user, accessToken);
                 context.Identity = new ClaimsIdentity(
-                    Options.SignInAsAuthenticationType);
+                    DefaultAuthenticationTypes.ExternalCookie);
                 if (!string.IsNullOrEmpty(context.Id))
                 {
                     context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, context.Id, XmlSchemaString, Options.AuthenticationType));

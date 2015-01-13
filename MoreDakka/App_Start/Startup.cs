@@ -63,6 +63,7 @@ namespace MoreDakka
             {
                 ClientId = ConfigurationManager.AppSettings["BattleNetClientId"],
                 ClientSecret = ConfigurationManager.AppSettings["BattleNetSecret"],
+                SignInAsAuthenticationType = DefaultAuthenticationTypes.ExternalCookie,
                 Provider = new BattleNetAuthenticationProvider()
                 {
                     OnAuthenticated = async (context) =>

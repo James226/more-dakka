@@ -260,3 +260,23 @@ hr {
     background: #120501;
     padding: 10px;
 }
+
+.grid-stripped > .row:nth-child(odd) {
+    background-color: #0e0401;
+}
+
+.grid {
+    margin: 0 20px;
+}
+
+.grid > .row {
+    height: 40px;
+}
+
+.grid-bordered > .row {
+    border: 1px solid #282828;
+}
+
+.grid-hover > .row {
+    cursor: pointer;
+}

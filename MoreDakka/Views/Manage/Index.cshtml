@@ -82,17 +82,19 @@
         {
             <dt>Characters:</dt>
             <dd>
-                @foreach (var realmType in Model.Characters.OrderBy(c => c["realm"]).ThenByDescending(c => c["level"]).ThenBy(c => c["name"]).GroupBy(c => (c["realm"].ToString() == "Doomhammer" || c["realm"].ToString() == "Turalyon")).Reverse())
-                {
-                    foreach (var character in realmType)
+                <div class="grid grid-bordered grid-stripped grid-hover">
+                    @foreach (var realmType in Model.Characters.OrderBy(c => c["realm"]).ThenByDescending(c => c["level"]).ThenBy(c => c["name"]).GroupBy(c => (c["realm"].ToString() == "Doomhammer" || c["realm"].ToString() == "Turalyon")).Reverse())
                     {
-                        <div class="row">
-                            <div class="col-sm-1">@character["level"]</div>
-                            <div class="col-sm-2">@character["name"]</div>
-                            <div class="col-sm-2">@character["realm"]</div>
-                        </div>
+                        foreach (var character in realmType)
+                        {
+                            <div class="row">
+                                <div class="col-sm-1">@character["level"]</div>
+                                <div class="col-sm-2">@character["name"]</div>
+                                <div class="col-sm-2">@character["realm"]</div>
+                            </div>
+                        }
                     }
-                }
+                </div>
             </dd>
         }
     </dl>

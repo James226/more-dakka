@@ -341,15 +341,14 @@ namespace MoreDakka.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    var ignoreClaim = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims";
-                    // add external claims to identity
-                    var identity = HttpContext.User.Identity as ClaimsIdentity;
-                    foreach (var c in loginInfo.ExternalIdentity.Claims)
+                    var user = await UserManager.FindAsync(loginInfo.Login);  
+                    const string ignoreClaim = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims";
+                    foreach (var c in loginInfo.ExternalIdentity.Claims.Where(c => !c.Type.StartsWith(ignoreClaim)))
                     {
-                        if (!c.Type.StartsWith(ignoreClaim))
-                            if (!identity.HasClaim(c.Type, c.Value))
-                                identity.AddClaim(c);
+                        if (user.Claims.All(t => t.ClaimType != c.Type))
+                            await UserManager.AddClaimAsync(user.Id, c);
                     } 
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

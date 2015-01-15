@@ -1,5 +1,8 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -11,6 +14,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using MoreDakka.Data;
 using MoreDakka.Models;
+using Newtonsoft.Json.Linq;
 
 namespace MoreDakka.Controllers
 {
@@ -53,13 +57,34 @@ namespace MoreDakka.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var claims = await UserManager.GetClaimsAsync(HttpContext.User.Identity.GetUserId());
+
+            var accessToken = claims.FirstOrDefault(c => c.Type == "urn:BattleNet:access_token");
+            JToken characters = null;
+            if (accessToken != null)
+            {
+                var httpClient = new HttpClient();
+                var userRequest = new HttpRequestMessage(HttpMethod.Get,
+                    "https://eu.api.battle.net/wow/user/characters?locale=en_GB&access_token=" +
+                    Uri.EscapeDataString(accessToken.Value));
+
+                userRequest.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var userResponse = await httpClient.SendAsync(userRequest);
+                userResponse.EnsureSuccessStatusCode();
+                var text = await userResponse.Content.ReadAsStringAsync();
+                characters = JObject.Parse(text)["characters"];
+            }
+
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(User.Identity.GetUserId()),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(User.Identity.GetUserId()),
                 Logins = await UserManager.GetLoginsAsync(User.Identity.GetUserId()),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(User.Identity.GetUserId())
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(User.Identity.GetUserId()),
+                Characters = characters
             };
             return View(model);
         }

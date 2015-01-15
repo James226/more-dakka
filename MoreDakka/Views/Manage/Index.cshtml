@@ -1,4 +1,5 @@
-﻿@model MoreDakka.Models.IndexViewModel
+﻿@using Newtonsoft.Json.Linq
+@model MoreDakka.Models.IndexViewModel
 @{
     ViewBag.Title = "Manage";
 }
@@ -77,9 +78,22 @@
                     </form>
                 }*@
         @*</dd>*@
-        <dt>Main Character:</dt>
-        <dd>
-            
-        </dd>
+        @if (Model.Characters != null)
+        {
+            <dt>Characters:</dt>
+            <dd>
+                @foreach (var realmType in Model.Characters.OrderBy(c => c["realm"]).ThenByDescending(c => c["level"]).ThenBy(c => c["name"]).GroupBy(c => (c["realm"].ToString() == "Doomhammer" || c["realm"].ToString() == "Turalyon")).Reverse())
+                {
+                    foreach (var character in realmType)
+                    {
+                        <div class="row">
+                            <div class="col-sm-1">@character["level"]</div>
+                            <div class="col-sm-2">@character["name"]</div>
+                            <div class="col-sm-2">@character["realm"]</div>
+                        </div>
+                    }
+                }
+            </dd>
+        }
     </dl>
 </div>

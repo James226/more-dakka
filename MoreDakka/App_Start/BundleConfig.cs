@@ -16,6 +16,7 @@ namespace MoreDakka
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.min.css",
+                "~/Content/bootstrap-markdown.min.css",
                 "~/Content/site.css"));
         }
     }

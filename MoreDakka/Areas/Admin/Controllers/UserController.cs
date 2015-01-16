@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using MoreDakka.Areas.Admin.Models;
 using MoreDakka.Data;
 
 namespace MoreDakka.Areas.Admin.Controllers
@@ -11,6 +13,19 @@ namespace MoreDakka.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private readonly BoardContext _context = new BoardContext();
+
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         public ActionResult Index()
         {
@@ -30,11 +45,11 @@ namespace MoreDakka.Areas.Admin.Controllers
             var user = _context.Users.Find(id);
             if (user == null)
                 return HttpNotFound();
-            return View(user);
+            return View(new EditUserViewModel{ Id = user.Id, UserName = user.UserName, Email = user.Email, NewPassword = string.Empty });
         }
 
         [HttpPost]
-        public ActionResult Edit(string id, FormCollection collection)
+        public async Task<ActionResult> Edit(string id, FormCollection collection)
         {
             try
             {
@@ -42,6 +57,12 @@ namespace MoreDakka.Areas.Admin.Controllers
                 if (TryUpdateModel(user, collection))
                 {
                     _context.SaveChanges();
+
+                    if (!string.IsNullOrEmpty(collection["NewPassword"]))
+                    {
+                        await UserManager.RemovePasswordAsync(id);
+                        await UserManager.AddPasswordAsync(id, collection["NewPassword"]);
+                    }
                     return RedirectToAction("Index");
                 }
                 return View();

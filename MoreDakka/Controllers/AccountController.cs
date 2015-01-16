@@ -392,6 +392,14 @@ namespace MoreDakka.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: true, rememberBrowser: false);
+
+                        const string ignoreClaim = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims";
+                        foreach (var c in info.ExternalIdentity.Claims.Where(c => !c.Type.StartsWith(ignoreClaim)))
+                        {
+                            if (user.Claims.All(t => t.ClaimType != c.Type))
+                                await UserManager.AddClaimAsync(user.Id, c);
+                        } 
+
                         return RedirectToLocal(returnUrl);
                     }
                 }

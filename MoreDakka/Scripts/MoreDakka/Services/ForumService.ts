@@ -6,6 +6,12 @@ interface Window {
 }
 
 module MoreDakka {
+    export enum TopicType {
+        Standard = 1,
+        Pin = 50,
+        Announcement = 100
+    }
+
     export class Board {
         Id: string;
         Name: string;
@@ -28,13 +34,15 @@ module MoreDakka {
     export class ForumViewModel {
         id: string;
         title: string;
+        topicType: TopicType;
         totalPosts: number;
         lastPost: Date;
         isRead: boolean;
 
-        constructor(id: string, title: string, totalPosts: number, lastPost: string, isRead: boolean) {
+        constructor(id: string, title: string, topicType: TopicType, totalPosts: number, lastPost: string, isRead: boolean) {
             this.id = id;
             this.title = title;
+            this.topicType = topicType;
             this.totalPosts = totalPosts;
             this.lastPost = new Date(Date.parse(lastPost));
             this.isRead = isRead;
@@ -95,7 +103,7 @@ module MoreDakka {
                     var posts: ForumViewModel[] = [];
                     for (var i in data.data) {
                         var record = data.data[i];
-                        posts.push(new ForumViewModel(record.id, record.title, record.totalPosts, record.lastPost, this.historyService.isRead(record.lastPost)));
+                        posts.push(new ForumViewModel(record.id, record.title, record.topicType, record.totalPosts, record.lastPost, this.historyService.isRead(record.lastPost)));
                     }
                     return posts;
                 });

@@ -100,6 +100,10 @@
     <Compile Include="Migrations\201410261037146_ReseedAdmin.Designer.cs">
       <DependentUpon>201410261037146_ReseedAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501171808039_Add TopicType to Topics table.cs" />
+    <Compile Include="Migrations\201501171808039_Add TopicType to Topics table.Designer.cs">
+      <DependentUpon>201501171808039_Add TopicType to Topics table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="Post.cs" />
@@ -144,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410261037146_ReseedAdmin.resx">
       <DependentUpon>201410261037146_ReseedAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501171808039_Add TopicType to Topics table.resx">
+      <DependentUpon>201501171808039_Add TopicType to Topics table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

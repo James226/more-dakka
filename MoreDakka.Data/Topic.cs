@@ -10,12 +10,20 @@ using System.Threading.Tasks;
 
 namespace MoreDakka.Data
 {
+    public enum TopicType
+    {
+        None = 0,
+        Standard = 1,
+        Pin = 50,
+        Announcement = 100
+    };
 
     [Serializable]
     public class Topic
     {
         private Guid _id = Guid.NewGuid();
         private DateTime _lastUpdate = DateTime.UtcNow;
+        private TopicType _topicType = TopicType.Standard;
 
         [Key]
         public Guid Id
@@ -39,6 +47,12 @@ namespace MoreDakka.Data
         public Post LastPost { get; set; }
 
         public ApplicationUser User { get; set; }
+
+        public TopicType TopicType
+        {
+            get { return _topicType; }
+            set { _topicType = value; }
+        }
 
         [ForeignKey("TopicId")]
         public ICollection<Post> Posts { get; set; }

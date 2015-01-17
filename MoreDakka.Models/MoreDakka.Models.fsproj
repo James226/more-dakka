@@ -90,6 +90,13 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoreDakka.Data\MoreDakka.Data.csproj">
+      <Name>MoreDakka.Data</Name>
+      <Project>{901cbc21-0321-4cd1-87cf-a3332363ab5c}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

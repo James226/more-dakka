@@ -20,14 +20,19 @@ type NewTopic() =
     [<Required>] member x.Body with get() = body and set v = body <- v
     [<Required>] member x.BoardId with get() = boardId and set v = boardId <- v
 
+[<CLIMutable>]
+type TopicPatch = {
+    topicType: TopicType
+}
+
 [<RoutePrefix("api/forum/topic")>]
 [<Authorize>]
 type TopicController() =
     inherit ApiController()
     let context = new BoardContext()
 
-    let CoerceTopics(id, name, totalPosts, lastPost: Post) =
-        { Id = id; Title = name; TotalPosts = totalPosts; LastPost = lastPost.PostedAt }
+    let CoerceTopics(id, name, topicType, totalPosts, lastPost: Post) =
+        { Id = id; Title = name; TopicType = topicType; TotalPosts = totalPosts; LastPost = lastPost.PostedAt }
 
     [<Route("{id:guid}")>]
     [<HttpGet>]
@@ -35,7 +40,9 @@ type TopicController() =
         let topics = query {
                 for topic in context.Topics.Include("Posts").Include("Posts.User") do
                 where (topic.BoardId = id)
-                select (topic.Id, topic.Name, topic.Posts.Count, topic.Posts.OrderByDescending(fun p -> p.PostedAt).FirstOrDefault())
+                sortByDescending topic.TopicType
+                thenByDescending topic.LastPost.PostedAt
+                select (topic.Id, topic.Name, topic.TopicType, topic.Posts.Count, topic.Posts.OrderByDescending(fun p -> p.PostedAt).FirstOrDefault())
             }
             
         x.Ok(Enumerable.Select(topics, CoerceTopics)) :> _
@@ -64,7 +71,19 @@ type TopicController() =
 
         context.SaveChanges() |> ignore
 
-        x.Ok({ Id = topic.Id; Title = topic.Name; TotalPosts = topic.Posts.Count; LastPost = post.PostedAt }) :> _
+        x.Ok({ Id = topic.Id; Title = topic.Name; TopicType = topic.TopicType; TotalPosts = topic.Posts.Count; LastPost = post.PostedAt }) :> _
+
+    [<Route("{id:guid}")>]
+    [<HttpPatch>]
+    member x.Patch(id: System.Guid, data: TopicPatch) : IHttpActionResult =
+        try
+            let topic = context.Topics.Find id
+            if data.topicType <> TopicType.None then
+                topic.TopicType <- data.topicType
+            context.SaveChanges() |> ignore
+            x.Ok() :> _
+        with
+        | :? ArgumentNullException -> x.NotFound() :> _
 
     [<Route("{id:guid}")>]
     [<HttpDelete>]

@@ -1,8 +1,15 @@
-/// <reference path="../../typings/angularjs/angular.d.ts" />
+﻿/// <reference path="../../typings/angularjs/angular.d.ts" />
 /// <reference path="../MoreDakka.ts" />
 
 var MoreDakka;
 (function (MoreDakka) {
+    (function (TopicType) {
+        TopicType[TopicType["Standard"] = 1] = "Standard";
+        TopicType[TopicType["Pin"] = 50] = "Pin";
+        TopicType[TopicType["Announcement"] = 100] = "Announcement";
+    })(MoreDakka.TopicType || (MoreDakka.TopicType = {}));
+    var TopicType = MoreDakka.TopicType;
+
     var Board = (function () {
         function Board() {
         }
@@ -25,9 +32,10 @@ var MoreDakka;
     MoreDakka.BoardViewModel = BoardViewModel;
 
     var ForumViewModel = (function () {
-        function ForumViewModel(id, title, totalPosts, lastPost, isRead) {
+        function ForumViewModel(id, title, topicType, totalPosts, lastPost, isRead) {
             this.id = id;
             this.title = title;
+            this.topicType = topicType;
             this.totalPosts = totalPosts;
             this.lastPost = new Date(Date.parse(lastPost));
             this.isRead = isRead;
@@ -83,7 +91,7 @@ var MoreDakka;
                 var posts = [];
                 for (var i in data.data) {
                     var record = data.data[i];
-                    posts.push(new ForumViewModel(record.id, record.title, record.totalPosts, record.lastPost, _this.historyService.isRead(record.lastPost)));
+                    posts.push(new ForumViewModel(record.id, record.title, record.topicType, record.totalPosts, record.lastPost, _this.historyService.isRead(record.lastPost)));
                 }
                 return posts;
             });

@@ -17,8 +17,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-ng-repeat="topic in topics | orderBy:'lastPost':true" data-ng-class="{'forum-unread': !topic.isRead}">
-                        <td data-ng-click="openTopic(topic.id)"><a data-ng-href="{{topicUrl(topic.id)}}">{{ topic.title }}</a></td>
+                    <tr data-ng-repeat="topic in topics | orderBy:['topicType','lastPost']:true" data-ng-class="{'forum-unread': !topic.isRead}">
+                        <td data-ng-click="openTopic(topic.id)">
+                            <span class="glyphicon glyphicon-pushpin" data-ng-show="topic.topicType == 50" style="padding-right: 10px;"></span>
+                            <span class="glyphicon glyphicon-bullhorn" data-ng-show="topic.topicType == 100" style="padding-right: 10px;"></span>
+                            <a data-ng-href="{{topicUrl(topic.id)}}">{{ topic.title }}</a>
+                        </td>
                         <td>{{ topic.totalPosts }}</td>
                         <td>{{ topic.lastPost.toLocaleString("en-GB") }}</td>
                     </tr>

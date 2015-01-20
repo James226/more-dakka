@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net.Mail;
+using System.Net.Mime;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -14,7 +16,28 @@ namespace MoreDakka
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
+            try
+            {
+                var mailMsg = new MailMessage();
+
+                mailMsg.To.Add(new MailAddress(message.Destination));
+                mailMsg.From = new MailAddress("noreply@more-dakka.azurewebsites.net", "More Dakka");
+
+                mailMsg.Subject = message.Subject;
+                mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(message.Body, null, MediaTypeNames.Text.Plain));
+                mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(message.Body, null, MediaTypeNames.Text.Html));
+
+                // Init SmtpClient and send
+                var smtpClient = new SmtpClient("smtp.sendgrid.net", 587);
+                var credentials = new System.Net.NetworkCredential("azure_a996412b182c1e78059c0916a0146181@azure.com", "aYiu32WneItDz6J");
+                smtpClient.Credentials = credentials;
+
+                return smtpClient.SendMailAsync(mailMsg);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             return Task.FromResult(0);
         }
     }

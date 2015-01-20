@@ -30,6 +30,8 @@ namespace MoreDakka.Data
 
         [ForeignKey("BoardId")]
         public ICollection<Topic> Topics { get; set; }
+
+        public string RequiredRoles { get; set; }
     }
 
     public class BoardContext : IdentityDbContext<ApplicationUser> 

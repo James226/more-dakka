@@ -7,6 +7,7 @@ open System.Data.Entity
 
 open MoreDakka.Data
 open MoreDakka.Models.Forum
+open System.Web
 
 [<RoutePrefix("api/forum/board")>]
 type BoardController() =
@@ -19,18 +20,21 @@ type BoardController() =
     let CoerceBoardWithTopics (id: Guid, name: string, totalTopics: int, totalPosts: int, lastTopic: Topic, lastAuthor: string) : BoardViewModel =
         { Id = id; Name = name; TotalTopics = totalTopics; TotalPosts = totalPosts; LastTopicId = lastTopic.Id; LastTopicTitle = lastTopic.Name; LastPostAuthor = lastAuthor }
 
-    let CoerceBoardViewModel (id: Guid, name: string, totalTopics: int, totalPosts: int, lastTopic: Topic, lastAuthor: string) : BoardViewModel =
+    let CoerceBoardViewModel (id: Guid, name: string, requiredRoles: string, totalTopics: int, totalPosts: int, lastTopic: Topic, lastAuthor: string) : BoardViewModel =
         match lastTopic with
         | null -> CoerceBoardWithNoTopics (id, name, totalTopics, totalPosts)
         | _ -> CoerceBoardWithTopics (id, name, totalTopics, totalPosts, lastTopic, lastAuthor)
+
+    let FilterRequiredRoles (id: Guid, name: string, requiredRoles: string, totalTopics: int, totalPosts: int, lastTopic: Topic, lastAuthor: string) : bool =
+        String.IsNullOrEmpty(requiredRoles) || HttpContext.Current.User.IsInRole(requiredRoles)
 
     [<Route("")>]
     member x.Get() : IHttpActionResult =
         let boards = query {
                 for board in boardContext.Boards.Include(fun b -> b.Topics).Include("Topics.Posts").Include("Topics.LastPost.User") do
                 let lastTopic = board.Topics.OrderByDescending(fun t -> t.LastUpdate).FirstOrDefault()
-                select (board.Id, board.Name, board.Topics.Count, board.Topics.DefaultIfEmpty().Sum(fun t -> t.Posts.Count ), lastTopic, lastTopic.LastPost.User.UserName ) }
-        x.Ok(Enumerable.Select(boards, CoerceBoardViewModel)) :> _
+                select (board.Id, board.Name, board.RequiredRoles, board.Topics.Count, board.Topics.DefaultIfEmpty().Sum(fun t -> t.Posts.Count ), lastTopic, lastTopic.LastPost.User.UserName ) }
+        x.Ok(Enumerable.Select(Enumerable.Where(boards, FilterRequiredRoles), CoerceBoardViewModel)) :> _
 
     [<Route("")>]
     member x.Post(board: Board) : IHttpActionResult =

@@ -192,6 +192,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="4315C872B7A3FBCAF9FF35DA5760B7A5.txt" />
     <Content Include="Content\background.png" />
     <Content Include="Content\banner.png" />
     <Content Include="Content\BattleNetAddressBar.png" />

@@ -336,6 +336,7 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Loot\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -355,6 +356,7 @@
     <TypeScriptCompile Include="Scripts\MoreDakka\Controllers\Forum\PostController.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Controllers\Forum\TopicController.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Controllers\HomeController.ts" />
+    <TypeScriptCompile Include="Scripts\MoreDakka\Controllers\LootController.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Controllers\recruitment\ApplyController.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Controllers\recruitment\ListController.ts" />
     <TypeScriptCompile Include="Scripts\MoreDakka\Controllers\recruitment\ViewController.ts" />

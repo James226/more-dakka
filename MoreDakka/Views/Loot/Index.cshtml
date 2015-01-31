@@ -1,0 +1,47 @@
+﻿<form data-ng-submit="addCharacter()">
+    <input type="text" data-ng-model="newCharacterName" />
+    <button type="submit">Add Character</button>
+</form>
+
+<table class="table table-striped">
+    
+    <tr>
+        <th>Name</th>
+        <th>Back</th>
+        <th>Chest</th>
+        <th>Feet</th>
+        <th>Finger 1</th>
+        <th>Finger 2</th>
+        <th>Hands</th>
+        <th>Helm</th>
+        <th>Legs</th>
+        <th>Weapon</th>
+        <th>Neck</th>
+        <th>Shoulder</th>
+        <th>Trinket 1</th>
+        <th>Trinket 2</th>
+        <th>Waist</th>
+        <th>Wrist</th>
+    </tr>
+    <tr data-ng-repeat="character in characters">
+        <td class="col-sm-1">{{ character.name }} ({{ character.items.averageItemLevelEquipped }})</td>
+        <td class="col-sm-1"><a href="#" rel="item={{ character.items.back.id }}"></a>{{ character.items.back.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.chest.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.feet.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.finger1.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.finger2.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.hands.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.head.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.legs.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.mainHand.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.neck.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.shoulder.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.trinket1.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.trinket2.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.waist.itemLevel }}</td>
+        <td class="col-sm-1">{{ character.items.wrist.itemLevel }}</td>
+    </tr>
+</table>
+
+<script type="text/javascript" src="https://static.wowhead.com/widgets/power.js"></script>
+<script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>

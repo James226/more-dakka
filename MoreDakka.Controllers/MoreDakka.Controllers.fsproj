@@ -59,6 +59,7 @@
     <Compile Include="TestsController.fs" />
     <None Include="App.config" />
     <Compile Include="ForumsController.fs" />
+    <Compile Include="LootController.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">

@@ -108,8 +108,13 @@
     <Compile Include="Migrations\201501202211201_AddRequiredRolesToBoards.Designer.cs">
       <DependentUpon>201501202211201_AddRequiredRolesToBoards.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502032158070_AddPagesSet.cs" />
+    <Compile Include="Migrations\201502032158070_AddPagesSet.Designer.cs">
+      <DependentUpon>201502032158070_AddPagesSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Application.cs" />
+    <Compile Include="Page.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Topic.cs" />
     <Compile Include="BoardContext.cs" />
@@ -158,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501202211201_AddRequiredRolesToBoards.resx">
       <DependentUpon>201501202211201_AddRequiredRolesToBoards.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502032158070_AddPagesSet.resx">
+      <DependentUpon>201502032158070_AddPagesSet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

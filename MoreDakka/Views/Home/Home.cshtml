@@ -27,7 +27,7 @@
     });
 </script>
 
-<img src="/Content/banner.png" class="header-image"/>
+<img src="/Content/banner.png" class="header-image" />
 <div class="container body-content">
     <div class="row">
         <div class="col-md-3">
@@ -54,6 +54,20 @@
 
 
         <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div data-ng-show="editable" style="float:right;"><button data-ng-click="editing = !editing;" class="glyphicon glyphicon-pencil btn btn-primary"></button></div>
+                    <div data-ng-show="editing">
+                        <div class="form-group">
+                            <textarea id="home-editor" class="form-control" rows="10" style="max-width: 100%" data-ng-model="homeContent" placeholder="Body"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success" data-ng-click="submitHomePage()">Save</button>
+                        </div>
+                    </div>
+                    <div data-ng-show="!editing" data-ng-bind-html="markUp(homeContent)"></div>
+                </div>
+            </div>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h5 style="padding: 5px 0 0 5px;">Live Streams</h5>
@@ -137,3 +151,6 @@
         </div>
     </div>
 </div>
+<script>
+    $("#home-editor").markdown();
+</script>

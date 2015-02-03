@@ -50,6 +50,7 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <None Include="packages.config" />
+    <Compile Include="Api\PageController.fs" />
     <Compile Include="RecruitmentController.fs" />
     <Compile Include="Api\PostController.fs" />
     <Compile Include="Api\TopicController.fs" />

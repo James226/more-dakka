@@ -46,5 +46,6 @@ namespace MoreDakka.Data
         public IDbSet<Topic> Topics { get; set; }
         public IDbSet<Post> Posts { get; set; }
         public IDbSet<Application> Applications { get; set; }
+        public IDbSet<Page> Pages { get; set; } 
     }
 }

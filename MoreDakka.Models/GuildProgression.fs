@@ -14,7 +14,7 @@ type RaidProgression = BossProgression seq
 let GetProgression() : RaidProgression =
     let GetCurrentRaid(characterProgression : JsonValue) =
         let raids = characterProgression?progression?raids.AsArray()
-        Array.find (fun r -> r?name.AsString() = "Highmaul") raids
+        Array.find (fun r -> r?name.AsString() = "Blackrock Foundry") raids
 
     let GetCurrentProgress(raidProgression: JsonValue) =
         seq { for raid in raidProgression?bosses.AsArray() do
@@ -39,7 +39,7 @@ let GetProgression() : RaidProgression =
         async {
             //let! request = Http.AsyncRequestString "http://eu.battle.net/api/wow/guild/Doomhammer/More%20Dakka?fields=members"
             let request = "{\"members\":[
-                {\"character\":{\"name\": \"Sator\", \"level\": \"90\"}, \"rank\": \"1\"}
+                {\"character\":{\"name\": \"Miyo\", \"level\": \"90\"}, \"rank\": \"1\"}
                 ]}"
             return JsonValue.Parse request
                 |> GetMembers

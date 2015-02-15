@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Security.Claims;
@@ -29,7 +30,7 @@ namespace MoreDakka
 
                 // Init SmtpClient and send
                 var smtpClient = new SmtpClient("smtp.sendgrid.net", 587);
-                var credentials = new System.Net.NetworkCredential("azure_a996412b182c1e78059c0916a0146181@azure.com", "aYiu32WneItDz6J");
+                var credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["SendGridUsername"], ConfigurationManager.AppSettings["SendGridPassword"]);
                 smtpClient.Credentials = credentials;
 
                 return smtpClient.SendMailAsync(mailMsg);

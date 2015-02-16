@@ -13,6 +13,10 @@
     @Html.HiddenFor(m => m.Id)
     @Html.EditorFor(m => m.UserName)
     @Html.EditorFor(m => m.Email)
+    <div class="form-group">
+        <label for="emailConfirmed">Email Confirmed</label>
+        @Html.CheckBoxFor(m => m.EmailConfirmed, new { id="emailConfirmed", @class="checkbox" })    
+    </div>
     
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">

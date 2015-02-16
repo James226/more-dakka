@@ -1,5 +1,13 @@
 @model System.Web.Mvc.HandleErrorInfo
 
-<div>
-    <h2>An error occurred while processing your request.</h2>
-</div>
+<h2>Error</h2>
+@{
+    if (String.IsNullOrEmpty(ViewBag.errorMessage))
+    {
+        <h3>An error occurred while processing your request.</h3>
+    }
+    else
+    {
+        <div class="well well-lg">@ViewBag.errorMessage</div>
+    }
+}

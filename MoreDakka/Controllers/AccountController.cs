@@ -72,6 +72,17 @@ namespace MoreDakka.Controllers
                 return View(model);
             }
 
+            var user = await UserManager.FindByNameAsync(model.Username);
+            if (user != null)
+            {
+                if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                {
+                    await SendEmailConfirmation(user.Id, user.UserName);
+                    ViewBag.errorMessage = "You must have a confirmed email to log on. The confirmation email has automatically been resent to your email, please check your spam folder.";
+                    return View("Error");
+                }
+            }
+
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
@@ -159,21 +170,28 @@ namespace MoreDakka.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    var userId = user.Id;
+                    var userName = model.UserName;
+                    await SendEmailConfirmation(userId, userName);
 
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    return View("RegisterConfirmation");
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        private async Task SendEmailConfirmation(string userId, string userName)
+        {
+            var code = await UserManager.GenerateEmailConfirmationTokenAsync(userId);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new {userId = userId, code = code}, protocol: Request.Url.Scheme);
+            await
+                UserManager.SendEmailAsync(userId, "Confirm your account",
+                    string.Format(
+                        "Hello {0},<br /><br />Thank you for registering for an account at More Dakka. Please confirm your account by clicking <a href=\"{1}\">here</a>.<br /><br />Best Regards,<br />More Dakka Team.",
+                        userName, callbackUrl));
         }
 
         //

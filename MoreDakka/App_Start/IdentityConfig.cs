@@ -22,7 +22,7 @@ namespace MoreDakka
                 var mailMsg = new MailMessage();
 
                 mailMsg.To.Add(new MailAddress(message.Destination));
-                mailMsg.From = new MailAddress("noreply@more-dakka.azurewebsites.net", "More Dakka");
+                mailMsg.From = new MailAddress("noreply@more-dakka.eu", "More Dakka");
 
                 mailMsg.Subject = message.Subject;
                 mailMsg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(message.Body, null, MediaTypeNames.Text.Plain));

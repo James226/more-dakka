@@ -45,7 +45,7 @@ namespace MoreDakka.Areas.Admin.Controllers
             var user = _context.Users.Find(id);
             if (user == null)
                 return HttpNotFound();
-            return View(new EditUserViewModel{ Id = user.Id, UserName = user.UserName, Email = user.Email, NewPassword = string.Empty });
+            return View(new EditUserViewModel{ Id = user.Id, UserName = user.UserName, Email = user.Email, EmailConfirmed = user.EmailConfirmed, NewPassword = string.Empty });
         }
 
         [HttpPost]

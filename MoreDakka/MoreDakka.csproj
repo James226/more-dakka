@@ -215,6 +215,7 @@
     <Content Include="Content\BossImages\SpoilsOfPandaria.jpg" />
     <Content Include="Content\BossImages\TheFallenProtectors.jpg" />
     <Content Include="Content\BossImages\ThokTheBloodthirsty.jpg" />
+    <Content Include="Content\BossKills\BlackhandHeroic.jpg" />
     <Content Include="Content\favicon.png" />
     <Content Include="Content\home-00.jpg" />
     <Content Include="Content\home-01.jpg" />
@@ -258,7 +259,9 @@
     <Content Include="Scripts\Libraries\respond.js" />
     <Content Include="Scripts\Libraries\respond.min.js" />
     <Content Include="Scripts\Libraries\strapdown.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
